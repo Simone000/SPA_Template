@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using SPA_Template.Models;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -40,7 +41,7 @@ namespace SPA_Template
 
 
             //Create basic roles
-            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new SPA_Template.CustomIdentityContext())))
+            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
             {
                 roleManager.Create(new IdentityRole("Admin"));
             }

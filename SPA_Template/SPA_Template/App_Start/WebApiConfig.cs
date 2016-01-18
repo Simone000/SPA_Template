@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
+using System.Web.Http.ExceptionHandling;
 
 namespace SPA_Template
 {
@@ -14,11 +15,18 @@ namespace SPA_Template
         {
             // Web API configuration and services
             // Configure Web API to use only bearer token authentication.
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
+            //config.SuppressDefaultHostAuthentication();
+            //config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
             // Web API routes
             config.MapHttpAttributeRoutes();
+
+            //abilito log globale errori
+            config.Services.Add(typeof(IExceptionLogger), new CustomExceptionLogger());
+
+            //log risposte
+            config.MessageHandlers.Add(new CustomResponseHandler());
+
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

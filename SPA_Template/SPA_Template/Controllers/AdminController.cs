@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace SPA_Template.Controllers
 {
-    public class AccountController : ApiController
+    public class AdminController : ApiController
     {
     }
 }
