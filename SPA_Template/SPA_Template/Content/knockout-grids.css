@@ -1,0 +1,23 @@
+﻿/* Primo (e al momento unico) template bootstrap per knockout-grids */
+/* .knockout-grids_t1 .panel-group{} */
+
+.knockout-grids_t1 .panel-heading {
+    background-color: #d3d3d3;
+    border: solid black 1px;
+    padding: 20px;
+}
+    .knockout-grids_t1 .panel-heading .panel-title a{
+        font-weight:bold;
+    }
+
+
+.knockout-grids_t1 .panel-body {
+    border: solid;
+    border-top-style: none;
+}
+    .knockout-grids_t1 .panel-body .pagination-menu{
+        text-align:center;
+        background-color: #BEBEBE;
+        padding: 4px;
+        border-radius: 8px;
+    }
