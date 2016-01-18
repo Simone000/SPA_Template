@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Titolo Progetto</title>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <link href="../Content/toastr.min.css" rel="stylesheet" />
+    <link href="../Content/knockout-grids.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <!-- Pagina di loading librerie -->
+    <div id="div_starterPage">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h1>Titolo Progetto</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../../../Content/Images/loading_spinner.gif" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Loading...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" onclick="location.reload()">Clicca qui se impiega troppo tempo...</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Body per SammyJs -->
+    <div id="div_body">
+        <components-header></components-header>
+
+        <!-- ko with: body-->
+
+            <!-- ko with: changepass -->
+                <account-page-changepass></account-page-changepass>
+            <!-- /ko -->
+            <!-- ko with: login -->
+                <account-page-login></account-page-login>
+            <!-- /ko -->
+            <!-- ko with: lostpassword -->
+                <account-page-lostpassword></account-page-lostpassword>
+            <!-- /ko -->
+            <!-- ko with: register -->
+                <account-page-register></account-page-register>
+            <!-- /ko -->
+            <!-- ko with: resetpass -->
+                <account-page-resetpass params="code: code, userid: userid"></account-page-resetpass>
+            <!-- /ko -->
+            <!-- ko with: user -->
+                <account-page-user></account-page-user>
+            <!-- /ko -->
+
+            <!-- ko with: ammUtenti -->
+                <amm-page-utenti></amm-page-utenti>
+            <!-- /ko -->
+            <!-- ko with: ammCreaUtente -->
+                <amm-page-creautente></amm-page-creautente>
+            <!-- /ko -->
+
+
+            <!-- ko with: aziende -->
+                <aziende-page-aziende></aziende-page-aziende>     
+            <!-- /ko -->
+
+            <!-- ko with: editAzienda -->
+                <aziende-page-editazienda params="id: id"></aziende-page-editazienda>
+            <!-- /ko -->
+
+        <!-- /ko -->
+    </div>
+
+    <script src="/App/require.config.js"></script>
+    <script data-main="App/startup" src="/Scripts/require.js"></script>
+</body>
+</html>

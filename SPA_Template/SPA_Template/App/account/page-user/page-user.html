@@ -1,0 +1,42 @@
+﻿<div class="container" id="div_pageUtente">
+
+    <div class="row page-header text-center">
+        <div class="col-lg-12">
+            <h1>PAGINA UTENTE</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="div_userInfo">
+            <div class="row">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Email:
+                    </dt>
+                    <dd data-bind="text: email">
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="row">
+        <div class="col-sm-6 col-xs-12">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <a href="#/account/changepass" class="btn btn-default btn_categorie btn_text">CAMBIA PASSWORD</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-xs-12">
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                    <a data-bind="click: logout" class="btn btn-default btn_categorie btn_text">LOGOUT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

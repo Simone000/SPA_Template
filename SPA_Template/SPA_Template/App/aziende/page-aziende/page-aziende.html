@@ -1,0 +1,96 @@
+﻿
+<div class="container">
+
+    <div class="row">
+        <div class="page-header col-sm-12 col-xs-12">
+            <h1>Lista Aziende (Knockout Grids)</h1>
+        </div>
+    </div>
+
+
+    <div class="row">
+
+
+        <!-- Example 1 (Aziende) -->
+        <div class="panel-group knockout-grids_t1" id="div_Dipendenti">
+            <!--todo: change Div Name-->
+            <div class="panel" data-bind="with: dipendentiPaged()">
+                <!--todo: change to the knockout grid observable -->
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#reps">
+                            <!-- todo: change href -->
+                            <b>Dipendente</b>                                   <!--todo: change title-->
+                            <span data-bind="text: '( ' + items().length + ' dipendenti)'"></span> <!--todo: change text-->
+                        </a>
+
+
+                        <input type="text" style="float:right;" data-bind="value: search, valueUpdate:'afterkeydown'"
+                               placeholder="Nome" />                   <!--todo: change placeholder-->
+                    </h3>
+                </div>
+
+                <div class="panel-collapse collapse in" id="reps">
+                    <!--todo: change id (take from data-toggle href) -->
+                    <div class="panel-body">
+                        <span data-bind="visible: $data.length == 0"><b>Nessuna Dipendente presente</b></span>     <!--todo: change text-->
+
+                        <div class="table-responsive" data-bind="visible: items().length > 0">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th><a href="#" data-bind="click: function(){ changeSort('nome') }">Nome</a></th>
+                                        <th><a href="#" data-bind="click: function(){ changeSort('reparto.nome') }">Reparto</a></th>
+                                        <th><a href="#" data-bind="click: function(){ changeSort('reparto.azienda.nome') }">Azienda</a></th>
+                                        <th>
+                                            <input type="checkbox" data-bind="checked: isAllSelected" />
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: itemsInPageSorted()">
+                                    <tr>
+                                        <td data-bind="text: nome"></td>
+                                        <td data-bind="text: reparto.nome"></td>
+                                        <td>
+                                            <a title="Modifica Azienda"
+                                               data-bind="text: reparto.azienda.nome, attr: { href: '#/aziende/' + reparto.azienda.id + '/edit' }"></a>
+                                        </td>
+                                        <td>
+                                            <input type="checkbox" data-bind="checked: isSelected" />
+                                        </td>
+
+                                        <td>
+                                            <a href="#" title="Modifica Dipendente">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <div class="pagination-menu">
+                                <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
+                                <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
+                                <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
+                                <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
+
+                                <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
+                                <span>Page Size: </span>
+                                <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
+                                <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
+                                <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+</div>
+
+

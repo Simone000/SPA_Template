@@ -1,0 +1,89 @@
+﻿
+<div class="container">
+
+    <div class="row">
+        <div class="page-header col-sm-12 col-xs-12">
+            <h1>Crea un nuovo utente</h1>
+
+            <!-- Menu di navigazione -->
+            <a href="#" title="Home">Home</a>
+            &gt;
+            <a href="/#/amministrazione/utenti" title="Amministrazione Utenti">Amministrazione Utenti</a>
+            &gt;
+
+
+            Crea
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div id="div_creautente" class="col-sm-12 col-xs-12">
+            <form class="form-horizontal" data-bind="submit: creaUtente">
+
+                <div class="validation-summary-errors text-danger hide">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="text" class="form-control"
+                                   name="Email"
+                                   placeholder="Email"
+                                   required="required"
+                                   data-bind="value: email" />
+                        </div>
+                        <label class="error label label-danger hide">Email è richiesta!</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="password" class="form-control"
+                                   name="Password"
+                                   placeholder="Password"
+                                   required="required"
+                                   data-bind="value: password" />
+                        </div>
+                        <label class="error label label-danger hide">Password è richiesta!</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">ConfirmPassword</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="password" class="form-control"
+                                   name="ConfirmPassword"
+                                   placeholder="ConfirmPassword"
+                                   required="required"
+                                   data-bind="value: confirmPassword" />
+                        </div>
+                        <label class="error label label-danger hide">ConfirmPassword è richiesta!</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Registra" class="btn btn-primary">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+
