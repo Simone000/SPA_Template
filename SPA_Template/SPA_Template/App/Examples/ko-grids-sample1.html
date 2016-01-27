@@ -30,7 +30,7 @@
 
             <div class="panel-collapse collapse in" id="reps">  <!--todo: change id (take from data-toggle href) -->
                 <div class="panel-body">
-                    <span data-bind="visible: $data.length == 0"><b>Nessuna Dipendente presente</b></span>     <!--todo: change text-->
+                    <span data-bind="visible: items().length == 0"><b>Nessuna Dipendente presente</b></span>     <!--todo: change text-->
 
                     <div class="table-responsive" data-bind="visible: items().length > 0">
                         <table class="table table-striped">
