@@ -206,6 +206,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ODataController.cs" />
     <Compile Include="CustomExceptionLogger.cs" />
     <Compile Include="CustomResponseHandler.cs" />
     <Compile Include="Global.asax.cs">
@@ -419,6 +420,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\OData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
