@@ -63,11 +63,17 @@ namespace SPA_Template.Controllers
                     if (apiModel.RequestBodyParameters != null)
                         parametriPost.AddRange(apiModel.RequestBodyParameters.Select(p => p.Name));
 
+                    if (parametriGet.Count > 0 || parametriPost.Count > 0)
+                    {
+                        //aggiungo la virgola e lo spazio dopo error se ci sono parametri
+                        jsCurrentMethodCall += ", ";
 
-                    // function GetAziende(divToBlock, success, error, param1, param2) {
-                    jsCurrentMethodCall += string.Join(", ", parametriGet);
-                    jsCurrentMethodCall += string.Join(", ", parametriPost);
+                        // function GetAziende(divToBlock, success, error, param1, param2) {
+                        jsCurrentMethodCall += string.Join(", ", parametriGet);
+                        jsCurrentMethodCall += string.Join(", ", parametriPost);
+                    }
                     jsCurrentMethodCall += @") {" + Environment.NewLine;
+
 
                     //      Get(divToBlock, success, error, false, 
                     jsCurrentMethodCall += "\t"; //tab
