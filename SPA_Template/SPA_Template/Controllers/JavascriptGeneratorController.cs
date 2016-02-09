@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
@@ -31,7 +32,7 @@ namespace SPA_Template.Controllers
                 string controllerName = apiController.Key.ControllerName;
 
                 //commento col nome del controller
-                jsMethodsCall += @"//" + controllerName + Environment.NewLine;
+                jsMethodsCall += Environment.NewLine + @"//" + controllerName + Environment.NewLine;
 
                 foreach (var apiMethod in apiController)
                 {
@@ -66,9 +67,10 @@ namespace SPA_Template.Controllers
                     if (apiModel.RequestBodyParameters != null)
                         parametriPost.AddRange(apiModel.RequestBodyParameters.Select(p => p.Name));
 
+                    //aggiungo la virgola e lo spazio dopo error se ci sono parametri
+                    //function GetAziende(divToBlock, success, error, 
                     if (parametriGet.Count > 0 || parametriPost.Count > 0)
                     {
-                        //aggiungo la virgola e lo spazio dopo error se ci sono parametri
                         jsCurrentMethodCall += ", ";
 
                         // function GetAziende(divToBlock, success, error, param1, param2) {
@@ -76,7 +78,6 @@ namespace SPA_Template.Controllers
                         jsCurrentMethodCall += string.Join(", ", parametriPost);
                     }
                     jsCurrentMethodCall += @") {" + Environment.NewLine;
-
 
                     //      Get(divToBlock, success, error, false, 
                     jsCurrentMethodCall += "\t"; //tab
@@ -89,6 +90,9 @@ namespace SPA_Template.Controllers
                                     + relativePath.Replace("{", "\" + ").Replace("}", " + \"")  //api/metodo?param=asd&param2=asd
                                     + "\"";
 
+                    //cancello l'ultimo pezzo  + "" diventa stringa vuota
+                    apiUrl = apiUrl.Replace(" + \"\"", string.Empty);
+
                     //      Get(divToBlock, success, error, false, "api/metodo?param=asd&param2=asd"
                     jsCurrentMethodCall += apiUrl;
 
@@ -96,7 +100,7 @@ namespace SPA_Template.Controllers
                     //      Get(divToBlock, success, error, false, "api/metodo?param=asd&param2=asd", { param1: param1, param2: param2 });
                     if (parametriPost.Count > 0)
                     {
-                        jsCurrentMethodCall += ", {" + string.Join(", ", parametriPost.Select(p => p + ":" + p)) + "}";
+                        jsCurrentMethodCall += ", { " + string.Join(", ", parametriPost.Select(p => p + ": " + p)) + " }";
                     }
                     jsCurrentMethodCall += @");" + Environment.NewLine;
 
@@ -116,9 +120,23 @@ namespace SPA_Template.Controllers
             //replace dei metodi e delle chiamate ai metodi
             templateBase = templateBase.Replace("{METHODS_CALL}", jsMethodsCall);
 
-            templateBase = templateBase.Replace("{METHODS_NAME}",
-                                                string.Join(", " + Environment.NewLine,
-                                                            apiGroups.SelectMany(p => p.Select(q => q.ActionDescriptor.ActionName + ":" + q.ActionDescriptor.ActionName))));
+
+            var methodsNameBuilder = new StringBuilder();
+            foreach (var item in apiGroups)
+            {
+                methodsNameBuilder.AppendLine(@"//" + item.Key.ControllerName);
+                methodsNameBuilder.AppendLine(string.Join(", " + Environment.NewLine,
+                                              item.Select(p => p.ActionDescriptor.ActionName + ": " + p.ActionDescriptor.ActionName))
+                                              + ",");
+                methodsNameBuilder.AppendLine();
+            }
+            string methodsName = methodsNameBuilder.ToString();
+            methodsName = methodsName.Remove(methodsName.LastIndexOf(','), 1); //rimuovo l'ultima virgola
+
+            //string methodsName = string.Join(", " + Environment.NewLine,
+            //                                                apiGroups.SelectMany(p => p.Select(q => q.ActionDescriptor.ActionName + ": " + q.ActionDescriptor.ActionName)));
+
+            templateBase = templateBase.Replace("{METHODS_NAME}", methodsName);
 
 
             System.IO.File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "api_generated.js"),

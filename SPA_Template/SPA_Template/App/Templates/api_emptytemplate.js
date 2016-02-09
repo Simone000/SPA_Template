@@ -103,6 +103,7 @@
 
                         //validazione ModelState
                         var modelErrors = errore["ModelState"];
+                        var firstError = null;
                         if (modelErrors != null) {
                             var isFirst = true;
                             $.each(modelErrors, function (key, value) {
@@ -115,6 +116,7 @@
                                     if (isFirst) {
                                         inputFailedValidation.focus();
                                         isFirst = false;
+                                        firstError = value;
                                     }
 
                                     //form-group in error mode
@@ -134,6 +136,12 @@
                         if (msg_err == null)
                         {
                             msg_err = errore["ExceptionMessage"];
+                        }
+
+                        //se è l'errore default di ModelState => riscrivo il msg scrivendo il primo model error che trovo
+                        if (msg_err == "The request is invalid." && firstError != null)
+                        {
+                            msg_err = firstError;
                         }
 
                         //mostro summary (è solo un msg di errore inviato con badrequest(string))
@@ -213,7 +221,7 @@
 
 
 
-{METHODS_CALL}
+        {METHODS_CALL}
 
 
         /*
@@ -232,7 +240,7 @@
 
         return {
 {METHODS_NAME}
-        };
+};
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
     if (typeof module !== 'undefined' && module.exports) { //Node
