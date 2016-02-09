@@ -2,6 +2,7 @@
 using SPA_Template.Areas.HelpPage.ModelDescriptions;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -12,7 +13,6 @@ using System.Web.Http.Description;
 
 namespace SPA_Template.Controllers
 {
-    //command window: Tools.DiffFiles D:\TFS\TFS_COSI\EasyMedMaster\EasyMedMaster\EasyMedMaster\App\Templates\api_generated.js D:\TFS\TFS_COSI\EasyMedMaster\EasyMedMaster\EasyMedMaster\App\api.js
     public class JavascriptGeneratorController : ApiController
     {
         //todo: metodi con formdata non hanno parametro
@@ -133,14 +133,11 @@ namespace SPA_Template.Controllers
             string methodsName = methodsNameBuilder.ToString();
             methodsName = methodsName.Remove(methodsName.LastIndexOf(','), 1); //rimuovo l'ultima virgola
 
-            //string methodsName = string.Join(", " + Environment.NewLine,
-            //                                                apiGroups.SelectMany(p => p.Select(q => q.ActionDescriptor.ActionName + ": " + q.ActionDescriptor.ActionName)));
-
             templateBase = templateBase.Replace("{METHODS_NAME}", methodsName);
 
 
-            System.IO.File.WriteAllText(System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "api_generated.js"),
-                                                    templateBase);
+            string apiGeneratedFilepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "api_generated.js");
+            File.WriteAllText(apiGeneratedFilepath, templateBase);
 
 
             //check se ci sono nomi doppi
@@ -151,7 +148,14 @@ namespace SPA_Template.Controllers
                 return BadRequest("File API creato ma alcuni metodi sono doppi!!!");
             }
 
-            return Ok("file api_generated.js generato");
+
+            var msgOk = "file api_generated.js generato, " + @"<br/>";
+            string apiFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "api.js");
+            if (File.Exists(apiFilePath))
+            {
+                msgOk += "VS command window: Tools.DiffFiles " + apiGeneratedFilepath + " " + apiFilePath;
+            }
+            return Ok(msgOk);
         }
 
 
