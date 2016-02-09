@@ -11,8 +11,11 @@ using System.Web.Http.Description;
 
 namespace SPA_Template.Controllers
 {
+    //command window: Tools.DiffFiles D:\TFS\TFS_COSI\EasyMedMaster\EasyMedMaster\EasyMedMaster\App\Templates\api_generated.js D:\TFS\TFS_COSI\EasyMedMaster\EasyMedMaster\EasyMedMaster\App\api.js
     public class JavascriptGeneratorController : ApiController
     {
+        //todo: metodi con formdata non hanno parametro
+
         //[NonAction] //da toglierla per poter generare il file
         [HttpGet]
         [Route("api/JavascriptGenerator/GenerateAPI")] //  /api/JavascriptGenerator/generateapi
