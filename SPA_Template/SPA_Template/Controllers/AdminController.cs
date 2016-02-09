@@ -52,6 +52,9 @@ namespace SPA_Template.Controllers
         [Route("UpdateRuoloUtente")]
         public async Task<IHttpActionResult> UpdateRuoloUtente(UpdateRuoloUtenteModel Model)
         {
+            if (Model == null || !ModelState.IsValid)
+                return BadRequest(ModelState);
+
             using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
             {
                 var utente = await userManager.FindByNameAsync(Model.Username);
@@ -75,10 +78,8 @@ namespace SPA_Template.Controllers
         [Route("CreaUtente")]
         public async Task<IHttpActionResult> CreaUtente(CreaUtenteModel Model)
         {
-            if (!ModelState.IsValid)
-            {
+            if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
-            }
 
             var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email };
             using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))

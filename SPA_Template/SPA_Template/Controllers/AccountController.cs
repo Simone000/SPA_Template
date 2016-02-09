@@ -109,10 +109,8 @@ namespace SPA_Template.Controllers
         [Route("Register")]
         public async Task<IHttpActionResult> Register(RegisterViewModel Model)
         {
-            if (!ModelState.IsValid)
-            {
+            if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
-            }
 
             var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email };
             var result = await UserManager.CreateAsync(user, Model.Password);
@@ -154,7 +152,7 @@ namespace SPA_Template.Controllers
         [Route("ForgotPassword")]
         public async Task<IHttpActionResult> ForgotPassword(ForgotPasswordViewModel Model)
         {
-            if (!ModelState.IsValid)
+            if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var user = await UserManager.FindByNameAsync(Model.Email);
@@ -185,7 +183,7 @@ namespace SPA_Template.Controllers
         [Route("ResetPassword")]
         public async Task<IHttpActionResult> ResetPassword(ResetPasswordViewModel Model)
         {
-            if (!ModelState.IsValid)
+            if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
             var result = await UserManager.ResetPasswordAsync(Model.UserID, Model.Code, Model.Password);
@@ -204,7 +202,7 @@ namespace SPA_Template.Controllers
         [Route("ChangePassword")]
         public async Task<IHttpActionResult> ChangePassword(ChangePasswordViewModel Model)  //todo: aggiungere validazione password
         {
-            if (!ModelState.IsValid)
+            if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
 

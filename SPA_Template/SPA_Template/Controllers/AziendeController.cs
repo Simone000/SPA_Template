@@ -53,15 +53,6 @@ namespace SPA_Template.Controllers
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            //todo: da testare
-
-            //altri errori specifici per una key
-            //ModelState.AddModelError("CodiceFiscale", "Esiste già un'altra azienda con questo codice fiscale");
-            //return BadRequest(ModelState);
-
-            //altri errori generici (per summary)
-            //return BadRequest("descrizione errore o join errori");
-
             return Ok();
         }
 
