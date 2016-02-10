@@ -20,7 +20,7 @@
             self.datajs = ko.observable(JS_Data);
 
             self.datetime = ko.computed(function () {
-                if (self.datajs() <= 0)
+                if (self.datajs() == null || self.datajs() <= 0)
                     return null;
                 return new Date(self.datajs());
             }, self);
