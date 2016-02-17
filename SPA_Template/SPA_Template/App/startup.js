@@ -1,8 +1,13 @@
 ﻿define(["jquery", "knockout", "sammy", "bootstrap"], function ($, ko, sammy) {
 
-    //header
+    //components
     ko.components.register("components-header", {
         require: "App/components/header/header"
+    });
+
+    //tests
+    ko.components.register("tests-page-test1", {
+        require: "App/tests/page-test1/page-test1"
     });
 
     //Account
@@ -49,6 +54,9 @@
     function BodyModel() {
         var self = this;
 
+        //tests
+        self.test1 = ko.observable();
+
         //Account
         self.changepass = ko.observable();
         self.login = ko.observable();
@@ -87,6 +95,12 @@
 
         //evito che sovrascriva link reali (si attiva solo con #)
         this.disable_push_state = true;
+
+        //Tests
+        this.get('#/tests/test1', function () {
+            model.body(new BodyModel());
+            model.body().test1(true);
+        });
 
         //Account
         this.get('#/account/changepass', function () {

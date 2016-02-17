@@ -1,0 +1,70 @@
+<div class="panel-group knockout-grids_t1" id="div_listinos">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#listinos">
+                    <b data-bind="visible: tipologia == 1">Listini Aziendali</b>
+                    <b data-bind="visible: tipologia == 2">Listini Professionisti</b>
+                    <span data-bind="text: '(' + listinos().length + ' listini)'"></span>
+                </a>
+
+                <input type="text" style="float:right;" data-bind="value: listinosPaginate().search, valueUpdate:'afterkeydown'"
+                       placeholder="Nome" />
+            </h3>
+        </div>
+
+        <div class="panel-collapse collapse in" id="listinos">
+            <div class="panel-body">
+                <span data-bind="visible: listinos().length == 0"><b>Nessun listino presente</b></span>
+
+                <div class="table-responsive" data-bind="visible: listinos().length > 0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a href='#' data-bind="click: function(){ listinosPaginate().changeSort('descrizione') }">Nome</a></th>
+                                <th><a href='#' data-bind="click: function(){ listinosPaginate().changeSort('isListinoBase') }">E' il Listino Base</a></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: listinosPaginate().itemsInPage()">
+                            <tr>
+                                <td data-bind="text: descrizione"></td>
+                                <td>
+                                    <input type="checkbox" readonly data-bind="checked: isListinoBase" />
+                                </td>
+                                <td style="display:inline-flex;text-align:center;">
+
+                                    <a data-bind="attr: {href: '/Amministrazione/ValoriListino/Index/' + id}"
+                                       title="Valori Listino" style="padding-right: 5px;">
+                                        <i class="fa fa-database"></i>
+                                    </a>
+                                    <a data-bind="attr: {href: '/Amministrazione/'+ $parent.routeAziendeOrProfessionisti() +'/Edit/' + id}"
+                                       title="Modifica" style="padding-right: 5px;">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <a data-bind="attr: {href: '/Amministrazione/'+ $parent.routeAziendeOrProfessionisti() +'/Delete/' + id}"
+                                       title="Elimina">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="pagination-menu" data-bind="with: listinosPaginate()">
+                        <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
+                        <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
+                        <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
+                        <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
+
+                        <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
+                        <span>Page Size: </span>
+                        <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
+                        <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
+                        <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

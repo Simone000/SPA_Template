@@ -282,6 +282,8 @@
     <Content Include="App\startup.js" />
     <Content Include="App\Templates\api_emptytemplate.js" />
     <Content Include="App\Templates\common_emptytemplate.js" />
+    <Content Include="App\tests\page-test1\page-test1.html" />
+    <Content Include="App\tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
