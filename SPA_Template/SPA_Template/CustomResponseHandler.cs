@@ -15,6 +15,8 @@ namespace SPA_Template
         {
             var response = await base.SendAsync(request, cancellationToken);
 
+
+            //todo: in caso di files cosa fa??
             if (response != null && response.Content != null)
             {
                 var responseToLog = await response.Content.ReadAsStringAsync();
