@@ -29,7 +29,7 @@ namespace SPA_Template
             //GlobalConfiguration.ConfigurationServices.Add(typeof(IExceptionHandler), new MyGlobalExceptionHandler());
 
             //handler risposte
-            config.MessageHandlers.Add(new CustomResponseHandler());
+            config.MessageHandlers.Add(new CustomRequestResponseHandler());
 
 
             config.Routes.MapHttpRoute(

@@ -50,14 +50,11 @@ namespace SPA_Template
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception error = Server.GetLastError();
-
-            try
+            if(error != null)
             {
                 Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
+                Server.ClearError();
             }
-            catch (Exception) { }
-
-            Server.ClearError();
         }
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
@@ -72,8 +69,6 @@ namespace SPA_Template
             string url = HttpContext.Current.Request.RawUrl;
 
             string parametri = string.Join("; ", HttpContext.Current.Request.Form.AllKeys.Select(p => p + ": " + HttpContext.Current.Request.Form[p]));
-            //var oSR = new StreamReader(Request.InputStream);
-            //string sContent = oSR.ReadToEnd();
 
             string username = "NonAutenticato";
             if (User != null && User.Identity.IsAuthenticated)
@@ -88,9 +83,7 @@ namespace SPA_Template
             string ipList = Request.ServerVariables["HTTP_X_FORWARDED_FOR"];
 
             if (!string.IsNullOrEmpty(ipList))
-            {
                 return ipList.Split(',')[0];
-            }
 
             return Request.ServerVariables["REMOTE_ADDR"];
         }

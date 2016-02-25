@@ -52,8 +52,8 @@
       <HintPath>..\packages\Glimpse.Ado.1.7.3\lib\net45\Glimpse.Ado.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+    <Reference Include="Glimpse.AspNet, Version=1.9.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Glimpse.AspNet.1.9.2\lib\net45\Glimpse.AspNet.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
@@ -229,7 +229,7 @@
     <Compile Include="Controllers\ODataController.cs" />
     <Compile Include="CustomExceptionHandler.cs" />
     <Compile Include="CustomExceptionLogger.cs" />
-    <Compile Include="CustomResponseHandler.cs" />
+    <Compile Include="CustomRequestResponseHandler.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -277,8 +277,10 @@
     <Content Include="App\Examples\page-empty\page-empty.js" />
     <Content Include="App\Examples\pagenavigation-sample.html" />
     <Content Include="App\Index.html" />
-    <Content Include="App\ko-grids-sample1.html" />
-    <Content Include="App\ko-grids-sample1.js" />
+    <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.html" />
+    <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.js" />
+    <Content Include="App\kogrids-serversample1\kogrids-serversample1.html" />
+    <Content Include="App\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
     <Content Include="App\Templates\api_emptytemplate.js" />
@@ -298,6 +300,8 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Images\busy.gif" />
+    <Content Include="Content\Images\loading_spinner.gif" />
     <Content Include="Content\knockout-grids.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
@@ -333,6 +337,14 @@
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.min.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.min.css.map" />
+    <Content Include="Content\bootstrap-datepicker3.css.map" />
+    <Content Include="Content\bootstrap-datepicker.standalone.min.css.map" />
+    <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
+    <Content Include="Content\bootstrap-datepicker.min.css.map" />
+    <Content Include="Content\bootstrap-datepicker.css.map" />
     <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
@@ -359,6 +371,7 @@
     <Content Include="Scripts\locales\bootstrap-datepicker.da.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.de.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.el.min.js" />
+    <Content Include="Scripts\locales\bootstrap-datepicker.en-AU.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.en-GB.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.eo.min.js" />
     <Content Include="Scripts\locales\bootstrap-datepicker.es.min.js" />

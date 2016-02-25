@@ -4,7 +4,8 @@
         return (function () {
 
             var knockoutgrids = {
-                ClientGrid: ClientGrid
+                ClientGrid: ClientGrid,
+                ServerGrid: ServerGrid
             };
             return knockoutgrids;
 
@@ -82,7 +83,6 @@
                     else {
                         return ko.utils.arrayFilter(self.items(), function (item) {
 
-                            //Modifiche da portare su EasyMed
                             var searchName = self.searchBy();
                             var searchValue = null;
                             var testSplitted = searchName.split("."); //Appointments.name or appointments().name or appointments.name(), ...
@@ -217,6 +217,127 @@
 
                 return;
             }
+
+            //Mostra sempre tutti gli elementi ma non fa alcuna operazione, su cambio => chiamo OnChange
+            function ServerGrid(Items, PageSize, SearchBy, OnChange) {
+                var self = this;
+
+                self.items = Items; //array di oggetti da paginare
+
+                self.pageSize = ko.observable(PageSize ? PageSize : 10); //numero di elementi per pagina
+                self.paginaAttuale = ko.observable(0); //la pagina a cui mi trovo
+
+
+                self.isEditingPageIndex = ko.observable(false);
+                self.isEditingPageSize = ko.observable(false);
+                self.goToEditPageIndex = function () {
+                    self.isEditingPageSize(false);
+                    self.isEditingPageIndex(true);
+                };
+                self.goToEditPageSize = function () {
+                    self.isEditingPageIndex(false);
+                    self.isEditingPageSize(true);
+                };
+
+                self.next = function () {
+                    var newPageIndex = self.paginaAttuale() + 1;
+                    if (newPageIndex < 0) {
+                        newPageIndex = 0;
+                    }
+                    self.paginaAttuale(newPageIndex);
+                }
+                self.previous = function () {
+                    var newPageIndex = self.paginaAttuale() - 1;
+                    if (newPageIndex < 0) {
+                        newPageIndex = 0;
+                    }
+                    self.paginaAttuale(newPageIndex);
+                }
+
+                self.pageSizePlus = function () {
+                    var newpageSize = self.pageSize() + 1;
+                    if (newpageSize <= 0) {
+                        newpageSize = 1;
+                    }
+                    self.pageSize(newpageSize);
+                }
+                self.pageSizeMinus = function () {
+                    var newpageSize = self.pageSize() - 1;
+                    if (newpageSize <= 0) {
+                        newpageSize = 1;
+                    }
+                    self.pageSize(newpageSize);
+                }
+
+
+                //filtro ricerca
+                self.search = ko.observable(); //valore da filtrare
+                self.searchBy = ko.observable(SearchBy); //nome della variabile da filtrare
+
+                //filtering
+                self.itemsInPageFiltered = ko.computed(function () {
+                    return self.items();
+                });
+
+                self.pagesNumber = ko.computed(function () {
+                    return Math.ceil(self.itemsInPageFiltered().length / self.pageSize());
+                }, self);
+
+                //paging
+                self.itemsInPage = ko.computed(function () {
+                    return self.items();
+                });
+
+                //sorting
+                self.directionDesc = ko.observable(true);
+                self.sortby = ko.observable(''); //nome del parametro per cui sortare
+                self.changeSort = function (sort) {
+                    if (self.sortby() == sort) {
+                        self.directionDesc(!self.directionDesc()); //cambio la direzione dell'ordinamento
+                    }
+                    self.sortby(sort);
+
+                    self.refresh();
+                };
+                self.itemsInPageSorted = ko.computed(function () {
+                    return self.items();
+                });
+
+
+                //seleziona tutti
+                self.isAllSelected = ko.observable(false);
+                self.isAllSelected.subscribe(function () {
+                    //deseleziono tutti gli elementi
+                    ko.utils.arrayForEach(self.items(), function (val) {
+                        val.isSelected(false);
+                    });
+
+                    //se isAllSelected è true => riseleziono solo quelli nella pagina attuale
+                    if (self.isAllSelected() === true) {
+                        ko.utils.arrayForEach(self.itemsInPage(), function (val) {
+                            val.isSelected(true);
+                        });
+                    }
+                });
+
+
+                //altri trigger per OnChange (oltre a changeSort)
+                self.paginaAttuale.subscribe(function () {
+                    self.refresh();
+                });
+                self.pageSize.subscribe(function () {
+                    self.refresh();
+                });
+                self.search.subscribe(function () {
+                    self.refresh();
+                });
+
+                self.refresh = function () {
+                    OnChange(self.pageSize(), self.paginaAttuale(), self.sortby(), self.directionDesc(), self.searchBy(), self.search());
+                };
+
+                return;
+            }  //Fine ServerGrid
         })();
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
