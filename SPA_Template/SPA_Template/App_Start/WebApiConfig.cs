@@ -24,12 +24,11 @@ namespace SPA_Template
             //abilito log globale errori
             config.Services.Add(typeof(IExceptionLogger), new CustomExceptionLogger());
 
-
             //handler eccezioni
-            //GlobalConfiguration.ConfigurationServices.Add(typeof(IExceptionHandler), new MyGlobalExceptionHandler());
+            config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
 
             //handler risposte
-            config.MessageHandlers.Add(new CustomRequestResponseHandler());
+            config.MessageHandlers.Add(new CustomResponseHandler());
 
 
             config.Routes.MapHttpRoute(

@@ -226,10 +226,12 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\ExceptionsController.cs" />
     <Compile Include="Controllers\ODataController.cs" />
     <Compile Include="CustomExceptionHandler.cs" />
     <Compile Include="CustomExceptionLogger.cs" />
-    <Compile Include="CustomRequestResponseHandler.cs" />
+    <Compile Include="CustomResponseHandler.cs" />
+    <Compile Include="CustomValidationException.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
