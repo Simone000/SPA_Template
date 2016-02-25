@@ -21,14 +21,24 @@ namespace SPA_Template
             if(!context.ExceptionContext.CatchBlock.IsTopLevel)
                 return Task.FromResult(0);
 
-            //todo: handle CustomValidationException
+            //handle CustomValidationException
             var customValidationExc = context.Exception as CustomValidationException;
             if(customValidationExc != null)
             {
                 var result = new HttpResponseMessage(HttpStatusCode.BadRequest);
                 result.Content = new StringContent(customValidationExc.Message);
 
-                //todo: differenza fra new ResponseMessageResult(result) ed implementare IHttpActionResult
+                //todo: differenza fra new ResponseMessageResult(result) ed implementare IHttpActionResult?
+                context.Result = new ResponseMessageResult(result);
+            }
+
+            var entityValidationExc = context.Exception as System.Data.Entity.Validation.DbEntityValidationException;
+            if(entityValidationExc != null)
+            {
+                //todo: aggiungere errori al modelstate (possibilmente assegnandoli anche alle key giuste)
+                var errors = entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors).Select(p => p.ErrorMessage);
+                var result = new HttpResponseMessage(HttpStatusCode.BadRequest);
+                result.Content = new StringContent(string.Join("; ", errors));
                 context.Result = new ResponseMessageResult(result);
             }
 
