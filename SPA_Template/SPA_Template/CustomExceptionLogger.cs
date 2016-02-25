@@ -9,7 +9,7 @@ using System.Web.Http.ExceptionHandling;
 
 namespace SPA_Template
 {
-    //todo: async http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling
+    //http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling
     class CustomExceptionLogger : ExceptionLogger
     {
         public override void Log(ExceptionLoggerContext context)
