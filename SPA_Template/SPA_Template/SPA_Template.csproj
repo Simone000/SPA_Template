@@ -285,8 +285,14 @@
     <Content Include="App\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
-    <Content Include="App\Templates\api_emptytemplate.js" />
-    <Content Include="App\Templates\common_emptytemplate.js" />
+    <Content Include="App\Templates\api_template.js" />
+    <Content Include="App\Templates\common_template.js" />
+    <Content Include="App\Templates\Index_template.html" />
+    <Content Include="App\Templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
+    <Content Include="App\Templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="App\Templates\ko-post-t1\ko-post-t1.html" />
+    <Content Include="App\Templates\ko-post-t1\ko-post-t1.js" />
+    <Content Include="App\Templates\startup_template.js" />
     <Content Include="App\tests\page-test1\page-test1.html" />
     <Content Include="App\tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />

@@ -1,0 +1,220 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EasyMed</title>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../Content/datepicker3.css" rel="stylesheet" />
+    <link href="../Content/toastr.min.css" rel="stylesheet" />
+    <link href="../Content/knockout-grids.css" rel="stylesheet" />
+
+    <link href="../Content/Planner.css" rel="stylesheet" />
+    <link href="../Content/Amministrazione.css" rel="stylesheet" />
+    <link href="../Content/font-awesome.min.css" rel="stylesheet" />
+
+    <link href="../Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+
+    <!-- Pagina di loading librerie -->
+    <div id="div_starterPage">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h1>EasyMed</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../../../Content/Images/loading_spinner.gif" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Loading...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" onclick="location.reload()">Clicca qui se impiega troppo tempo...</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Body per SammyJs -->
+    <div id="div_body">
+        <components-header></components-header>
+
+        <!-- ko with: body -->
+
+            <!-- ko with: test1 -->
+                <tests-page-test1></tests-page-test1>
+            <!-- /ko -->
+
+
+            <!-- ko with: changepass -->
+                <account-page-changepass></account-page-changepass>
+            <!-- /ko -->
+            <!-- ko with: login -->
+                <account-page-login></account-page-login>
+            <!-- /ko -->
+            <!-- ko with: lostpassword -->
+                <account-page-lostpassword></account-page-lostpassword>
+            <!-- /ko -->
+            <!-- ko with: register -->
+                <account-page-register></account-page-register>
+            <!-- /ko -->
+            <!-- ko with: resetpass -->
+                <account-page-resetpass params="code: code, userid: userid"></account-page-resetpass>
+            <!-- /ko -->
+            <!-- ko with: user -->
+                <account-page-user></account-page-user>
+            <!-- /ko -->
+
+            <!-- ko with: ammUtenti -->
+                <amm-page-utenti></amm-page-utenti>
+            <!-- /ko -->
+            <!-- ko with: ammCreaUtente -->
+                <amm-page-creautente></amm-page-creautente>
+            <!-- /ko -->
+
+            <!--ko with: planner-->
+                <planner-page-home></planner-page-home>
+            <!-- /ko -->
+
+            <!--ko with: amministrazione-->
+                <amministrazione-page-home></amministrazione-page-home>
+            <!-- /ko -->
+            <!--ko with: formazioneDipendenti-->
+                <amministrazione-page-formazionedipendenti></amministrazione-page-formazionedipendenti>
+            <!-- /ko -->
+            <!--ko with: listini-->
+                <amministrazione-page-listini></amministrazione-page-listini>
+            <!-- /ko -->
+            <!--ko with: listiniAziendali-->
+                <amministrazione-page-listini-aziendali></amministrazione-page-listini-aziendali>
+            <!-- /ko -->
+            <!--ko with: listiniProfessionisti-->
+                <amministrazione-page-listini-professionisti></amministrazione-page-listini-professionisti>
+            <!-- /ko -->
+        
+
+            <!--ko with: fatturazione-->
+                <fatturazione-page-home></fatturazione-page-home>
+            <!-- /ko -->
+
+            <!--ko with: fatturazioneAttiva-->
+                <fatturazione-page-fatturazioneattiva></fatturazione-page-fatturazioneattiva>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaEdit-->
+                <fatturazione-attiva-page-fattura-edit params="id_fattura: id_fattura"></fatturazione-attiva-page-fattura-edit>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaEmetti-->
+                <fatturazione-attiva-page-fattura-emetti params="id_fattura: id_fattura"></fatturazione-attiva-page-fattura-emetti>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaDaEmettere-->
+                <fatturazione-attiva-page-fatture-daemettere></fatturazione-attiva-page-fatture-daemettere>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaEmesse-->
+                <fatturazione-attiva-page-fatture-emesse></fatturazione-attiva-page-fatture-emesse>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaFlussiCBI-->
+                <fatturazione-attiva-page-flussicbi></fatturazione-attiva-page-flussicbi>
+            <!-- /ko -->
+            <!--ko with: attivaFatturaPrestDaFatturare-->
+                <fatturazione-attiva-page-prestdafatturare></fatturazione-attiva-page-prestdafatturare>
+            <!-- /ko -->
+
+
+            <!--ko with: fatturazionePassiva-->
+                <fatturazione-page-fatturazionepassiva></fatturazione-page-fatturazionepassiva>
+            <!-- /ko -->
+            <!--ko with: fatturazioneReport-->
+                <fatturazione-page-fatturazionereport></fatturazione-page-fatturazionereport>
+            <!-- /ko -->
+            <!--ko with: reportErogato-->
+                <fatturazione-page-report-erogato></fatturazione-page-report-erogato>
+            <!-- /ko -->
+            <!--ko with: reportFatturato-->
+                <fatturazione-page-report-fatturato></fatturazione-page-report-fatturato>
+            <!-- /ko -->
+            <!--ko with: fatturazionePassivaRicevute -->
+                <fatturazione-passiva-page-fatturericevute></fatturazione-passiva-page-fatturericevute>
+            <!-- /ko -->
+
+        
+
+            <!--ko with: protocollogenerale-->
+                <protocollogenerale-page-home></protocollogenerale-page-home>
+            <!-- /ko -->
+
+
+            <!--ko with: segreteria-->
+                <segreteria-page-home></segreteria-page-home>
+            <!-- /ko -->
+            <!--ko with: specialisti-->
+                <segreteria-page-specialisti></segreteria-page-specialisti>
+            <!-- /ko -->
+            <!--ko with: specialita-->
+                <segreteria-page-specialita></segreteria-page-specialita>
+            <!-- /ko -->
+
+            <!--ko with: specialitaEdit-->
+                <segreteria-page-specialita-edit params="id_specialita: id_specialita"></segreteria-page-specialita-edit>
+            <!-- /ko -->
+
+            <!--ko with: aziende-->
+                <segreteria-page-aziende params="id_servizio: id_servizio"></segreteria-page-aziende>
+            <!-- /ko -->
+            <!--ko with: aziendeCrea-->
+                <segreteria-page-aziende-crea></segreteria-page-aziende-crea>
+            <!-- /ko -->
+
+            <!--ko with: azienda-->
+                <segreteria-page-azienda params="id_azienda: id_azienda, id_servizio: id_servizio"></segreteria-page-azienda>
+            <!-- /ko -->
+
+            <!--ko with: servizi-->
+                <servizi-page-home></servizi-page-home>
+            <!-- /ko -->
+            <!--ko with: commerciale-->
+                <servizi-page-commerciale></servizi-page-commerciale>
+            <!-- /ko -->
+            <!--ko with: constecnica-->
+                <servizi-page-constecnica></servizi-page-constecnica>
+            <!-- /ko -->
+            <!--ko with: formazione-->
+                <servizi-page-formazione></servizi-page-formazione>
+            <!-- /ko -->
+            <!--ko with: sorvsani-->
+                <servizi-page-sorvsani></servizi-page-sorvsani>
+            <!-- /ko -->
+            <!--ko with: prestazioni-->
+                <servizi-page-prestazioni params="id_servizio: id_servizio"></servizi-page-prestazioni>
+            <!-- /ko -->
+            <!--ko with: clienti-->
+                <servizi-page-clienti params="id_servizio: id_servizio"></servizi-page-clienti>
+            <!-- /ko -->
+
+            
+        <!-- /ko -->
+
+        <!--
+        <footer>
+            <hr />
+            <p>&copy; 2015 - COSI s.r.l.</p>
+        </footer>
+        -->
+    </div>
+
+    <script src="/App/require.config.js"></script>
+    <script data-main="App/startup" src="/Scripts/require.js"></script>
+</body>
+</html>
