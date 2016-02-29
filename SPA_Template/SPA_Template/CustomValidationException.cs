@@ -5,6 +5,7 @@ using System.Web;
 
 namespace SPA_Template
 {
+    //todo: va in viewmodels o cmq sharedutils
     [Serializable]
     public class CustomValidationException : Exception
     {
