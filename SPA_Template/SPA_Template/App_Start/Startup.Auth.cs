@@ -34,7 +34,7 @@ namespace SPA_Template
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                //LoginPath = new PathString("/Account/Login"),
+                LoginPath = new PathString("/#/account/login"),
                 Provider = new CookieAuthenticationProvider
                 {
                     // Enables the application to validate the security stamp when the user logs in.
@@ -47,7 +47,8 @@ namespace SPA_Template
                     {
                         if (!IsApiRequest(ctx.Request))
                         {
-                            ctx.Response.Redirect(ctx.RedirectUri);
+                            string uriDecoded = System.Net.WebUtility.UrlDecode(ctx.RedirectUri);
+                            ctx.Response.Redirect(uriDecoded);
                         }
                     }
                 }
