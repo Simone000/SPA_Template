@@ -17,6 +17,8 @@ using SPA_Template.Models;
 
 namespace SPA_Template.Controllers
 {
+    //todo: external auth opzionale
+
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -200,7 +202,7 @@ namespace SPA_Template.Controllers
 
         [HttpPost]
         [Route("ChangePassword")]
-        public async Task<IHttpActionResult> ChangePassword(ChangePasswordViewModel Model)  //todo: aggiungere validazione password
+        public async Task<IHttpActionResult> ChangePassword(ChangePasswordViewModel Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -368,7 +370,6 @@ namespace SPA_Template.Controllers
         }
 
         #endregion
-
 
         protected override void Dispose(bool disposing)
         {
