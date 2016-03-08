@@ -276,11 +276,13 @@
     <Content Include="App\examples\page-empty\page-empty.html" />
     <Content Include="App\examples\page-empty\page-empty.js" />
     <Content Include="App\examples\pagenavigation-sample.html" />
+    <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.html" />
+    <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App\Index.html" />
-    <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.html" />
-    <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.js" />
-    <Content Include="App\kogrids-serversample1\kogrids-serversample1.html" />
-    <Content Include="App\kogrids-serversample1\kogrids-serversample1.js" />
+    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.html" />
+    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.js" />
+    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.html" />
+    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
     <Content Include="App\generate\api_template.js" />
@@ -351,13 +353,13 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
-    <None Include="Scripts\jquery-2.2.0.intellisense.js" />
     <Content Include="Scripts\bootstrap-datepicker.js" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Scripts\jquery-2.2.0.js" />
-    <Content Include="Scripts\jquery-2.2.0.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.js" />
+    <Content Include="Scripts\jquery-2.2.1.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.blockUI.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -467,9 +469,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-2.2.0.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

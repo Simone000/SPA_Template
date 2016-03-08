@@ -16,7 +16,7 @@ namespace SPA_Template
     public class CustomExceptionHandler : IExceptionHandler
     {
         public virtual Task HandleAsync(ExceptionHandlerContext context,
-                                    CancellationToken cancellationToken)
+                                        CancellationToken cancellationToken)
         {
             //Should handle
             if (!context.ExceptionContext.CatchBlock.IsTopLevel)
@@ -47,6 +47,8 @@ namespace SPA_Template
 
                 return Task.FromResult(0);
             }
+
+            //todo: System.Data.Entity.Infrastructure.DbUpdateException nel log (non qui!)
 
             return Task.FromResult(0);
         }

@@ -11,15 +11,13 @@
 </head>
 <body>
 
-
-    <!-- Example 1 (Aziende) -->
-    <div class="panel-group knockout-grids_t1" id="div_Dipendenti">     <!--todo: change Div Name-->
-        <div class="panel" data-bind="with: dipendentiPaged()">   <!--todo: change to the knockout grid observable -->
+    <div class="panel-group knockout-grids_t1" id="div_Dipendenti">
+        <div class="panel" data-bind="with: dipendentiPaged()">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#reps">  <!-- todo: change href -->
-                        <b>Dipendente</b>                                   <!--todo: change title-->
-                        <span data-bind="text: '( ' + items().length + ' dipendenti)'"></span> <!--todo: change text-->
+                    <a data-toggle="collapse" data-parent="#accordion" href="#reps">
+                        <b>Dipendente</b>
+                        <span data-bind="text: '( ' + items().length + ' dipendenti)'"></span>
                     </a>
 
                     
@@ -28,9 +26,9 @@
                 </h3>
             </div>
 
-            <div class="panel-collapse collapse in" id="reps">  <!--todo: change id (take from data-toggle href) -->
+            <div class="panel-collapse collapse in" id="reps">
                 <div class="panel-body">
-                    <span data-bind="visible: $data.length == 0"><b>Nessuna Dipendente presente</b></span>     <!--todo: change text-->
+                    <span data-bind="visible: $data.length == 0"><b>Nessuna Dipendente presente</b></span>
 
                     <div class="table-responsive" data-bind="visible: items().length > 0">
                         <table class="table table-striped">
@@ -77,7 +75,7 @@
 
 
 
-    <script src="../../Scripts/jquery-2.2.0.min.js"></script>
+    <script src="../../Scripts/jquery-2.2.1.min.js"></script>
     <script src="../../Scripts/bootstrap.min.js"></script>
     <script src="../../Scripts/knockout-3.4.0.js"></script>
 

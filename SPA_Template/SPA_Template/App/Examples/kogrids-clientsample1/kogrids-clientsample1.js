@@ -36,6 +36,10 @@ function pageModel(params) {
 
     self.dipendenti = ko.observableArray();
 
+    self.dipendentiPaged = ko.computed(function () {
+        return new knockoutgrids.ClientGrid(self.dipendenti(), 10, 'reparto.azienda.nome');
+    }, self);
+
     self.loadDipendenti = function () {
         var dipendenti_tmp = new Array();
         dipendenti_tmp.push(new Dipendente({ ID: 1, Nome: "Dipendente 1", Reparto: { ID: 1, Nome: "Reparto 1", Azienda: { ID: 1, Nome: "Azienda 1" } } }));
@@ -46,9 +50,26 @@ function pageModel(params) {
     };
     self.loadDipendenti();
 
-    self.dipendentiPaged = ko.computed(function () {
-        return new knockoutgrids.ClientGrid(self.dipendenti(), 10, 'reparto.azienda.nome');
-    }, self);
+    
+    /*
+    self.loadAzienda = function () {
+        if (self.id_azienda() == null)
+            return;
+        
+        function success(data) {
+            self.azienda(new common.AziendaServizi(data));
+        };
+        function error(jqXHR, desc) {
+            if (jqXHR["status"] == 401) {
+                window.location = "#/login";
+                return;
+            }
+        
+            toastr["error"](desc, "Errore!");
+        };
+        api.GetAziendaServizio($('#div_dettaglioAzienda'), success, error, self.id_azienda());
+    };
+    */
 
 
     return self;

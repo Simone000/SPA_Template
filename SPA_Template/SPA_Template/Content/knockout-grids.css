@@ -21,3 +21,7 @@
         padding: 4px;
         border-radius: 8px;
     }
+
+        .knockout-grids_t1 .panel-body .pagination-menu label{
+            text-decoration: underline;
+        }

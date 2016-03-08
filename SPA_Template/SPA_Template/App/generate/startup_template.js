@@ -4,220 +4,7 @@
     ko.components.register("components-header", {
         require: "App/components/header/header"
     });
-    ko.components.register("components-azienda-recap", {
-        require: "App/components/azienda-recap/azienda-recap"
-    });
-    ko.components.register("components-dipendenti-grid", {
-        require: "App/components/dipendenti-grid/dipendenti-grid"
-    });
-    ko.components.register("components-reparti-grid", {
-        require: "App/components/reparti-grid/reparti-grid"
-    });
-    ko.components.register("components-cal-appuntamenti", {
-        require: "App/components/cal-appuntamenti/cal-appuntamenti"
-    });
-    ko.components.register("components-agg-previsti", {
-        require: "App/components/agg-previsti/agg-previsti"
-    });
-    ko.components.register("components-medicocompetente", {
-        require: "App/components/medicocompetente/medicocompetente"
-    });
-    ko.components.register("components-specialisti-byspecialita", {
-        require: "App/components/specialisti-byspecialita/specialisti-byspecialita"
-    });
-    ko.components.register("components-listini-grid", {
-        require: "App/components/listini-grid/listini-grid"
-    });
-    ko.components.register("components-prestazioni-fattura", {
-        require: "App/components/prestazioni-fattura/prestazioni-fattura"
-    });
-    ko.components.register("components-prestazioni-fattura-associabili", {
-        require: "App/components/prestazioni-fattura-associabili/prestazioni-fattura-associabili"
-    });
-    ko.components.register("components-records-fattura", {
-        require: "App/components/records-fattura/records-fattura"
-    });
 
-    //tests
-    ko.components.register("tests-page-test1", {
-        require: "App/tests/page-test1/page-test1"
-    });
-
-
-    //Account
-    ko.components.register("account-page-login", {
-        require: "App/account/page-login/page-login"
-    });
-    ko.components.register("account-page-user", {
-        require: "App/account/page-user/page-user"
-    });
-    ko.components.register("account-page-changepass", {
-        require: "App/account/page-changepass/page-changepass"
-    });
-    ko.components.register("account-page-lostpassword", {
-        require: "App/account/page-lostpassword/page-lostpassword"
-    });
-    ko.components.register("account-page-resetpass", {
-        require: "App/account/page-resetpass/page-resetpass"
-    });
-    ko.components.register("account-page-register", {
-        require: "App/account/page-register/page-register"
-    });
-
-    //Amm
-    ko.components.register("amm-page-utenti", {
-        require: "App/amm/page-utenti/page-utenti"
-    });
-    ko.components.register("amm-page-creautente", {
-        require: "App/amm/page-creautente/page-creautente"
-    });
-
-    //planner
-    ko.components.register("planner-page-home", {
-        require: "App/planner/page-home/page-home"
-    });
-    ko.components.register("aziende-grid", {
-        require: "App/planner/aziende-grid/aziende-grid"
-    });
-    ko.components.register("planner", {
-        require: "App/planner/planner/planner"
-    });
-    ko.components.register("dettaglio-evento", {
-        require: "App/planner/dettaglio-evento/dettaglio-evento"
-    });
-    ko.components.register("eventi-aziendaservizio", {
-        require: "App/planner/eventi-aziendaservizio/eventi-aziendaservizio"
-    });
-    ko.components.register("servizio-eventi", {
-        require: "App/planner/servizio-eventi/servizio-eventi"
-    });
-
-    //amministrazione
-    ko.components.register("amministrazione-page-home", {
-        require: "App/amministrazione/page-home/page-home"
-    });
-    ko.components.register("amministrazione-page-formazionedipendenti", {
-        require: "App/amministrazione/page-formazionedipendenti/page-formazionedipendenti"
-    });
-    //amministrazione/listini
-    ko.components.register("amministrazione-page-listini", {
-        require: "App/amministrazione/page-listini/page-listini"
-    });
-    ko.components.register("amministrazione-page-listini-aziendali", {
-        require: "App/amministrazione/page-listini-aziendali/page-listini-aziendali"
-    });
-    ko.components.register("amministrazione-page-listini-professionisti", {
-        require: "App/amministrazione/page-listini-professionisti/page-listini-professionisti"
-    });
-
-    
-
-    //fatturazione
-    ko.components.register("fatturazione-page-home", {
-        require: "App/fatturazione/page-home/page-home"
-    });
-
-    //Fatturazione/Attiva
-    ko.components.register("fatturazione-page-fatturazioneattiva", {
-        require: "App/fatturazione/page-fatturazioneattiva/page-fatturazioneattiva"
-    });
-    ko.components.register("fatturazione-attiva-page-fattura-edit", {
-        require: "App/fatturazione/attiva/page-fattura-edit/page-fattura-edit"
-    });
-    ko.components.register("fatturazione-attiva-page-fattura-emetti", {
-        require: "App/fatturazione/attiva/page-fattura-emetti/page-fattura-emetti"
-    });
-    ko.components.register("fatturazione-attiva-page-fatture-daemettere", {
-        require: "App/fatturazione/attiva/page-fatture-daemettere/page-fatture-daemettere"
-    });
-    ko.components.register("fatturazione-attiva-page-fatture-emesse", {
-        require: "App/fatturazione/attiva/page-fatture-emesse/page-fatture-emesse"
-    });
-    ko.components.register("fatturazione-attiva-page-flussicbi", {
-        require: "App/fatturazione/attiva/page-flussicbi/page-flussicbi"
-    });
-    ko.components.register("fatturazione-attiva-page-prestdafatturare", {
-        require: "App/fatturazione/attiva/page-prestdafatturare/page-prestdafatturare"
-    });
-
-
-    //Fatturazione/Passiva
-    ko.components.register("fatturazione-passiva-page-fatturericevute", {
-        require: "App/fatturazione/passiva/page-fatturericevute/page-fatturericevute"
-    });
-
-
-    ko.components.register("fatturazione-page-fatturazionepassiva", {
-        require: "App/fatturazione/page-fatturazionepassiva/page-fatturazionepassiva"
-    });
-    ko.components.register("fatturazione-page-fatturazionereport", {
-        require: "App/fatturazione/page-fatturazionereport/page-fatturazionereport"
-    });
-    ko.components.register("fatturazione-page-report-erogato", {
-        require: "App/fatturazione/page-report-erogato/page-report-erogato"
-    });
-    ko.components.register("fatturazione-page-report-fatturato", {
-        require: "App/fatturazione/page-report-fatturato/page-report-fatturato"
-    });
-
-    
-
-
-
-    //protocolloGenerale
-    ko.components.register("protocollogenerale-page-home", {
-        require: "App/protocollogenerale/page-home/page-home"
-    });
-
-    //segreteria
-    ko.components.register("segreteria-page-home", {
-        require: "App/segreteria/page-home/page-home"
-    });
-    ko.components.register("segreteria-page-specialisti", {
-        require: "App/segreteria/page-specialisti/page-specialisti"
-    });
-    ko.components.register("segreteria-page-specialita", {
-        require: "App/segreteria/page-specialita/page-specialita"
-    });
-    //segreteria/specialita/id_specialita
-    ko.components.register("segreteria-page-specialita-edit", {
-        require: "App/segreteria/page-specialita-edit/page-specialita-edit"
-    });
-    //segreteria/aziende
-    ko.components.register("segreteria-page-aziende", {
-        require: "App/segreteria/aziende/page-aziende/page-aziende"
-    });
-    ko.components.register("segreteria-page-aziende-crea", {
-        require: "App/segreteria/aziende/page-aziende-crea/page-aziende-crea"
-    });
-    //segreteria/aziende/id_azienda
-    ko.components.register("segreteria-page-azienda", {
-        require: "App/segreteria/aziende/page-azienda/page-azienda"
-    });
-
-
-    //servizi
-    ko.components.register("servizi-page-home", {
-        require: "App/servizi/page-home/page-home"
-    });
-    ko.components.register("servizi-page-commerciale", {
-        require: "App/servizi/page-commerciale/page-commerciale"
-    });
-    ko.components.register("servizi-page-constecnica", {
-        require: "App/servizi/page-constecnica/page-constecnica"
-    });
-    ko.components.register("servizi-page-formazione", {
-        require: "App/servizi/page-formazione/page-formazione"
-    });
-    ko.components.register("servizi-page-sorvsani", {
-        require: "App/servizi/page-sorvsani/page-sorvsani"
-    });
-    ko.components.register("servizi-page-prestazioni", {
-        require: "App/servizi/page-prestazioni/page-prestazioni"
-    });
-    ko.components.register("servizi-page-clienti", {
-        require: "App/servizi/page-clienti/page-clienti"
-    });
 
 
     //Main
@@ -248,7 +35,7 @@
         self.listini = ko.observable();
         self.listiniAziendali = ko.observable();
         self.listiniProfessionisti = ko.observable();
-        
+
         //Fatturazione
         self.fatturazione = ko.observable();
         self.fatturazioneReport = ko.observable();
@@ -464,7 +251,7 @@
         //segreteria/aziende
         this.get('#/segreteria/aziende', function () {
             model.body(new BodyModel());
-            model.body().aziende({ id_servizio: 0});
+            model.body().aziende({ id_servizio: 0 });
         });
         this.get('#/segreteria/aziende/sorvsani', function () {
             model.body(new BodyModel());
