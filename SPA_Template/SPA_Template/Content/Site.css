@@ -15,3 +15,13 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/* Logo Iniziale */
+#div_starterPage {
+    width: 300px;
+    margin: auto;
+}
+    #div_starterPage td {
+        text-align: center;
+    }
