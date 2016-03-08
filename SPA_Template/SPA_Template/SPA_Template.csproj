@@ -296,6 +296,7 @@
     <Content Include="App\tests\page-test1\page-test1.html" />
     <Content Include="App\tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="browserconfig.xml" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -310,6 +311,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\busy.gif" />
     <Content Include="Content\Images\loading_spinner.gif" />
+    <Content Include="Content\Images\logo_large.png" />
+    <Content Include="Content\Images\logo_square.png" />
+    <Content Include="Content\Images\logo_tiny.png" />
+    <Content Include="Content\Images\logo_wide.png" />
     <Content Include="Content\knockout-grids.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
