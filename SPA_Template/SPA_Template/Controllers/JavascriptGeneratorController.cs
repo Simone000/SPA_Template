@@ -34,7 +34,7 @@ namespace SPA_Template.Controllers
         {
             get
             {
-                return Path.Combine(AppPath, "Templates");
+                return Path.Combine(AppPath, "generate");
             }
         }
         public static string GeneratedPath
@@ -325,7 +325,7 @@ namespace SPA_Template.Controllers
             nuovoTemplateApi = nuovoTemplateApi.Replace("{METHODS_NAME}", methodsName);
 
 
-            string apiGeneratedFilepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "api_generated.js");
+            string apiGeneratedFilepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "api_generated.js");
             File.WriteAllText(apiGeneratedFilepath, nuovoTemplateApi);
 
 
@@ -418,7 +418,7 @@ namespace SPA_Template.Controllers
                                                 string.Join(", " + Environment.NewLine, modelNames.OrderBy(p => p).Select(p => p + ":" + p)));
 
 
-            string generatedFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "common_generated.js");
+            string generatedFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "common_generated.js");
             File.WriteAllText(generatedFilePath, nuovoTemplateCommon);
 
 
@@ -439,7 +439,7 @@ namespace SPA_Template.Controllers
             string templateClientGridT1_html = KoClientGridTemplateHtml;
 
             //cartella per metterci gli altri file generati
-            string generatedMainFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "Generated");
+            string generatedMainFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "Generated");
             Directory.CreateDirectory(generatedMainFilePath);
 
             foreach (var apiController in apiGroups.OrderBy(p => p.Key.ControllerName))
@@ -503,7 +503,7 @@ namespace SPA_Template.Controllers
                     clientGridT1_html = clientGridT1_html.Replace("nomeObsArray", nomeObsArray);
 
                     //salvo i file
-                    string containerFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "Templates", "Generated", "KoGrids", nomeComponent);
+                    string containerFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "Generated", "KoGrids", nomeComponent);
                     Directory.CreateDirectory(containerFolder);
 
                     string jsPath = Path.Combine(containerFolder, nomeComponent + ".js");

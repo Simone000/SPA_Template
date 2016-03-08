@@ -462,7 +462,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App\Templates\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\OData\" />
   </ItemGroup>
