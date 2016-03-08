@@ -17,8 +17,6 @@ using SPA_Template.Models;
 
 namespace SPA_Template.Controllers
 {
-    //todo: external auth opzionale
-
     [Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
@@ -286,11 +284,10 @@ namespace SPA_Template.Controllers
                 Trace.TraceError("Account/ExternalLoginCallback, risAddLogin Failed: " + errori);
                 return BadRequest(errori);
             }
+            
 
 
-            //todo: pulire
-
-            //creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
+            ////creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
             //var externalName = logininfo.ExternalIdentity.Name;
             //string extName = string.Empty;
             //string extCognome = string.Empty;
@@ -303,8 +300,7 @@ namespace SPA_Template.Controllers
             //{
             //    extName = externalName;
             //}
-            //
-            ////rendo univoco l'username
+            //rendo univoco l'username
             //var countUtenti = await db.Users.LongCountAsync();
             //string uniqueUsername = logininfo.DefaultUserName + countUtenti;
             //
@@ -335,8 +331,6 @@ namespace SPA_Template.Controllers
             //}
             ////login col nuovo user
             //await signinManager.SignInAsync(user, false, false);
-            //
-            //await LoadRichiestaFromSessione(user.Id);
 
             //redirect a compila campi obbligatori
             return Redirect(HttpContext.Current.Request.Url.Scheme

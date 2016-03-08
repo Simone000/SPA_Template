@@ -272,12 +272,10 @@
     <Content Include="App\common.js" />
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
-    <Content Include="App\Examples\form-validation-sample.html" />
-    <Content Include="App\Examples\ko-grids-sample1.html" />
-    <Content Include="App\Examples\ko-grids-sample1.js" />
-    <Content Include="App\Examples\page-empty\page-empty.html" />
-    <Content Include="App\Examples\page-empty\page-empty.js" />
-    <Content Include="App\Examples\pagenavigation-sample.html" />
+    <Content Include="App\examples\form-validation-sample\form-validation-sample.html" />
+    <Content Include="App\examples\page-empty\page-empty.html" />
+    <Content Include="App\examples\page-empty\page-empty.js" />
+    <Content Include="App\examples\pagenavigation-sample.html" />
     <Content Include="App\Index.html" />
     <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.html" />
     <Content Include="App\kogrids-clientsample1\kogrids-clientsample1.js" />
@@ -285,14 +283,14 @@
     <Content Include="App\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
-    <Content Include="App\Templates\api_template.js" />
-    <Content Include="App\Templates\common_template.js" />
-    <Content Include="App\Templates\Index_template.html" />
-    <Content Include="App\Templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
-    <Content Include="App\Templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
-    <Content Include="App\Templates\ko-post-t1\ko-post-t1.html" />
-    <Content Include="App\Templates\ko-post-t1\ko-post-t1.js" />
-    <Content Include="App\Templates\startup_template.js" />
+    <Content Include="App\generate\api_template.js" />
+    <Content Include="App\generate\common_template.js" />
+    <Content Include="App\generate\Index_template.html" />
+    <Content Include="App\generate\ko-clientgrid-t1\ko-clientgrid-t1.html" />
+    <Content Include="App\generate\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="App\generate\ko-post-t1\ko-post-t1.html" />
+    <Content Include="App\generate\ko-post-t1\ko-post-t1.js" />
+    <Content Include="App\generate\startup_template.js" />
     <Content Include="App\tests\page-test1\page-test1.html" />
     <Content Include="App\tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -464,6 +462,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\Templates\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\OData\" />
   </ItemGroup>
