@@ -19,6 +19,11 @@ define(["knockout", "text!./page-test1.html", "toastr", "api", "common", "knocko
                 }));
             };
             function error(jqXHR, desc) {
+                if (jqXHR["status"] == 401) {
+                    //window.location = "/#/account/login";
+                    return;
+                }
+                //comment if not using validation-summary-errors
                 toastr["error"](desc, "Errore!");
             };
             api.GetListiniPaged($('#div_listinos'), success, error, PageSize, CurrPage, SortBy, IsDesc, SearchBy, Search, self.tipologia);

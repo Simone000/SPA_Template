@@ -12,11 +12,14 @@
                 window.location = "#/";
             };
             function error(jqXHR, desc) {
+                //redirect on Unauthorized
                 if (jqXHR["status"] == 401) {
-                    window.location = "/";
+                    window.location = "/#/account/login";
                     return;
                 }
-                //toastr["error"](desc, "Errore!");
+
+                //comment if not using validation-summary-errors
+                toastr["error"](desc, "Errore!");
             };
             api.ChangePassword($("#div_cambiapass"), success, error, self.oldPass(), self.newPassword(), self.confirmNewPassword());
         };
