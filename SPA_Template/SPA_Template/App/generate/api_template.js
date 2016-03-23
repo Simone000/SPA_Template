@@ -49,7 +49,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore Generico");
+                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
                     }
                 }
             });
@@ -157,7 +157,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore Generico");
+                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
                     }
                 }
             });
@@ -213,7 +213,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore Generico");
+                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
                     }
                 }
             });
@@ -225,18 +225,25 @@
 
 
         /*
-            self.method = function () {
-                function success(data) {
-                    self.aziende(ko.utils.arrayMap(data, function (item) {
-                        return new common.AziendaServizi(item);
-                    }));
-                };
-                function error(jqXHR, desc) {
-                    toastr["error"](desc, "Errore!");
-                };
-                api.method($('#div'), success, error, params);
+        self.method = function () {
+            function success(data) {
+                self.aziende(ko.utils.arrayMap(data, function (item) {
+                    return new common.AziendaServizi(item);
+                }));
             };
-         */
+            function error(jqXHR, desc) {
+                //redirect on Unauthorized
+                //if (jqXHR["status"] == 401) {
+                //    window.location = "/#/account/login";
+                //    return;
+                //}
+
+                //comment if not using validation-summary-errors
+                toastr["error"](desc, "Errore!");
+            };
+            api.method($('#div'), success, error, params);
+        };
+        */
 
         return {
 {METHODS_NAME}
