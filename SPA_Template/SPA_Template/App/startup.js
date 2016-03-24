@@ -88,6 +88,15 @@
         //nascondo icona iniziale loading
         $("#div_starterPage").remove();
 
+        //{ except: { path: '#!special' } }, 
+        this.before(function () {
+            //Application Insights
+            var pageName = window.location.hash;
+            if (!window.location.hash)
+                pageName = "Index";
+            appInsights.trackPageView(pageName);
+        });
+
         // Override this function so that Sammy doesn't mess with forms
         this._checkFormSubmission = function (form) {
             return (false);

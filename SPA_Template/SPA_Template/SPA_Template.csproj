@@ -74,7 +74,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.8.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -135,6 +135,10 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="UtilsNoReference_461, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\cosi-UtilsNoReference.1.0.6\lib\net461\UtilsNoReference_461.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -273,16 +277,16 @@
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
     <Content Include="App\examples\form-validation-sample\form-validation-sample.html" />
+    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.html" />
+    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.js" />
+    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.html" />
+    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\examples\page-empty\page-empty.html" />
     <Content Include="App\examples\page-empty\page-empty.js" />
     <Content Include="App\examples\pagenavigation-sample.html" />
     <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.html" />
     <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App\Index.html" />
-    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.html" />
-    <Content Include="App\examples\kogrids-clientsample1\kogrids-clientsample1.js" />
-    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.html" />
-    <Content Include="App\examples\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
     <Content Include="App\generate\api_template.js" />
