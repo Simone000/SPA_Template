@@ -15,7 +15,6 @@ namespace SPA_Template.Controllers
 {
     //todo: generate startup.js partendo dalla cartella App (e relativo index.html)
     //todo: per i post method usare degli oggetti stub con newValues (self.newValue1 = ko.observable(self.value1))
-    //todo: GenerateAPI, escludere questo controller
     //todo: GenerateGrids, potrebbero esistere piu' metodi che ritornano le stesse collezioni di oggetti (in quel caso dovrei aggiungere piu' chiamate api una sotto l'altra)
 
     public class JavascriptGeneratorController : ApiController
@@ -116,7 +115,22 @@ namespace SPA_Template.Controllers
         }
         #endregion
 
-        //[NonAction]
+        public IEnumerable<IGrouping<HttpControllerDescriptor, ApiDescription>> ApiControllers {
+            get
+            {
+                //Group APIs by controller
+                var model = GlobalConfiguration.Configuration.Services.GetApiExplorer().ApiDescriptions;
+                ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+                return apiGroups.OrderBy(p => p.Key.ControllerName)
+                                .Where(p => p.Key.ControllerName != "JavascriptGenerator") //Exclude generation for this controller
+                                .ToList();
+            }
+        }
+
+
+#if !DEBUG
+        [NonAction]
+#endif
         [HttpGet]
         [Route("api/JavascriptGenerator/GenerateIndex")]
         public IHttpActionResult GenerateIndex()
@@ -206,17 +220,16 @@ namespace SPA_Template.Controllers
             }
         }
 
-        //[NonAction]
+
+#if !DEBUG
+        [NonAction]
+#endif
         [HttpGet]
         [Route("api/JavascriptGenerator/GenerateAPI")]
         public IHttpActionResult GenerateAPI()
         {
-            //Group APIs by controller
-            var model = GlobalConfiguration.Configuration.Services.GetApiExplorer().ApiDescriptions;
-            ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
-
             string jsMethodsCall = string.Empty;
-            foreach (var apiController in apiGroups.OrderBy(p => p.Key.ControllerName))
+            foreach (var apiController in ApiControllers)
             {
                 string controllerName = apiController.Key.ControllerName;
 
@@ -311,7 +324,7 @@ namespace SPA_Template.Controllers
 
 
             var methodsNameBuilder = new StringBuilder();
-            foreach (var item in apiGroups.OrderBy(p => p.Key.ControllerName))
+            foreach (var item in ApiControllers)
             {
                 methodsNameBuilder.AppendLine(@"//" + item.Key.ControllerName);
                 methodsNameBuilder.AppendLine(string.Join(", " + Environment.NewLine,
@@ -330,7 +343,7 @@ namespace SPA_Template.Controllers
 
 
             //check se ci sono nomi doppi
-            var metodiDoppi = apiGroups.SelectMany(p => p.Select(q => q.ActionDescriptor.ActionName))
+            var metodiDoppi = ApiControllers.SelectMany(p => p.Select(q => q.ActionDescriptor.ActionName))
                                        .GroupBy(p => p)
                                        .Select(p => new { Key = p.Key, Count = p.Count() })
                                        .Where(p => p.Count > 1)
@@ -348,18 +361,17 @@ namespace SPA_Template.Controllers
             return Ok(msgOk);
         }
 
-        //[NonAction]
+
+#if !DEBUG
+        [NonAction]
+#endif
         [HttpGet]
         [Route("api/JavascriptGenerator/GenerateCommon")]
         public IHttpActionResult GenerateCommon()
         {
-            //Group APIs by controller
-            var model = GlobalConfiguration.Configuration.Services.GetApiExplorer().ApiDescriptions;
-            ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
-
             var modelNames = new List<string>();
             string jsModels = string.Empty;
-            foreach (var apiController in apiGroups.OrderBy(p => p.Key.ControllerName))
+            foreach (var apiController in ApiControllers)
             {
                 foreach (var apiMethod in apiController)
                 {
@@ -425,16 +437,14 @@ namespace SPA_Template.Controllers
             return Ok("file common_generated.js generato");
         }
 
-        //[NonAction]
+
+#if !DEBUG
+        [NonAction]
+#endif
         [HttpGet]
         [Route("api/JavascriptGenerator/GenerateGrids")]
         public IHttpActionResult GenerateGrids() //genero ko-grids per tutti metodi get che ritornano collection
         {
-            //Group APIs by controller
-            var model = GlobalConfiguration.Configuration.Services.GetApiExplorer().ApiDescriptions;
-            ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model.ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
-
-
             string templateClientGridT1_js = KoClientGridTemplateJs;
             string templateClientGridT1_html = KoClientGridTemplateHtml;
 
@@ -442,7 +452,7 @@ namespace SPA_Template.Controllers
             string generatedMainFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "Generated");
             Directory.CreateDirectory(generatedMainFilePath);
 
-            foreach (var apiController in apiGroups.OrderBy(p => p.Key.ControllerName))
+            foreach (var apiController in ApiControllers)
             {
                 foreach (var apiMethod in apiController)
                 {
