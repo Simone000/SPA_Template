@@ -9,7 +9,8 @@
             <a href="#" class="navbar-brand">Titolo</a>
         </div>
         <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+
+            <ul class="nav navbar-nav" data-bind="visible: isAuth() == true">
                 <li>
                     <a href="/#/amministrazione/utenti">Amm Utenti</a>
                 </li>
