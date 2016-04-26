@@ -284,21 +284,21 @@
     <Content Include="App\examples\page-empty\page-empty.html" />
     <Content Include="App\examples\page-empty\page-empty.js" />
     <Content Include="App\examples\pagenavigation-sample.html" />
-    <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.html" />
-    <Content Include="App\generate\ko-servergrid-t1\ko-servergrid-t1.js" />
+    <Content Include="App\generated\ko-servergrid-t1\ko-servergrid-t1.html" />
+    <Content Include="App\generated\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App\Index.html" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
-    <Content Include="App\generate\api_template.js" />
-    <Content Include="App\generate\common_template.js" />
-    <Content Include="App\generate\Index_template.html" />
-    <Content Include="App\generate\ko-clientgrid-t1\ko-clientgrid-t1.html" />
-    <Content Include="App\generate\ko-clientgrid-t1\ko-clientgrid-t1.js" />
-    <Content Include="App\generate\ko-post-t1\ko-post-t1.html" />
-    <Content Include="App\generate\ko-post-t1\ko-post-t1.js" />
-    <Content Include="App\generate\startup_template.js" />
-    <Content Include="App\tests\page-test1\page-test1.html" />
-    <Content Include="App\tests\page-test1\page-test1.js" />
+    <Content Include="App\generated\api_template.js" />
+    <Content Include="App\generated\common_template.js" />
+    <Content Include="App\generated\Index_template.html" />
+    <Content Include="App\generated\ko-clientgrid-t1\ko-clientgrid-t1.html" />
+    <Content Include="App\generated\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="App\generated\ko-post-t1\ko-post-t1.html" />
+    <Content Include="App\generated\ko-post-t1\ko-post-t1.js" />
+    <Content Include="App\generated\startup_template.js" />
+    <Content Include="App\spa-tests\page-test1\page-test1.html" />
+    <Content Include="App\spa-tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="browserconfig.xml" />
     <Content Include="Content\bootstrap-datepicker.css" />
@@ -474,6 +474,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App\samples\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\OData\" />
   </ItemGroup>
