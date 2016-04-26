@@ -9,15 +9,18 @@ using System.Web.Http.Description;
 
 namespace SPA_Template.Controllers
 {
+    [RoutePrefix("api/Samples/Aziende")]
     public class AziendeController : BaseAPIController
     {
         [HttpGet]
+        [Route("GetAzienda")]
         public IHttpActionResult GetAzienda(int ID_Azienda, string Filtro)
         {
             return Ok();
         }
 
         [HttpGet]
+        [Route("GetAziende")]
         [ResponseType(typeof(List<GetAziendaModel>))]
         public IHttpActionResult GetAziende()
         {
@@ -48,6 +51,7 @@ namespace SPA_Template.Controllers
         }
 
         [HttpPost]
+        [Route("UpdateAzienda")]
         public IHttpActionResult UpdateAzienda(UpdateAziendaModel Model)
         {
             if (Model == null || !ModelState.IsValid)

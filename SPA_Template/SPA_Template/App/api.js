@@ -12,7 +12,8 @@
             var accordionsAperti = $('.in');
 
             var returnDataType = "json";
-            if (doesReturnJson != true) {
+            if (doesReturnJson != true)
+            {
                 returnDataType = "text";
             }
 
@@ -132,17 +133,20 @@
                         }
 
                         var msg_err = errore["Message"];
-                        if (msg_err == null) {
+                        if (msg_err == null)
+                        {
                             msg_err = errore["ExceptionMessage"];
                         }
 
                         //se è l'errore default di ModelState => riscrivo il msg scrivendo il primo model error che trovo
-                        if (msg_err == "The request is invalid." && firstError != null) {
+                        if (msg_err == "The request is invalid." && firstError != null)
+                        {
                             msg_err = firstError;
                         }
 
                         //mostro summary (è solo un msg di errore inviato con badrequest(string))
-                        if (modelErrors == null) {
+                        if (modelErrors == null)
+                        {
                             var div_summary = divToBlock.find('.validation-summary-errors');
                             if (div_summary != null) {
                                 div_summary.find('li').text(msg_err);
@@ -217,64 +221,65 @@
 
 
 
+
+        //Account
         function GetUserInfo(divToBlock, success, error) {
             Get(divToBlock, success, error, true, "/api/Account/GetUserInfo");
         };
         function Login(divToBlock, success, error, Email, Password, ReturnUrl) {
-            Post(divToBlock, success, error, false, "/api/Account/Login/", { Email: Email, Password: Password, ReturnUrl: ReturnUrl });
+            Post(divToBlock, success, error, false, "/api/Account/Login", { Email: Email, Password: Password, ReturnUrl: ReturnUrl });
         };
-
         function LogOff(divToBlock, success, error) {
             Get(divToBlock, success, error, false, "/api/Account/LogOff");
         };
         function Register(divToBlock, success, error, Email, Password, ConfirmPassword) {
-            Post(divToBlock, success, error, false, "/api/Account/Register/", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
+            Post(divToBlock, success, error, false, "/api/Account/Register", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
         };
         function ConfirmEmail(divToBlock, success, error, userId, code) {
-            Get(divToBlock, success, error, false, "/api/Account/ConfirmEmail?userId=" + userId + "&code=" + code + "");
+            Get(divToBlock, success, error, false, "/api/Account/ConfirmEmail?userId=" + userId + "&code=" + code);
         };
         function ForgotPassword(divToBlock, success, error, Email) {
-            Post(divToBlock, success, error, false, "/api/Account/ForgotPassword/", { Email: Email });
+            Post(divToBlock, success, error, false, "/api/Account/ForgotPassword", { Email: Email });
         };
         function ResetPassword(divToBlock, success, error, UserID, Code, Password, ConfirmPassword) {
-            Post(divToBlock, success, error, false, "/api/Account/ResetPassword/", { UserID: UserID, Code: Code, Password: Password, ConfirmPassword: ConfirmPassword });
+            Post(divToBlock, success, error, false, "/api/Account/ResetPassword", { UserID: UserID, Code: Code, Password: Password, ConfirmPassword: ConfirmPassword });
         };
         function ChangePassword(divToBlock, success, error, OldPassword, NewPassword, ConfirmPassword) {
-            Post(divToBlock, success, error, false, "/api/Account/ChangePassword/", { OldPassword: OldPassword, NewPassword: NewPassword, ConfirmPassword: ConfirmPassword });
+            Post(divToBlock, success, error, false, "/api/Account/ChangePassword", { OldPassword: OldPassword, NewPassword: NewPassword, ConfirmPassword: ConfirmPassword });
         };
         function ExternalLogin(divToBlock, success, error, provider, returnUrl) {
-            Get(divToBlock, success, error, false, "/api/Account/ExternalLogin?provider=" + provider + "&returnUrl=" + returnUrl + "");
+            Get(divToBlock, success, error, false, "/api/Account/ExternalLogin?provider=" + provider + "&returnUrl=" + returnUrl);
         };
         function ExternalLoginCallback(divToBlock, success, error, returnUrl) {
-            Get(divToBlock, success, error, false, "/api/Account/ExternalLoginCallback?returnUrl=" + returnUrl + "");
+            Get(divToBlock, success, error, false, "/api/Account/ExternalLoginCallback?returnUrl=" + returnUrl);
         };
+
+        //Admin
         function GetUtenti(divToBlock, success, error) {
             Get(divToBlock, success, error, true, "/api/Admin/GetUtenti");
         };
         function UpdateRuoloUtente(divToBlock, success, error, Username, Ruolo, NuovoStato) {
-            Post(divToBlock, success, error, false, "/api/Admin/UpdateRuoloUtente/", { Username: Username, Ruolo: Ruolo, NuovoStato: NuovoStato });
+            Post(divToBlock, success, error, false, "/api/Admin/UpdateRuoloUtente", { Username: Username, Ruolo: Ruolo, NuovoStato: NuovoStato });
         };
         function CreaUtente(divToBlock, success, error, Email, Password, ConfirmPassword) {
-            Post(divToBlock, success, error, false, "/api/Admin/CreaUtente/", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
+            Post(divToBlock, success, error, false, "/api/Admin/CreaUtente", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
         };
 
-
+        //Aziende
         function GetAzienda(divToBlock, success, error, ID_Azienda, Filtro) {
-            Get(divToBlock, success, error, false, "/api/Aziende?ID_Azienda=" + ID_Azienda + "&Filtro=" + Filtro + "");
+            Get(divToBlock, success, error, false, "/api/Samples/Aziende/GetAzienda?ID_Azienda=" + ID_Azienda + "&Filtro=" + Filtro);
         };
         function GetAziende(divToBlock, success, error) {
-            Get(divToBlock, success, error, true, "/api/Aziende");
+            Get(divToBlock, success, error, true, "/api/Samples/Aziende/GetAziende");
         };
         function UpdateAzienda(divToBlock, success, error, Nome, Descrizione) {
-            Post(divToBlock, success, error, false, "/api/Aziende/", { Nome: Nome, Descrizione: Descrizione });
+            Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione });
         };
 
-        function GenerateAPI(divToBlock, success, error) {
-            Get(divToBlock, success, error, false, "/api/JavascriptGenerator");
+        //Exceptions
+        function TestExc1(divToBlock, success, error) {
+            Get(divToBlock, success, error, false, "/api/Samples/Exceptions/TestExc1");
         };
-
-
-
 
 
 
@@ -300,6 +305,7 @@
          */
 
         return {
+            //Account
             GetUserInfo: GetUserInfo,
             Login: Login,
             LogOff: LogOff,
@@ -310,13 +316,21 @@
             ChangePassword: ChangePassword,
             ExternalLogin: ExternalLogin,
             ExternalLoginCallback: ExternalLoginCallback,
+
+            //Admin
             GetUtenti: GetUtenti,
             UpdateRuoloUtente: UpdateRuoloUtente,
             CreaUtente: CreaUtente,
+
+            //Aziende
             GetAzienda: GetAzienda,
             GetAziende: GetAziende,
             UpdateAzienda: UpdateAzienda,
-            GenerateAPI: GenerateAPI
+
+            //Exceptions
+            TestExc1: TestExc1
+
+
         };
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {

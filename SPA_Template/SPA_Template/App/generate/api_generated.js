@@ -267,18 +267,18 @@ function CreaUtente(divToBlock, success, error, Email, Password, ConfirmPassword
 
 //Aziende
 function GetAzienda(divToBlock, success, error, ID_Azienda, Filtro) {
-	Get(divToBlock, success, error, false, "/api/Aziende?ID_Azienda=" + ID_Azienda + "&Filtro=" + Filtro);
+	Get(divToBlock, success, error, false, "/api/Samples/Aziende/GetAzienda?ID_Azienda=" + ID_Azienda + "&Filtro=" + Filtro);
 };
 function GetAziende(divToBlock, success, error) {
-	Get(divToBlock, success, error, true, "/api/Aziende");
+	Get(divToBlock, success, error, true, "/api/Samples/Aziende/GetAziende");
 };
 function UpdateAzienda(divToBlock, success, error, Nome, Descrizione) {
-	Post(divToBlock, success, error, false, "/api/Aziende", { Nome: Nome, Descrizione: Descrizione });
+	Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione });
 };
 
 //Exceptions
 function TestExc1(divToBlock, success, error) {
-	Get(divToBlock, success, error, false, "/api/Exceptions");
+	Get(divToBlock, success, error, false, "/api/Samples/Exceptions/TestExc1");
 };
 
 
