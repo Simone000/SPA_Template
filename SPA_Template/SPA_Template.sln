@@ -9,6 +9,8 @@ Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "Cordova_Template", "Cordova
 EndProject
 Project("{262852C6-CD72-467D-83FE-5EEB1973A190}") = "CordovaPlugins", "CordovaPlugins\CordovaPlugins.jsproj", "{E2F81E70-DBD2-4035-99B2-62A67B261F5A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ToBeIntegrated", "ToBeIntegrated", "{2BEE9B30-BCAA-4182-AEEB-4DFB9FE42314}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
@@ -170,5 +172,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E2F81E70-DBD2-4035-99B2-62A67B261F5A} = {2BEE9B30-BCAA-4182-AEEB-4DFB9FE42314}
 	EndGlobalSection
 EndGlobal
