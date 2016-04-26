@@ -21,6 +21,8 @@ namespace SPA_Template.Controllers
     {
         #region Paths
 
+        //todo: refix pathes
+
         public static string AppPath
         {
             get
@@ -33,7 +35,7 @@ namespace SPA_Template.Controllers
         {
             get
             {
-                return Path.Combine(AppPath, "generate");
+                return Path.Combine(AppPath, "spa-generated");
             }
         }
         public static string GeneratedPath
