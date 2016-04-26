@@ -3,7 +3,7 @@
     baseUrl: "/",
     paths: {
         "bootstrap": "Scripts/bootstrap",
-        "jquery": "Scripts/jquery-2.2.2",
+        "jquery": "Scripts/jquery-2.2.3",
         "blockUI": "Scripts/jquery.blockUI",
         "knockout": "Scripts/knockout-3.4.0",
         "knockoutgrids": "Scripts/knockout-grids",
