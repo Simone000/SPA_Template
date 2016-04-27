@@ -7,7 +7,7 @@
 
     //tests
     ko.components.register("tests-page-test1", {
-        require: "App/spa-tests/page-test1/page-test1"
+        require: "App/tests/page-test1/page-test1"
     });
 
     //Account
