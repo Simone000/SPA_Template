@@ -66,6 +66,24 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App-generate\templates\api_template.js" />
+    <Content Include="App-generate\templates\common_template.js" />
+    <Content Include="App-generate\templates\Index_template.html" />
+    <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
+    <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="App-generate\templates\ko-post-t1\ko-post-t1.html" />
+    <Content Include="App-generate\templates\ko-post-t1\ko-post-t1.js" />
+    <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
+    <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
+    <Content Include="App-generate\templates\startup_template.js" />
+    <Content Include="App-samples\form-validation-sample\form-validation-sample.html" />
+    <Content Include="App-samples\kogrids-clientsample1\kogrids-clientsample1.html" />
+    <Content Include="App-samples\kogrids-clientsample1\kogrids-clientsample1.js" />
+    <Content Include="App-samples\kogrids-serversample1\kogrids-serversample1.html" />
+    <Content Include="App-samples\kogrids-serversample1\kogrids-serversample1.js" />
+    <Content Include="App-samples\page-empty\page-empty.html" />
+    <Content Include="App-samples\page-empty\page-empty.js" />
+    <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -81,7 +99,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="NugetOutput\" />
+    <Folder Include="App-generate\generated\" />
+    <Folder Include="App\" />
+    <Folder Include="NugetOutput\content\App-samples\" />
+    <Folder Include="NugetOutput\lib\" />
+    <Folder Include="NugetOutput\src\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
