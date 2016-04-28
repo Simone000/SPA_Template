@@ -12,6 +12,7 @@
 /// <reference path="../app/aziende/page-editazienda/page-editazienda.js" />
 /// <reference path="../app/common.js" />
 /// <reference path="../app/components/header/header.js" />
+/// <reference path="../app/page-home/page-home.js" />
 /// <reference path="../app/require.config.js" />
 /// <reference path="../app/startup.js" />
 /// <reference path="../app/tests/page-test1/page-test1.js" />

@@ -1,5 +1,5 @@
 ﻿; (function (define) {
-    define(["jquery", "knockout", "knockoutgrids"], function ($, ko, knockoutgrids) {
+    define(["jquery", "knockout"], function ($, ko) {
 
         function Today() {
             var self = this;
@@ -60,8 +60,8 @@
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
     if (typeof module !== 'undefined' && module.exports) { //Node
-        module.exports = factory(require('jquery'), require('ko'), require('knockoutgrids'));
+        module.exports = factory(require('jquery'), require('ko'));
     } else {
-        window['common'] = factory(window['jQuery'], window['ko'], window['knockoutgrids']);
+        window['common'] = factory(window['jQuery'], window['ko']);
     }
 }));

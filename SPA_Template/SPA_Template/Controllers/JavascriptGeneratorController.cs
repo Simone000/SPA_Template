@@ -21,8 +21,6 @@ namespace SPA_Template.Controllers
     {
         #region Paths
 
-        //todo: refix pathes
-
         public static string AppPath
         {
             get
@@ -35,14 +33,14 @@ namespace SPA_Template.Controllers
         {
             get
             {
-                return Path.Combine(AppPath, "spa-generated");
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App-generated");
             }
         }
         public static string GeneratedPath
         {
             get
             {
-                return Path.Combine(TemplatesPath, "Generated");
+                return Path.Combine(TemplatesPath, "generated");
             }
         }
 
@@ -72,12 +70,28 @@ namespace SPA_Template.Controllers
                 return File.ReadAllText(filePath);
             }
         }
+        public static string ApiGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(TemplatesPath, "api_generated.js");
+                return filePath;
+            }
+        }
         public static string CommonTemplate
         {
             get
             {
                 string filePath = Path.Combine(TemplatesPath, "common_template.js");
                 return File.ReadAllText(filePath);
+            }
+        }
+        public static string CommonGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(TemplatesPath, "common_generated.js");
+                return filePath;
             }
         }
 
@@ -115,9 +129,15 @@ namespace SPA_Template.Controllers
                 return File.ReadAllText(filePath);
             }
         }
+
+
+
+
+
         #endregion
 
-        public IEnumerable<IGrouping<HttpControllerDescriptor, ApiDescription>> ApiControllers {
+        public IEnumerable<IGrouping<HttpControllerDescriptor, ApiDescription>> ApiControllers
+        {
             get
             {
                 //Group APIs by controller
@@ -340,8 +360,7 @@ namespace SPA_Template.Controllers
             nuovoTemplateApi = nuovoTemplateApi.Replace("{METHODS_NAME}", methodsName);
 
 
-            string apiGeneratedFilepath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "api_generated.js");
-            File.WriteAllText(apiGeneratedFilepath, nuovoTemplateApi);
+            File.WriteAllText(ApiGeneratedPath, nuovoTemplateApi);
 
 
             //check se ci sono nomi doppi
@@ -358,7 +377,7 @@ namespace SPA_Template.Controllers
             string apiFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "api.js");
             if (File.Exists(apiFilePath))
             {
-                msgOk += "VS command window: Tools.DiffFiles " + apiGeneratedFilepath + " " + apiFilePath;
+                msgOk += "VS command window: Tools.DiffFiles " + ApiGeneratedPath + " " + apiFilePath;
             }
             return Ok(msgOk);
         }
@@ -411,7 +430,7 @@ namespace SPA_Template.Controllers
                         jsModels += "\t";
 
                         //se è un oggetto base:     self.id = TipologiaPrestazione.ID;
-                        jsModels += "self." + prop.Name.ToLowerInvariant() + " = " + nomeModello + "." + prop.Name + ";";
+                        jsModels += "self." + ToJsName(prop.Name) + " = " + nomeModello + "." + prop.Name + ";";
 
                         jsModels += Environment.NewLine;
                     }
@@ -431,12 +450,17 @@ namespace SPA_Template.Controllers
             nuovoTemplateCommon = nuovoTemplateCommon.Replace("{METHODS_NAME}",
                                                 string.Join(", " + Environment.NewLine, modelNames.OrderBy(p => p).Select(p => p + ":" + p)));
 
-
-            string generatedFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "common_generated.js");
-            File.WriteAllText(generatedFilePath, nuovoTemplateCommon);
+            File.WriteAllText(CommonGeneratedPath, nuovoTemplateCommon);
 
 
-            return Ok("file common_generated.js generato");
+            var msgOk = "file common_generated.js generato, " + @"<br/>";
+            string commonFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
+            if (File.Exists(commonFilePath))
+            {
+                msgOk += "VS command window: Tools.DiffFiles " + CommonGeneratedPath + " " + commonFilePath;
+            }
+
+            return Ok(msgOk);
         }
 
 
@@ -451,8 +475,7 @@ namespace SPA_Template.Controllers
             string templateClientGridT1_html = KoClientGridTemplateHtml;
 
             //cartella per metterci gli altri file generati
-            string generatedMainFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "Generated");
-            Directory.CreateDirectory(generatedMainFilePath);
+            Directory.CreateDirectory(GeneratedPath);
 
             foreach (var apiController in ApiControllers)
             {
@@ -515,7 +538,7 @@ namespace SPA_Template.Controllers
                     clientGridT1_html = clientGridT1_html.Replace("nomeObsArray", nomeObsArray);
 
                     //salvo i file
-                    string containerFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "generate", "Generated", "KoGrids", nomeComponent);
+                    string containerFolder = Path.Combine(GeneratedPath, "KoGrids", nomeComponent);
                     Directory.CreateDirectory(containerFolder);
 
                     string jsPath = Path.Combine(containerFolder, nomeComponent + ".js");

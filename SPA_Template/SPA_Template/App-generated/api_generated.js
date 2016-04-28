@@ -1,4 +1,4 @@
-﻿; (function (define) {
+; (function (define) {
     define(["jquery", "blockUI"], function ($) {
 
         //funzioni richiamate da tutti gli altri
@@ -221,7 +221,50 @@
 
 
 
-        {METHODS_CALL}
+        
+//Account
+function GetUserInfo(divToBlock, success, error) {
+	Get(divToBlock, success, error, true, "/api/Account/GetUserInfo");
+};
+function Login(divToBlock, success, error, Email, Password, ReturnUrl) {
+	Post(divToBlock, success, error, false, "/api/Account/Login", { Email: Email, Password: Password, ReturnUrl: ReturnUrl });
+};
+function LogOff(divToBlock, success, error) {
+	Get(divToBlock, success, error, false, "/api/Account/LogOff");
+};
+function Register(divToBlock, success, error, Email, Password, ConfirmPassword) {
+	Post(divToBlock, success, error, false, "/api/Account/Register", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
+};
+function ConfirmEmail(divToBlock, success, error, userId, code) {
+	Get(divToBlock, success, error, false, "/api/Account/ConfirmEmail?userId=" + userId + "&code=" + code);
+};
+function ForgotPassword(divToBlock, success, error, Email) {
+	Post(divToBlock, success, error, false, "/api/Account/ForgotPassword", { Email: Email });
+};
+function ResetPassword(divToBlock, success, error, UserID, Code, Password, ConfirmPassword) {
+	Post(divToBlock, success, error, false, "/api/Account/ResetPassword", { UserID: UserID, Code: Code, Password: Password, ConfirmPassword: ConfirmPassword });
+};
+function ChangePassword(divToBlock, success, error, OldPassword, NewPassword, ConfirmPassword) {
+	Post(divToBlock, success, error, false, "/api/Account/ChangePassword", { OldPassword: OldPassword, NewPassword: NewPassword, ConfirmPassword: ConfirmPassword });
+};
+function ExternalLogin(divToBlock, success, error, provider, returnUrl) {
+	Get(divToBlock, success, error, false, "/api/Account/ExternalLogin?provider=" + provider + "&returnUrl=" + returnUrl);
+};
+function ExternalLoginCallback(divToBlock, success, error, returnUrl) {
+	Get(divToBlock, success, error, false, "/api/Account/ExternalLoginCallback?returnUrl=" + returnUrl);
+};
+
+//Admin
+function GetUtenti(divToBlock, success, error) {
+	Get(divToBlock, success, error, true, "/api/Admin/GetUtenti");
+};
+function UpdateRuoloUtente(divToBlock, success, error, Username, Ruolo, NuovoStato) {
+	Post(divToBlock, success, error, false, "/api/Admin/UpdateRuoloUtente", { Username: Username, Ruolo: Ruolo, NuovoStato: NuovoStato });
+};
+function CreaUtente(divToBlock, success, error, Email, Password, ConfirmPassword) {
+	Post(divToBlock, success, error, false, "/api/Admin/CreaUtente", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
+};
+
 
 
         /*
@@ -248,7 +291,24 @@
         */
 
         return {
-{METHODS_NAME}
+//Account
+GetUserInfo: GetUserInfo, 
+Login: Login, 
+LogOff: LogOff, 
+Register: Register, 
+ConfirmEmail: ConfirmEmail, 
+ForgotPassword: ForgotPassword, 
+ResetPassword: ResetPassword, 
+ChangePassword: ChangePassword, 
+ExternalLogin: ExternalLogin, 
+ExternalLoginCallback: ExternalLoginCallback,
+
+//Admin
+GetUtenti: GetUtenti, 
+UpdateRuoloUtente: UpdateRuoloUtente, 
+CreaUtente: CreaUtente
+
+
 };
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {

@@ -38,6 +38,11 @@
         require: "App/amm/page-creautente/page-creautente"
     });
 
+    //Home
+    ko.components.register("page-home", {
+        require: "App/page-home/page-home"
+    });
+
 
     //aziende
     ko.components.register("aziende-page-aziende", {
@@ -68,6 +73,9 @@
         //Amministrazione
         self.ammUtenti = ko.observable();
         self.ammCreaUtente = ko.observable();
+
+        //home
+        self.home = ko.observable();
 
         //Aziende
         self.aziende = ko.observable();
@@ -159,7 +167,7 @@
         //routing chiamato se falliscono tutti gli altri (da lasciare per ultimo!)
         this.get('', function () {
             model.body(new BodyModel());
-            model.body().aziende(true); //in questo caso la lista delle aziende è la pagina di default
+            model.body().home(true); //setting default page
         });
 
     }).run();

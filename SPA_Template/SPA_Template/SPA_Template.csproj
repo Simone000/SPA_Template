@@ -287,6 +287,8 @@
     <Content Include="App-generated\ko-servergrid-t1\ko-servergrid-t1.html" />
     <Content Include="App-generated\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App\Index.html" />
+    <Content Include="App\page-home\page-home.html" />
+    <Content Include="App\page-home\page-home.js" />
     <Content Include="App\require.config.js" />
     <Content Include="App\startup.js" />
     <Content Include="App-generated\api_template.js" />
