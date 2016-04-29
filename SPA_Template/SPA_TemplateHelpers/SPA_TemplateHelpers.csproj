@@ -140,10 +140,6 @@
     <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="NugetOutput\content\App-generate\templates\startup.js" />
     <Content Include="NugetOutput\content\App-samples\form-validation-sample\form-validation-sample.html" />
-    <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.html" />
-    <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.js" />
-    <Content Include="NugetOutput\content\App-samples\kogrids-serversample1\kogrids-serversample1.html" />
-    <Content Include="NugetOutput\content\App-samples\kogrids-serversample1\kogrids-serversample1.js" />
     <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.html" />
     <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.js" />
     <Content Include="NugetOutput\content\App-samples\pagenavigation-sample.html" />
