@@ -1,6 +1,4 @@
-﻿using SPA_TemplateHelpers.Areas.HelpPage;
-using SPA_TemplateHelpers.Areas.HelpPage.ModelDescriptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,6 +8,10 @@ using System.Text;
 using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
+
+//##### replace with project namespace #####
+using SPA_TemplateHelpers.Areas.HelpPage;
+using SPA_TemplateHelpers.Areas.HelpPage.ModelDescriptions;
 
 namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 {
