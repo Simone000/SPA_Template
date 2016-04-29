@@ -128,6 +128,17 @@
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Global.asax" />
+    <Content Include="NugetOutput\content\App-generate\generated\api.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\api.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\common.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\Index.html" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.html" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\startup.js" />
     <Content Include="NugetOutput\content\App-samples\form-validation-sample\form-validation-sample.html" />
     <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.html" />
     <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.js" />
@@ -202,6 +213,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <None Include="NugetOutput\content\JavascriptGenerator\JavascriptGeneratorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
