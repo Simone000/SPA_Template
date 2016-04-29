@@ -18,6 +18,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
     //todo: generate startup.js partendo dalla cartella App (e relativo index.html)
     //todo: per i post method usare degli oggetti stub con newValues (self.newValue1 = ko.observable(self.value1))
     //todo: GenerateGrids, potrebbero esistere piu' metodi che ritornano le stesse collezioni di oggetti (in quel caso dovrei aggiungere piu' chiamate api una sotto l'altra)
+    //todo: commonjs, nel caso di property liste di oggetti dovrebbe mapparli ad altri oggetti ko
 
     public class JavascriptGeneratorController : ApiController
     {
@@ -419,6 +420,14 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     {
                         nomeModello = modelCollection.ElementDescription.Name;
                     }
+
+                    //Usually I create model class with "Model" at the end
+                    nomeModello = nomeModello.Replace("Model", string.Empty);
+
+                    //Skip already added models (multiple method could return the same model)
+                    if (modelNames.Contains(nomeModello))
+                        continue;
+
                     modelNames.Add(nomeModello);
 
                     // function TipologiaPrestazione(TipologiaPrestazione) {
