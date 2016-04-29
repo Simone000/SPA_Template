@@ -12,8 +12,7 @@
             var accordionsAperti = $('.in');
 
             var returnDataType = "json";
-            if (doesReturnJson != true)
-            {
+            if (doesReturnJson != true) {
                 returnDataType = "text";
             }
 
@@ -133,20 +132,17 @@
                         }
 
                         var msg_err = errore["Message"];
-                        if (msg_err == null)
-                        {
+                        if (msg_err == null) {
                             msg_err = errore["ExceptionMessage"];
                         }
 
                         //se è l'errore default di ModelState => riscrivo il msg scrivendo il primo model error che trovo
-                        if (msg_err == "The request is invalid." && firstError != null)
-                        {
+                        if (msg_err == "The request is invalid." && firstError != null) {
                             msg_err = firstError;
                         }
 
                         //mostro summary (è solo un msg di errore inviato con badrequest(string))
-                        if (modelErrors == null)
-                        {
+                        if (modelErrors == null) {
                             var div_summary = divToBlock.find('.validation-summary-errors');
                             if (div_summary != null) {
                                 div_summary.find('li').text(msg_err);
