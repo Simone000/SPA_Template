@@ -112,22 +112,30 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App-generate\templates\api_template.js" />
-    <Content Include="App-generate\templates\common_template.js" />
-    <Content Include="App-generate\templates\Index_template.html" />
+    <Content Include="App-generate\templates\api.js" />
+    <Content Include="App-generate\templates\common.js" />
+    <Content Include="App-generate\templates\Index.html" />
     <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
     <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
     <Content Include="App-generate\templates\ko-post-t1\ko-post-t1.html" />
     <Content Include="App-generate\templates\ko-post-t1\ko-post-t1.js" />
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
-    <Content Include="App-generate\templates\startup_template.js" />
+    <Content Include="App-generate\templates\startup.js" />
     <Content Include="App-samples\form-validation-sample\form-validation-sample.html" />
     <Content Include="App-samples\page-empty\page-empty.html" />
     <Content Include="App-samples\page-empty\page-empty.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Global.asax" />
+    <Content Include="NugetOutput\content\App-samples\form-validation-sample\form-validation-sample.html" />
+    <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.html" />
+    <Content Include="NugetOutput\content\App-samples\kogrids-clientsample1\kogrids-clientsample1.js" />
+    <Content Include="NugetOutput\content\App-samples\kogrids-serversample1\kogrids-serversample1.html" />
+    <Content Include="NugetOutput\content\App-samples\kogrids-serversample1\kogrids-serversample1.js" />
+    <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.html" />
+    <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.js" />
+    <Content Include="NugetOutput\content\App-samples\pagenavigation-sample.html" />
     <Content Include="packages.config" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -190,6 +198,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\JavascriptGenerator\JavascriptGeneratorController.cs" />
+    <Compile Include="Controllers\TestJavascriptGeneratorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,7 +208,6 @@
     <Folder Include="App-generate\generated\" />
     <Folder Include="App\" />
     <Folder Include="App_Data\" />
-    <Folder Include="NugetOutput\content\App-samples\" />
     <Folder Include="NugetOutput\lib\" />
     <Folder Include="NugetOutput\src\" />
   </ItemGroup>

@@ -30,29 +30,35 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                 return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App");
             }
         }
-
+        public static string AppGeneratePath
+        {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App-generate");
+            }
+        }
         public static string TemplatesPath
         {
             get
             {
-                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App-generated");
+                return Path.Combine(AppGeneratePath, "templates");
             }
         }
         public static string GeneratedPath
         {
             get
             {
-                return Path.Combine(TemplatesPath, "generated");
+                return Path.Combine(AppGeneratePath, "generated");
             }
         }
 
-
-
+        
+        //Template to start from
         public static string IndexTemplate
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "Index_template.html");
+                string filePath = Path.Combine(TemplatesPath, "Index.html");
                 return File.ReadAllText(filePath);
             }
         }
@@ -60,7 +66,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "startup_template.js");
+                string filePath = Path.Combine(TemplatesPath, "startup.js");
                 return File.ReadAllText(filePath);
             }
         }
@@ -68,37 +74,18 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "api_template.js");
+                string filePath = Path.Combine(TemplatesPath, "api.js");
                 return File.ReadAllText(filePath);
-            }
-        }
-        public static string ApiGeneratedPath
-        {
-            get
-            {
-                string filePath = Path.Combine(TemplatesPath, "api_generated.js");
-                return filePath;
             }
         }
         public static string CommonTemplate
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "common_template.js");
+                string filePath = Path.Combine(TemplatesPath, "common.js");
                 return File.ReadAllText(filePath);
             }
         }
-        public static string CommonGeneratedPath
-        {
-            get
-            {
-                string filePath = Path.Combine(TemplatesPath, "common_generated.js");
-                return filePath;
-            }
-        }
-
-
-        //todo: caching quando leggo template
         public static string KoClientGridTemplateHtml
         {
             get
@@ -133,8 +120,23 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         }
 
 
-
-
+        //Where to place the generated files
+        public static string ApiGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(GeneratedPath, "api.js");
+                return filePath;
+            }
+        }
+        public static string CommonGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(GeneratedPath, "common.js");
+                return filePath;
+            }
+        }
 
         #endregion
 
