@@ -222,47 +222,15 @@
 
 
         
-//Account
-function GetUserInfo(divToBlock, success, error) {
-	Get(divToBlock, success, error, true, "/api/Account/GetUserInfo");
+//TestJavascriptGenerator
+function GetAzienda(divToBlock, success, error, ID_Azienda, Filtro) {
+	Get(divToBlock, success, error, false, "/GetAzienda?ID_Azienda=" + ID_Azienda + "&Filtro=" + Filtro);
 };
-function Login(divToBlock, success, error, Email, Password, ReturnUrl) {
-	Post(divToBlock, success, error, false, "/api/Account/Login", { Email: Email, Password: Password, ReturnUrl: ReturnUrl });
+function GetAziende(divToBlock, success, error) {
+	Get(divToBlock, success, error, true, "/GetAziende");
 };
-function LogOff(divToBlock, success, error) {
-	Get(divToBlock, success, error, false, "/api/Account/LogOff");
-};
-function Register(divToBlock, success, error, Email, Password, ConfirmPassword) {
-	Post(divToBlock, success, error, false, "/api/Account/Register", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
-};
-function ConfirmEmail(divToBlock, success, error, userId, code) {
-	Get(divToBlock, success, error, false, "/api/Account/ConfirmEmail?userId=" + userId + "&code=" + code);
-};
-function ForgotPassword(divToBlock, success, error, Email) {
-	Post(divToBlock, success, error, false, "/api/Account/ForgotPassword", { Email: Email });
-};
-function ResetPassword(divToBlock, success, error, UserID, Code, Password, ConfirmPassword) {
-	Post(divToBlock, success, error, false, "/api/Account/ResetPassword", { UserID: UserID, Code: Code, Password: Password, ConfirmPassword: ConfirmPassword });
-};
-function ChangePassword(divToBlock, success, error, OldPassword, NewPassword, ConfirmPassword) {
-	Post(divToBlock, success, error, false, "/api/Account/ChangePassword", { OldPassword: OldPassword, NewPassword: NewPassword, ConfirmPassword: ConfirmPassword });
-};
-function ExternalLogin(divToBlock, success, error, provider, returnUrl) {
-	Get(divToBlock, success, error, false, "/api/Account/ExternalLogin?provider=" + provider + "&returnUrl=" + returnUrl);
-};
-function ExternalLoginCallback(divToBlock, success, error, returnUrl) {
-	Get(divToBlock, success, error, false, "/api/Account/ExternalLoginCallback?returnUrl=" + returnUrl);
-};
-
-//Admin
-function GetUtenti(divToBlock, success, error) {
-	Get(divToBlock, success, error, true, "/api/Admin/GetUtenti");
-};
-function UpdateRuoloUtente(divToBlock, success, error, Username, Ruolo, NuovoStato) {
-	Post(divToBlock, success, error, false, "/api/Admin/UpdateRuoloUtente", { Username: Username, Ruolo: Ruolo, NuovoStato: NuovoStato });
-};
-function CreaUtente(divToBlock, success, error, Email, Password, ConfirmPassword) {
-	Post(divToBlock, success, error, false, "/api/Admin/CreaUtente", { Email: Email, Password: Password, ConfirmPassword: ConfirmPassword });
+function UpdateAzienda(divToBlock, success, error, Nome, Descrizione) {
+	Post(divToBlock, success, error, false, "/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione });
 };
 
 
@@ -291,22 +259,10 @@ function CreaUtente(divToBlock, success, error, Email, Password, ConfirmPassword
         */
 
         return {
-//Account
-GetUserInfo: GetUserInfo, 
-Login: Login, 
-LogOff: LogOff, 
-Register: Register, 
-ConfirmEmail: ConfirmEmail, 
-ForgotPassword: ForgotPassword, 
-ResetPassword: ResetPassword, 
-ChangePassword: ChangePassword, 
-ExternalLogin: ExternalLogin, 
-ExternalLoginCallback: ExternalLoginCallback,
-
-//Admin
-GetUtenti: GetUtenti, 
-UpdateRuoloUtente: UpdateRuoloUtente, 
-CreaUtente: CreaUtente
+//TestJavascriptGenerator
+GetAzienda: GetAzienda, 
+GetAziende: GetAziende, 
+UpdateAzienda: UpdateAzienda
 
 
 };

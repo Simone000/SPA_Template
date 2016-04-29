@@ -1,6 +1,4 @@
-﻿using SPA_Template.Areas.HelpPage;
-using SPA_Template.Areas.HelpPage.ModelDescriptions;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,7 +9,11 @@ using System.Web.Http;
 using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 
-namespace SPA_Template.Controllers
+//##### replace with project namespace #####
+using SPA_Template.Areas.HelpPage;
+using SPA_Template.Areas.HelpPage.ModelDescriptions;
+
+namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 {
     //todo: generate startup.js partendo dalla cartella App (e relativo index.html)
     //todo: per i post method usare degli oggetti stub con newValues (self.newValue1 = ko.observable(self.value1))
@@ -28,29 +30,35 @@ namespace SPA_Template.Controllers
                 return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App");
             }
         }
-
+        public static string AppGeneratePath
+        {
+            get
+            {
+                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App-generate");
+            }
+        }
         public static string TemplatesPath
         {
             get
             {
-                return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App-generated");
+                return Path.Combine(AppGeneratePath, "templates");
             }
         }
         public static string GeneratedPath
         {
             get
             {
-                return Path.Combine(TemplatesPath, "generated");
+                return Path.Combine(AppGeneratePath, "generated");
             }
         }
 
-
-
+        
+        //Template to start from
         public static string IndexTemplate
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "Index_template.html");
+                string filePath = Path.Combine(TemplatesPath, "Index.html");
                 return File.ReadAllText(filePath);
             }
         }
@@ -58,7 +66,7 @@ namespace SPA_Template.Controllers
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "startup_template.js");
+                string filePath = Path.Combine(TemplatesPath, "startup.js");
                 return File.ReadAllText(filePath);
             }
         }
@@ -66,37 +74,18 @@ namespace SPA_Template.Controllers
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "api_template.js");
+                string filePath = Path.Combine(TemplatesPath, "api.js");
                 return File.ReadAllText(filePath);
-            }
-        }
-        public static string ApiGeneratedPath
-        {
-            get
-            {
-                string filePath = Path.Combine(TemplatesPath, "api_generated.js");
-                return filePath;
             }
         }
         public static string CommonTemplate
         {
             get
             {
-                string filePath = Path.Combine(TemplatesPath, "common_template.js");
+                string filePath = Path.Combine(TemplatesPath, "common.js");
                 return File.ReadAllText(filePath);
             }
         }
-        public static string CommonGeneratedPath
-        {
-            get
-            {
-                string filePath = Path.Combine(TemplatesPath, "common_generated.js");
-                return filePath;
-            }
-        }
-
-
-        //todo: caching quando leggo template
         public static string KoClientGridTemplateHtml
         {
             get
@@ -131,8 +120,23 @@ namespace SPA_Template.Controllers
         }
 
 
-
-
+        //Where to place the generated files
+        public static string ApiGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(GeneratedPath, "api.js");
+                return filePath;
+            }
+        }
+        public static string CommonGeneratedPath
+        {
+            get
+            {
+                string filePath = Path.Combine(GeneratedPath, "common.js");
+                return filePath;
+            }
+        }
 
         #endregion
 
