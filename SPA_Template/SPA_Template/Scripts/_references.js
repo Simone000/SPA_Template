@@ -16,7 +16,6 @@
 /// <reference path="../app/require.config.js" />
 /// <reference path="../app/startup.js" />
 /// <reference path="../app/tests/page-test1/page-test1.js" />
-/// <reference path="../app-generate/generated/api.js" />
 /// <reference path="../app-generate/templates/api.js" />
 /// <reference path="../app-generate/templates/common.js" />
 /// <reference path="../app-generate/templates/ko-clientgrid-t1/ko-clientgrid-t1.js" />

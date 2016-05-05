@@ -1,10 +1,13 @@
 ﻿; (function (define) {
     define(["jquery", "blockUI"], function ($) {
 
+        var baseUrl = ''; //if frontend hosted in a different place (ex. cordova): http://website.net
+        var busyGifPath = '/Content/Images/busy.gif';
+
         //funzioni richiamate da tutti gli altri
         function Get(divToBlock, success, error, doesReturnJson, url) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -17,7 +20,7 @@
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 asyc: true,
                 type: "get",
@@ -56,7 +59,7 @@
 
         function Post(divToBlock, success, error, doesReturnJson, url, data) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -74,7 +77,7 @@
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 asyc: true,
                 type: "post",
@@ -161,7 +164,7 @@
 
         function Post_File(divToBlock, success, error, doesReturnJson, url, formData) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -174,7 +177,7 @@
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 headers: { 'Cache-Control': 'no-cache' },
                 asyc: true,

@@ -252,7 +252,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App-generate\generated\api.js" />
     <Content Include="App-generate\templates\api.js" />
     <Content Include="App-generate\templates\common.js" />
     <Content Include="App-generate\templates\Index.html" />
@@ -477,6 +476,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App-generate\generated\" />
     <Folder Include="App_Data\" />
     <Folder Include="Views\OData\" />
   </ItemGroup>
