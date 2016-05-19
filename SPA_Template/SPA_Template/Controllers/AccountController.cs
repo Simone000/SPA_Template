@@ -141,7 +141,12 @@ namespace SPA_Template.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
-                return Ok();
+            {
+                //Redirect to HomePage
+                return Redirect(HttpContext.Current.Request.Url.Scheme
+                                + @"://"
+                                + HttpContext.Current.Request.Url.Authority);
+            }
 
             Trace.TraceError("Account/ConfirmEmail, result != succeded: " + string.Join("; ", result.Errors));
             return BadRequest("Codice non valido o scaduto");
