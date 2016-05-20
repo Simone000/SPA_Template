@@ -127,6 +127,7 @@
     <Content Include="App-samples\page-empty\page-empty.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
     <Content Include="NugetOutput\content\App-generate\generated\api.js" />
     <Content Include="NugetOutput\content\App-generate\templates\api.js" />
@@ -143,6 +144,7 @@
     <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.html" />
     <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.js" />
     <Content Include="NugetOutput\content\App-samples\pagenavigation-sample.html" />
+    <Content Include="NugetOutput\content\Content\Spa.css" />
     <Content Include="packages.config" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
