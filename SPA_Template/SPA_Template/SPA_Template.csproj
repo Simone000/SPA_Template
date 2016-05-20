@@ -318,6 +318,7 @@
     <Content Include="Content\Images\logo_tiny.png" />
     <Content Include="Content\Images\logo_wide.png" />
     <Content Include="Content\knockout-grids.css" />
+    <Content Include="Content\Spa.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="favicon.ico" />
