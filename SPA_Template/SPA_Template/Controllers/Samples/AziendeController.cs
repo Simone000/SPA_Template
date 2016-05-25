@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -72,7 +73,9 @@ namespace SPA_Template.Controllers
             [MinLength(5, ErrorMessage = "Almeno lungo 5")]
             public string Descrizione { get; set; }
 
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime TestDate { get; set; }
+            [JsonConverter(typeof(CustomDateTimeConverter))]
             public DateTime? TestDate2 { get; set; }
         }
 

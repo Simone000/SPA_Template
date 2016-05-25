@@ -81,7 +81,8 @@
                 dataType: returnDataType,
                 asyc: true,
                 type: "post",
-                data: data,
+                data: JSON.stringify(data),
+                contentType: "application/json",
                 success: function (data) {
                     divToBlock.unblock();
 
