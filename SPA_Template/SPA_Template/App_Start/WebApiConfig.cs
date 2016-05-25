@@ -23,13 +23,16 @@ namespace SPA_Template
 
             //abilito log globale errori
             config.Services.Add(typeof(IExceptionLogger), new CustomExceptionLogger());
-
+            
             //handler eccezioni
             config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
 
             //handler risposte
             config.MessageHandlers.Add(new CustomResponseHandler());
 
+
+            //custom datetime formatting
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new CustomDateTimeConverter());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

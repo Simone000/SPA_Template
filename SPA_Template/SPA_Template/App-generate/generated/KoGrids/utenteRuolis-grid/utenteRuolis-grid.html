@@ -1,42 +1,38 @@
-﻿<div class="panel-group knockout-grids_t1" id="div_getAziendas">
+<div class="panel-group knockout-grids_t1" id="div_utenteRuolis">
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">
-                <a data-toggle="collapse" data-parent="#accordion" href="#getAziendas">
-                    <b>getAziendas</b>
-                    <span data-bind="text: '(' + getAziendas().length + ' getAziendas)'"></span>
+                <a data-toggle="collapse" data-parent="#accordion" href="#utenteRuolis">
+                    <b>utenteRuolis</b>
+                    <span data-bind="text: '(' + utenteRuolis().length + ' utenteRuolis)'"></span>
                 </a>
 
-                <input type="text" style="float:right;" data-bind="value: getAziendasPaginate().search, valueUpdate:'afterkeydown'"
+                <input type="text" style="float:right;" data-bind="value: utenteRuolisPaginate().search, valueUpdate:'afterkeydown'"
                        placeholder="Nome" />
             </h3>
         </div>
 
-        <div class="panel-collapse collapse in" id="getAziendas">
+        <div class="panel-collapse collapse in" id="utenteRuolis">
             <div class="panel-body">
-                <span data-bind="visible: getAziendas().length == 0"><b>Nessun getAziendas presente</b></span>
+                <span data-bind="visible: utenteRuolis().length == 0"><b>Nessun utenteRuolis presente</b></span>
 
-                <div class="table-responsive" data-bind="visible: getAziendas().length > 0">
+                <div class="table-responsive" data-bind="visible: utenteRuolis().length > 0">
                     <table class="table table-striped">
                         <thead>
                             <tr>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('id') }">id</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('nome') }">nome</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta') }">citta</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate.datajs') }">testDate</a></th>
+                                <th><a href='#' data-bind="click: function(){ utenteRuolisPaginate().changeSort('username') }">username</a></th>
+<th><a href='#' data-bind="click: function(){ utenteRuolisPaginate().changeSort('isAdmin') }">isAdmin</a></th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach: getAziendasPaginate().itemsInPage()">
+                        <tbody data-bind="foreach: utenteRuolisPaginate().itemsInPage()">
                             <tr>
-                                <td data-bind="text: id"></td>
-                                <td data-bind="text: nome"></td>
-                                <td data-bind="text: citta"></td>
-                                <td data-bind="text: testDate.toString()"></td>
+                                <td data-bind="text: username"></td>
+<td data-bind="text: isAdmin"></td>
                             </tr>
                         </tbody>
                     </table>
 
-                    <div class="pagination-menu" data-bind="with: getAziendasPaginate()">
+                    <div class="pagination-menu" data-bind="with: utenteRuolisPaginate()">
                         <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
                         <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
                         <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />

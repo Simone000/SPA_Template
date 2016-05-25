@@ -1,10 +1,13 @@
 ﻿; (function (define) {
     define(["jquery", "blockUI"], function ($) {
 
+        var baseUrl = ''; //if frontend hosted in a different place (ex. cordova): http://website.net
+        var busyGifPath = '/Content/Images/busy.gif';
+
         //funzioni richiamate da tutti gli altri
         function Get(divToBlock, success, error, doesReturnJson, url) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -12,13 +15,12 @@
             var accordionsAperti = $('.in');
 
             var returnDataType = "json";
-            if (doesReturnJson != true)
-            {
+            if (doesReturnJson != true) {
                 returnDataType = "text";
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 asyc: true,
                 type: "get",
@@ -57,7 +59,7 @@
 
         function Post(divToBlock, success, error, doesReturnJson, url, data) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -75,7 +77,7 @@
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 asyc: true,
                 type: "post",
@@ -133,20 +135,17 @@
                         }
 
                         var msg_err = errore["Message"];
-                        if (msg_err == null)
-                        {
+                        if (msg_err == null) {
                             msg_err = errore["ExceptionMessage"];
                         }
 
                         //se è l'errore default di ModelState => riscrivo il msg scrivendo il primo model error che trovo
-                        if (msg_err == "The request is invalid." && firstError != null)
-                        {
+                        if (msg_err == "The request is invalid." && firstError != null) {
                             msg_err = firstError;
                         }
 
                         //mostro summary (è solo un msg di errore inviato con badrequest(string))
-                        if (modelErrors == null)
-                        {
+                        if (modelErrors == null) {
                             var div_summary = divToBlock.find('.validation-summary-errors');
                             if (div_summary != null) {
                                 div_summary.find('li').text(msg_err);
@@ -165,7 +164,7 @@
 
         function Post_File(divToBlock, success, error, doesReturnJson, url, formData) {
             divToBlock.block({
-                message: '<span><img src="/Content/Images/busy.gif" />Loading...</span>',
+                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
                 css: { border: '1px solid #e2e2e2' }
             });
 
@@ -178,7 +177,7 @@
             }
 
             $.ajax({
-                url: url,
+                url: baseUrl + url,
                 dataType: returnDataType,
                 headers: { 'Cache-Control': 'no-cache' },
                 asyc: true,
@@ -272,8 +271,8 @@
         function GetAziende(divToBlock, success, error) {
             Get(divToBlock, success, error, true, "/api/Samples/Aziende/GetAziende");
         };
-        function UpdateAzienda(divToBlock, success, error, Nome, Descrizione) {
-            Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione });
+        function UpdateAzienda(divToBlock, success, error, Nome, Descrizione, TestDate) {
+            Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione, TestDate: TestDate });
         };
 
         //Exceptions
@@ -286,9 +285,11 @@
         /*
         self.method = function () {
             function success(data) {
-                self.aziende(ko.utils.arrayMap(data, function (item) {
-                    return new common.AziendaServizi(item);
-                }));
+                //self.aziende(ko.utils.arrayMap(data, function (item) {
+                //    return new common.AziendaServizi(item);
+                //}));
+
+                //toastr["success"]("", "Ok!");
             };
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
@@ -302,7 +303,7 @@
             };
             api.method($('#div'), success, error, params);
         };
-         */
+        */
 
         return {
             //Account

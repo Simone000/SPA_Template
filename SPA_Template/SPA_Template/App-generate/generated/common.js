@@ -1,4 +1,4 @@
-﻿; (function (define) {
+; (function (define) {
     define(["jquery", "knockout"], function ($, ko) {
 
         function Today() {
@@ -48,29 +48,29 @@
         };
 
 
-        function UserInfo(UserInfo) {
-            var self = this;
+function UserInfo(UserInfo) {
+	var self = this;
 
-            self.email = UserInfo.Email;
-            self.isAdmin = UserInfo.IsAdmin;
-        };
+	self.email = UserInfo.Email;
+	self.isAdmin = UserInfo.IsAdmin;
+};
 
-        function UtenteRuoli(UtenteRuoli) {
-            var self = this;
+function UtenteRuoli(UtenteRuoli) {
+	var self = this;
 
-            self.username = UtenteRuoli.Username;
-            self.isAdmin = UtenteRuoli.IsAdmin;
-        };
+	self.username = UtenteRuoli.Username;
+	self.isAdmin = UtenteRuoli.IsAdmin;
+};
 
-        function GetAzienda(GetAzienda) {
-            var self = this;
+function GetAzienda(GetAzienda) {
+	var self = this;
 
-            self.id = GetAzienda.ID;
-            self.nome = GetAzienda.Nome;
-            self.reparti = GetAzienda.Reparti;
-            self.citta = GetAzienda.Citta;
-            self.testDate = new Data(GetAzienda.TestDate);
-        };
+	self.id = GetAzienda.ID;
+	self.nome = GetAzienda.Nome;
+	self.reparti = GetAzienda.Reparti;
+	self.citta = GetAzienda.Citta;
+	self.testDate = GetAzienda.TestDate;
+};
 
 
 
@@ -78,9 +78,9 @@
             Data: Data,
             Today: Today,
 
-            GetAzienda: GetAzienda,
-            UserInfo: UserInfo,
-            UtenteRuoli: UtenteRuoli
+GetAzienda:GetAzienda, 
+UserInfo:UserInfo, 
+UtenteRuoli:UtenteRuoli
 
         };
     });

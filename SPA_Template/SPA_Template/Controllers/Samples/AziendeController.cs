@@ -38,12 +38,14 @@ namespace SPA_Template.Controllers
                             ID = 1,
                             Desc = "reparto 1"
                         }
-                    }
+                    },
+                    TestDate = DateTime.Now
                 },
                 new GetAziendaModel()
                 {
                     ID = 2,
-                    Nome = "Azienda 2"
+                    Nome = "Azienda 2",
+                    TestDate = DateTime.Now
                 }
             };
 
@@ -67,6 +69,8 @@ namespace SPA_Template.Controllers
 
             [MinLength(5, ErrorMessage = "Almeno lungo 5")]
             public string Descrizione { get; set; }
+
+            public DateTime TestDate { get; set; }
         }
 
         public class GetAziendaModel
@@ -77,6 +81,8 @@ namespace SPA_Template.Controllers
             public List<RepartoModel> Reparti { get; set; }
 
             public CittaModel Citta { get; set; }
+
+            public DateTime TestDate { get; set; }
         }
 
         public class RepartoModel

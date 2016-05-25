@@ -233,6 +233,7 @@
     <Compile Include="Controllers\JavascriptGenerator\JavascriptGeneratorController.cs" />
     <Compile Include="Controllers\Samples\ExceptionsController.cs" />
     <Compile Include="Controllers\Samples\ODataController.cs" />
+    <Compile Include="CustomDateTimeConverter.cs" />
     <Compile Include="CustomExceptionHandler.cs" />
     <Compile Include="CustomExceptionLogger.cs" />
     <Compile Include="CustomResponseHandler.cs" />

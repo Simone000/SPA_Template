@@ -1,4 +1,4 @@
-﻿<div class="panel-group knockout-grids_t1" id="div_getAziendas">
+<div class="panel-group knockout-grids_t1" id="div_getAziendas">
     <div class="panel">
         <div class="panel-heading">
             <h3 class="panel-title">
@@ -21,17 +21,17 @@
                         <thead>
                             <tr>
                                 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('id') }">id</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('nome') }">nome</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta') }">citta</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate.datajs') }">testDate</a></th>
+<th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('nome') }">nome</a></th>
+<th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta.nome') }">citta.nome</a></th>
+<th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate') }">testDate</a></th>
                             </tr>
                         </thead>
                         <tbody data-bind="foreach: getAziendasPaginate().itemsInPage()">
                             <tr>
                                 <td data-bind="text: id"></td>
-                                <td data-bind="text: nome"></td>
-                                <td data-bind="text: citta"></td>
-                                <td data-bind="text: testDate.toString()"></td>
+<td data-bind="text: nome"></td>
+<td data-bind="text: citta.nome"></td>
+<td data-bind="text: testDate"></td>
                             </tr>
                         </tbody>
                     </table>

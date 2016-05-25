@@ -157,6 +157,13 @@
         });
 
 
+
+        this.get('#/aziende', function () {
+            model.body(new BodyModel());
+            model.body().aziende(true);
+        });
+
+
         //edit azienda
         this.get('#/aziende/:id_azienda/edit', function () {
             model.body(new BodyModel());
