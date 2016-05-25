@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
-using SharedUtilsNoReference; //todo: remove (use directly code)
+using SharedUtilsNoReference; //todo: remove (use directly in code)
 
 namespace SPA_Template
 {

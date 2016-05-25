@@ -70,6 +70,7 @@
             self.reparti = GetAzienda.Reparti;
             self.citta = GetAzienda.Citta;
             self.testDate = new Data(GetAzienda.TestDate);
+            self.testDate2 = new Data(GetAzienda.TestDate2);
         };
 
 

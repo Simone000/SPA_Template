@@ -70,6 +70,7 @@ function GetAzienda(GetAzienda) {
 	self.reparti = GetAzienda.Reparti;
 	self.citta = GetAzienda.Citta;
 	self.testDate = GetAzienda.TestDate;
+	self.testDate2 = GetAzienda.TestDate2;
 };
 
 

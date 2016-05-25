@@ -271,8 +271,8 @@ function GetAzienda(divToBlock, success, error, ID_Azienda, Filtro) {
 function GetAziende(divToBlock, success, error) {
 	Get(divToBlock, success, error, true, "/api/Samples/Aziende/GetAziende");
 };
-function UpdateAzienda(divToBlock, success, error, Nome, Descrizione, TestDate) {
-	Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione, TestDate: TestDate });
+function UpdateAzienda(divToBlock, success, error, Nome, Descrizione, TestDate, TestDate2) {
+	Post(divToBlock, success, error, false, "/api/Samples/Aziende/UpdateAzienda", { Nome: Nome, Descrizione: Descrizione, TestDate: TestDate, TestDate2: TestDate2 });
 };
 
 //Exceptions
