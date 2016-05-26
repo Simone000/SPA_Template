@@ -8,15 +8,9 @@
         self.nome = ko.observable();
         self.descrizione = ko.observable();
 
-        self.date1 = ko.observable(1464198629828.369);
-        self.date2 = ko.observable(1464198629828.369); //nullable
+        self.date1 = new common.Data(1464198629828.369);
+        self.date2 = new common.Data(1464198629828.369); //nullable
 
-        self.testDate = ko.computed(function () {
-            return new common.Data(self.date1());
-        });
-        self.testDate2 = ko.computed(function () {
-            return new common.Data(self.date2());
-        });
 
         self.SalvaAzienda = function () {
             function success(data) {
@@ -27,7 +21,7 @@
             };
 
             // Nome: Nome, Descrizione: Descrizione, TestDate: TestDate, TestDate2: TestDate2
-            api.UpdateAzienda($('#div_editAzienda'), success, error, self.nome(), self.descrizione(), self.testDate().toString(), self.testDate2().toString());
+            api.UpdateAzienda($('#div_editAzienda'), success, error, self.nome(), self.descrizione(), self.date1.newValue(), self.date2.newValue());
         };
 
         return self;

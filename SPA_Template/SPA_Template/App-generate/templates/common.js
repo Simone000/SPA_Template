@@ -44,6 +44,8 @@
                 return giornoToString + "/" + meseToString + "/" + anno;
             }, self);
 
+            self.newValue = ko.observable(self.toString());
+
             //todo: aggiungere localizzazione
         };
 
