@@ -115,6 +115,8 @@
     <Content Include="App-generate\templates\api.js" />
     <Content Include="App-generate\templates\common.js" />
     <Content Include="App-generate\templates\Index.html" />
+    <Content Include="App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.html" />
+    <Content Include="App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.js" />
     <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
     <Content Include="App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
     <Content Include="App-generate\templates\ko-post-t1\ko-post-t1.html" />
