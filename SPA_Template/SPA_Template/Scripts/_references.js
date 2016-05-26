@@ -19,6 +19,7 @@
 /// <reference path="../app-generate/templates/api.js" />
 /// <reference path="../app-generate/templates/common.js" />
 /// <reference path="../app-generate/templates/ko-clientgrid-t1/ko-clientgrid-t1.js" />
+/// <reference path="../app-generate/templates/ko-clientgrid-t2/ko-clientgrid-t2.js" />
 /// <reference path="../app-generate/templates/ko-post-t1/ko-post-t1.js" />
 /// <reference path="../app-generate/templates/ko-servergrid-t1/ko-servergrid-t1.js" />
 /// <reference path="../app-generate/templates/startup.js" />

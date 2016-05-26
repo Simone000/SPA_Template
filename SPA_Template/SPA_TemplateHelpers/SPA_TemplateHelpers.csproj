@@ -138,6 +138,8 @@
     <Content Include="NugetOutput\content\App-generate\templates\Index.html" />
     <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
     <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.html" />
+    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.js" />
     <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.html" />
     <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.js" />
     <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
