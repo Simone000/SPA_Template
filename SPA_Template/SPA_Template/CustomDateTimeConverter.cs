@@ -14,6 +14,11 @@ namespace SPA_Template
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             //return DateTime.Parse(reader.Value.ToString());
+
+            //Handling DateTime? null value
+            if (objectType == typeof(DateTime?) && string.IsNullOrEmpty(reader.Value.ToString()))
+                return null;
+
             return DateTime.ParseExact(reader.Value.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture);
         }
 
