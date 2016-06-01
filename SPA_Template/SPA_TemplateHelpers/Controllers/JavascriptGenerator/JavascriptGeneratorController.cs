@@ -414,6 +414,10 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     if (!doesReturnJson)
                         continue;
 
+                    //doesn't need Model for simple type
+                    if ((apiModel.ResourceDescription as SimpleTypeModelDescription) != null)
+                        continue;
+
                     string nomeModello = apiModel.ResourceDescription.Name;
                     var modelCollection = apiModel.ResourceDescription as CollectionModelDescription;
                     if (modelCollection != null)
