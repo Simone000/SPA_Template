@@ -17,6 +17,12 @@ namespace SPA_Template
             if (context != null && context.Exception != null && context.Request != null)
             {
                 string excToString = context.Exception.ToString();
+
+                var entityValidationExc = context.Exception as System.Data.Entity.Validation.DbEntityValidationException;
+                if (entityValidationExc != null)
+                    excToString += Environment.NewLine
+                                + string.Join(Environment.NewLine, entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors.Select(q => q.PropertyName + ": " + q.ErrorMessage)));
+
                 Trace.TraceError("CustomExceptionLogger Log, Request: {0}, Eccezione: {1}", RequestToString(context.Request), excToString);
             }
         }
