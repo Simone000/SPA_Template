@@ -49,11 +49,16 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         {
             get
             {
-                return Path.Combine(AppGeneratePath, "generated");
+                string path = Path.Combine(AppGeneratePath, "generated");
+
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                return path;
             }
         }
 
-        
+
         //Template to start from
         public static string IndexTemplate
         {
