@@ -17,19 +17,17 @@
             </ul>
 
 
-            <!-- se anon -->
-            <ul class="nav navbar-nav navbar-right" data-bind="visible: isAuth() == false">
-                <li>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- se anon -->
+                <li style="display:none;">
                     <a href="/#/account/register">Registrazione</a>
                 </li>
                 <li>
                     <a href="/#/account/login">Login</a>
                 </li>
-            </ul>
 
-            <!-- se auth -->
-            <ul class="nav navbar-nav navbar-right" data-bind="visible: isAuth() == true">
-                <li>
+                <!-- se auth -->
+                <li data-bind="visible: isAuth() == true">
                     <a href="/#/account/user" data-bind="text: username"></a>
                 </li>
             </ul>
