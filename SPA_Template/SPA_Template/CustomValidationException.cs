@@ -5,7 +5,9 @@ using System.Web;
 
 namespace SPA_Template
 {
-    //todo: va in viewmodels o cmq sharedutils
+    /// <summary>
+    /// To return BadRequest(message) from outside webapi
+    /// </summary>
     [Serializable]
     public class CustomValidationException : Exception
     {
