@@ -145,6 +145,9 @@
     <Content Include="App\amm\page-creautente\page-creautente.js" />
     <Content Include="App\amm\page-utenti\page-utenti.html" />
     <Content Include="App\amm\page-utenti\page-utenti.js" />
+    <Content Include="App\components\header\cordova-header.js" />
+    <Content Include="App\components\header\header.html" />
+    <Content Include="App\components\header\header.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
