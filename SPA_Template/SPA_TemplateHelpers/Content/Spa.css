@@ -50,3 +50,16 @@ textarea {
     #div_starterPage td {
         text-align: center;
     }
+
+/* Account/Login */
+@media (max-width: 980px) {
+    #div_login {
+        width: 312px;
+        margin: auto;
+    }
+}
+
+.input_login {
+    width: 100px;
+    height: 40px;
+}
