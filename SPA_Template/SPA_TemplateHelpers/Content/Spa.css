@@ -51,6 +51,7 @@ textarea {
         text-align: center;
     }
 
+
 /* Account/Login */
 @media (max-width: 980px) {
     #div_login {
@@ -59,7 +60,7 @@ textarea {
     }
 }
 
-.input_login {
+#div_login #input_login {
     width: 100px;
     height: 40px;
 }

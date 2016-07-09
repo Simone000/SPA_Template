@@ -1,0 +1,64 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="page-header col-sm-12 col-xs-12">
+            <h1>Login</h1>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div id="div_login">
+            <form class="form-horizontal" data-bind="submit: login">
+
+                <div class="validation-summary-errors text-danger hide">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 col-md-2 control-label">Email</label>
+                    <div class="col-sm-9 col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="text" class="form-control"
+                                   name="Email"
+                                   placeholder="Email"
+                                   required="required"
+                                   data-bind="value: email" />
+                        </div>
+                        <label class="error label label-danger hide">Email è richiesta!</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3 col-md-2 control-label">Password</label>
+                    <div class="col-sm-9 col-md-8">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="password" class="form-control"
+                                   name="Password"
+                                   placeholder="Password"
+                                   required="required"
+                                   data-bind="value: password" />
+                        </div>
+                        <label class="error label label-danger hide">Password è richiesta!</label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 col-sm-offset-3 col-sm-9">
+                        <a href="#/account/lostpassword">Hai dimenticato la password?</a>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10 col-sm-offset-3 col-sm-offset-9 col-xs-offset-4 col-xs-8">
+                        <input type="submit" value="Accedi" class="btn btn-primary" id="input_login">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>

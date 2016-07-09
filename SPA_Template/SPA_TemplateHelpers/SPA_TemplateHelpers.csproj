@@ -129,6 +129,18 @@
     <Content Include="App-samples\page-empty\page-empty.html" />
     <Content Include="App-samples\page-empty\page-empty.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
+    <Content Include="App\account\page-changepass\page-changepass.html" />
+    <Content Include="App\account\page-changepass\page-changepass.js" />
+    <Content Include="App\account\page-login\page-login.html" />
+    <Content Include="App\account\page-login\page-login.js" />
+    <Content Include="App\account\page-lostpassword\page-lostpassword.html" />
+    <Content Include="App\account\page-lostpassword\page-lostpassword.js" />
+    <Content Include="App\account\page-register\page-register.html" />
+    <Content Include="App\account\page-register\page-register.js" />
+    <Content Include="App\account\page-resetpass\page-resetpass.html" />
+    <Content Include="App\account\page-resetpass\page-resetpass.js" />
+    <Content Include="App\account\page-user\page-user.html" />
+    <Content Include="App\account\page-user\page-user.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
@@ -222,7 +234,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App-generate\generated\" />
-    <Folder Include="App\" />
     <Folder Include="App_Data\" />
     <Folder Include="NugetOutput\lib\" />
     <Folder Include="NugetOutput\src\" />
