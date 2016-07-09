@@ -49,12 +49,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         {
             get
             {
-                string path = Path.Combine(AppGeneratePath, "generated");
-
-                if (!Directory.Exists(path))
-                    Directory.CreateDirectory(path);
-
-                return path;
+                return Path.Combine(AppGeneratePath, "generated");
             }
         }
 
@@ -417,6 +412,10 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     bool doesReturnJson = apiModel.ResourceDescription.ModelType.Name != "IHttpActionResult" ? true : false;
 
                     if (!doesReturnJson)
+                        continue;
+
+                    //doesn't need Model for simple type
+                    if ((apiModel.ResourceDescription as SimpleTypeModelDescription) != null)
                         continue;
 
                     string nomeModello = apiModel.ResourceDescription.Name;

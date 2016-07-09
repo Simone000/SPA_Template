@@ -8,7 +8,7 @@
 
         self.creaUtente = function () {
             function success(data) {
-                window.location = "/#/amministrazione/utenti";
+                window.location = "#/amministrazione/utenti";
             };
             function error(jqXHR, desc) {
                 if (jqXHR["status"] == 401) {

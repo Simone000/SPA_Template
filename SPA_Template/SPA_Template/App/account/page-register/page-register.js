@@ -8,7 +8,7 @@
 
         self.register = function () {
             function success(data) {
-                window.location = "/";
+                window.location.replace("");
             };
             function error(jqXHR, desc) {
                 //toastr["error"](desc, "Errore!");

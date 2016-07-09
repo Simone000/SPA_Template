@@ -2,12 +2,12 @@
     function AnyLogin(params) {
         var self = this;
 
-        self.email = ko.observable();
-        self.password = ko.observable();
+        self.email = ko.observable('assistenzaclienti@cosi.it');
+        self.password = ko.observable('assistenzaclienti..');
 
         self.login = function () {
             function success(data) {
-                window.location = "/";
+                window.location.replace("");
             };
             function error(jqXHR, desc) {
                 //toastr["error"](desc, "Errore!");

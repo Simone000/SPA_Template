@@ -20,8 +20,15 @@
                 self.username(data.Email);
             };
             function error(jqXHR, desc) {
+                if (jqXHR["status"] == 0) {
+                    //In caso di mancanza di connessione lo mando cmq al login
+                    window.location = "#/account/login";
+                    return;
+                }
+
                 if (jqXHR["status"] == 401) {
-                    //non autenticato => non faccio nulla (default anon)
+                    //nel caso dell'app => vado al login!!!
+                    window.location = "#/account/login";
                     return;
                 }
                 toastr["error"](desc, "Errore!");

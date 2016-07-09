@@ -298,6 +298,7 @@
     <Content Include="App\aziende\page-editazienda\page-editazienda.html" />
     <Content Include="App\aziende\page-editazienda\page-editazienda.js" />
     <Content Include="App\common.js" />
+    <Content Include="App\components\header\cordova-header.js" />
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
     <Content Include="App\Index.html" />
