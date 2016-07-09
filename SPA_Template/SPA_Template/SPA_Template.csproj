@@ -137,7 +137,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="UtilsNoReference_461, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\cosi-UtilsNoReference.1.0.6\lib\net461\UtilsNoReference_461.dll</HintPath>
+      <HintPath>..\packages\cosi-UtilsNoReference.1.0.7\lib\net461\UtilsNoReference_461.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
