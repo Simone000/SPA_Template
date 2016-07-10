@@ -15,9 +15,10 @@
         self.SalvaAzienda = function () {
             function success(data) {
                 console.log("Success");
+                toastr["success"]("Ok!");
             };
             function error(jqXHR, desc) {
-                console.log("Error");
+                toastr["error"]("Errore", desc);
             };
 
             // Nome: Nome, Descrizione: Descrizione, TestDate: TestDate, TestDate2: TestDate2
