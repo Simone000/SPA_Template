@@ -48,7 +48,18 @@ namespace SPA_TemplateHelpers
                 return Task.FromResult(0);
             }
 
-            //todo: System.Data.Entity.Infrastructure.DbUpdateException nel log (non qui!)
+
+            //if using also external service: System.ServiceModel.EndpointNotFoundException
+            /*var endpointNotFoundExc = context.Exception as System.ServiceModel.EndpointNotFoundException;
+            if (endpointNotFoundExc != null)
+            {
+                context.Result = new BadRequestErrorMessageResult("Spiacenti, al momento il servizio non è disponibile, la preghiamo di riprovare fra pochi minuti",
+                                                                  context.RequestContext.Configuration.Services.GetContentNegotiator(),
+                                                                  context.Request,
+                                                                  context.RequestContext.Configuration.Formatters);
+
+                return Task.FromResult(0);
+            }*/
 
             return Task.FromResult(0);
         }
