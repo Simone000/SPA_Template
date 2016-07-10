@@ -13,8 +13,6 @@ namespace SPA_Template
     {
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-            //return DateTime.Parse(reader.Value.ToString());
-
             //Handling DateTime? null value
             if (objectType == typeof(DateTime?) && string.IsNullOrEmpty(reader.Value.ToString()))
                 return null;
@@ -25,8 +23,6 @@ namespace SPA_Template
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             writer.WriteValue(((DateTime)value).ToJSData());
-
-            //writer.WriteValue(((DateTime)value).ToString("dd/MM/yyyy hh:mm"));
         }
     }
 }
