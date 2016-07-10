@@ -253,12 +253,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <None Include="NugetOutput\content\JavascriptGenerator\JavascriptGeneratorController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App-generate\generated\" />
     <Folder Include="App_Data\" />
+    <Folder Include="NugetOutput\content\JavascriptGenerator\" />
     <Folder Include="NugetOutput\lib\" />
     <Folder Include="NugetOutput\src\" />
   </ItemGroup>

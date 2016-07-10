@@ -14,6 +14,22 @@ namespace SPA_TemplateHelpers
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
+            //custom request handling for custom Header parameters
+            /*if (request != null && request.RequestUri.AbsolutePath != @"/api/Account/Login")
+            {
+                //Se presente significa che arriva dall'app => voglio che venga reridetto alla pagina di login
+                if (request.Headers.Where(p => p.Key == "x-force-auth").Any())
+                {
+                    if (!request.GetOwinContext().Authentication.User.Identity.IsAuthenticated)
+                    {
+                        HttpResponseMessage unauthResp = new HttpResponseMessage(System.Net.HttpStatusCode.Unauthorized);
+                        unauthResp.RequestMessage = request;
+                        return await Task.FromResult(unauthResp);
+                    }
+                }
+            }*/
+
+
             var response = await base.SendAsync(request, cancellationToken);
 
             if (response != null && response.Content != null)
