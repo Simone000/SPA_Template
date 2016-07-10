@@ -1,8 +1,10 @@
 ﻿; (function (define) {
     define(["jquery", "blockUI"], function ($) {
 
-        var baseUrl = ''; //if frontend hosted in a different place (ex. cordova): http://website.net
-        var busyGifPath = '/Content/Images/busy.gif';
+        var baseUrl = ''; //http://home.it per cordova
+        var busyGifPath = '/Content/Images/busy.gif';  // ../Content/Images/busy.gif
+        var erroreGenerico = 'Errore sconosciuto, prova a ricaricare la pagina (CTRL+R) o riprova.';
+        var erroreConnessione = 'Errore di comunicazione, controlla il collegamento ad internet e riprova.';
 
         //funzioni richiamate da tutti gli altri
         function Get(divToBlock, success, error, doesReturnJson, url) {
@@ -38,6 +40,10 @@
                 error: function (jqXHR, textStatus, errorThrown) {
                     divToBlock.unblock();
 
+                    if (jqXHR.status === 0) {
+                        return error(jqXHR, erroreConnessione);
+                    }
+
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
                     }
@@ -51,7 +57,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
+                        return error(jqXHR, erroreGenerico);
                     }
                 }
             });
@@ -96,6 +102,10 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     divToBlock.unblock();
+
+                    if (jqXHR.status === 0) {
+                        return error(jqXHR, erroreConnessione);
+                    }
 
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
@@ -157,7 +167,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
+                        return error(jqXHR, erroreGenerico);
                     }
                 }
             });
@@ -200,6 +210,10 @@
                 error: function (jqXHR, textStatus, errorThrown) {
                     divToBlock.unblock();
 
+                    if (jqXHR.status === 0) {
+                        return error(jqXHR, erroreConnessione);
+                    }
+
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
                     }
@@ -213,7 +227,7 @@
                         return error(jqXHR, msg_err);
                     }
                     catch (e) {
-                        return error(jqXHR, "Errore, prova a ricaricare la pagina o premi CTRL+R");
+                        return error(jqXHR, erroreGenerico);
                     }
                 }
             });
