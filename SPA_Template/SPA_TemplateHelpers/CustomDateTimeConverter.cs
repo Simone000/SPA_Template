@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 using SharedUtilsNoReference;
 using System.Globalization;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     public class CustomDateTimeConverter : DateTimeConverterBase
     {

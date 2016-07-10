@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     /// <summary>
     /// To return BadRequest(message) from library outside webapi
