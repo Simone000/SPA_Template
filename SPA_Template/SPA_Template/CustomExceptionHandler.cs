@@ -10,7 +10,7 @@ using System.Web.Http;
 using System.Web.Http.ExceptionHandling;
 using System.Web.Http.Results;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     //http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling
     public class CustomExceptionHandler : IExceptionHandler

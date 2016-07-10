@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     //config.MessageHandlers.Replace(new CustomResponseHandler());
     public class CustomResponseHandler : DelegatingHandler

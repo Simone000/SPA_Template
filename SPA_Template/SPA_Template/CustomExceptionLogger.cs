@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     //http://www.asp.net/web-api/overview/error-handling/web-api-global-error-handling
     class CustomExceptionLogger : ExceptionLogger

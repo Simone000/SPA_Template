@@ -6,6 +6,7 @@ using System.Web.Http;
 using Microsoft.Owin.Security.OAuth;
 using Newtonsoft.Json.Serialization;
 using System.Web.Http.ExceptionHandling;
+using SPA_TemplateHelpers;
 
 namespace SPA_Template
 {
