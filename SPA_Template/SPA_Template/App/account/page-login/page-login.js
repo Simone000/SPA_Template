@@ -2,8 +2,8 @@
     function AnyLogin(params) {
         var self = this;
 
-        self.email = ko.observable('assistenzaclienti@cosi.it');
-        self.password = ko.observable('assistenzaclienti..');
+        self.email = ko.observable('');
+        self.password = ko.observable('');
 
         self.login = function () {
             function success(data) {
