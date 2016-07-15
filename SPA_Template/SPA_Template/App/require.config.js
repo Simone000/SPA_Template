@@ -1,6 +1,7 @@
 ﻿var require = {
     urlArgs: "v=6",
     baseUrl: "/",
+    waitSeconds: 0,
     paths: {
         "bootstrap": "Scripts/bootstrap",
         "jquery": "Scripts/jquery-2.2.3",
