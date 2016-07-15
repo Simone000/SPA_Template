@@ -98,10 +98,22 @@
 
         //{ except: { path: '#!special' } }, 
         this.before(function () {
-            //Application Insights
-            var pageName = window.location.hash;
-            if (!window.location.hash)
+            //Application Insights with SammyJs
+            var pageName = this.path;
+            pageName = pageName.replace("#", "");
+            if (!this.path || pageName == "/") {
                 pageName = "Index";
+            }
+            else {
+                //Replace params value with it's name
+                //Object.keys not compatible with IE < 9
+                var params = this.params;
+                Object.keys(params).forEach(function (key) {
+                    var val = params[key];
+                    pageName = pageName.replace(val, key);
+                });
+            }
+
             appInsights.trackPageView(pageName);
         });
 
