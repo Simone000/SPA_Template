@@ -1,7 +1,7 @@
 ﻿; (function (define) {
     define(["jquery", "blockUI"], function ($) {
 
-        var baseUrl = ''; //http://home.it per cordova
+        var baseUrl = ''; //http://home.it if back-end hosted somewhere else
         var busyGifPath = '/Content/Images/busy.gif';  // ../Content/Images/busy.gif
         var erroreGenerico = 'Errore sconosciuto, prova a ricaricare la pagina (CTRL+R) o riprova.';
         var erroreConnessione = 'Errore di comunicazione, controlla il collegamento ad internet e riprova.';
