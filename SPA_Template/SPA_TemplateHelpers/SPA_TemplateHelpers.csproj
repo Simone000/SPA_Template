@@ -163,25 +163,6 @@
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
-    <Content Include="NugetOutput\content\App-generate\generated\api.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\api.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\common.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\Index.html" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.html" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t1\ko-clientgrid-t1.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.html" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-clientgrid-t2\ko-clientgrid-t2.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.html" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-post-t1\ko-post-t1.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
-    <Content Include="NugetOutput\content\App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
-    <Content Include="NugetOutput\content\App-generate\templates\startup.js" />
-    <Content Include="NugetOutput\content\App-samples\form-validation-sample\form-validation-sample.html" />
-    <Content Include="NugetOutput\content\App-samples\page-details-sample.html" />
-    <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.html" />
-    <Content Include="NugetOutput\content\App-samples\page-empty\page-empty.js" />
-    <Content Include="NugetOutput\content\App-samples\pagenavigation-sample.html" />
-    <Content Include="NugetOutput\content\Content\Spa.css" />
     <Content Include="packages.config" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -258,9 +239,6 @@
   <ItemGroup>
     <Folder Include="App-generate\generated\" />
     <Folder Include="App_Data\" />
-    <Folder Include="NugetOutput\content\JavascriptGenerator\" />
-    <Folder Include="NugetOutput\lib\" />
-    <Folder Include="NugetOutput\src\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

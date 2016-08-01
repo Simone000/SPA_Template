@@ -1,0 +1,63 @@
+﻿<div class="container">
+
+    <div class="row page-header">
+        <h1>Inserisci la Username per recuperare la Password</h1>
+    </div>
+
+    <div class="row">
+
+        <div id="div_resetPass">
+            <form class="form-horizontal" data-bind="submit: resetPass">
+
+                <input type="hidden" data-bind="value: userid" />
+                <input type="hidden" data-bind="value: code" />
+
+                <div class="validation-summary-errors text-danger hide">
+                    <ul>
+                        <li></li>
+                    </ul>
+                </div>
+
+
+                <!-- required field -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="password" class="form-control"
+                                   name="Password"
+                                   placeholder="Password"
+                                   required="required"
+                                   data-bind="value: password" />
+                        </div>
+                        <label class="error label label-danger hide">Inserisci la Password</label>
+                    </div>
+                </div>
+
+                <!-- required field -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Conferma la Password</label>
+                    <div class="col-sm-10">
+                        <div class="input-group">
+                            <span class="input-group-addon">*</span>
+                            <input type="password" class="form-control"
+                                   name="ConfirmPassword"
+                                   placeholder="Reinserisci la Password"
+                                   required="required"
+                                   data-bind="value: confirmPassword" />
+                        </div>
+                        <label class="error label label-danger hide">Reinserisci la Password</label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Reset Password" class="btn btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
