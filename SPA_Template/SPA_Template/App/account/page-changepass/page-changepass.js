@@ -9,7 +9,7 @@
         self.changePass = function () {
             function success(data) {
                 toastr["success"]("Password Cambiata!");
-                window.location = "#/";
+                window.location.replace("");
             };
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
