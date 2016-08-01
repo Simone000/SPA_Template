@@ -43,7 +43,15 @@
                     <a href="#/account/login">Login</a>
                 </li>
                 <li data-bind="visible: isAuth() == true">
-                    <a href="#/account/user" data-bind="text: username"></a>
+                    <a href="#/account/user" data-bind="text: userTrimmed, attr: {title: username}"></a>
+
+                    <!-- TODO: testare se preferibile
+                    <a href="#/account/user" data-bind="text: userTrimmed, attr: {title: username}" class="hidden-md hidden-sm"></a>
+
+                    <a href="#/account/user" data-bind="attr: {title: username}" class="visible-md visible-sm">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </a>
+                    -->
                 </li>
             </ul>
 
