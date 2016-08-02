@@ -10,6 +10,10 @@
                 window.location.replace("");
             };
             function error(jqXHR, desc) {
+                //In case of missing connection do not use form
+                if (jqXHR["status"] == 0) {
+                    toastr["error"](desc, "Errore!");
+                }
                 //toastr["error"](desc, "Errore!");
             };
             api.Login($('#div_login'), success, error, self.email(), self.password(), null);
