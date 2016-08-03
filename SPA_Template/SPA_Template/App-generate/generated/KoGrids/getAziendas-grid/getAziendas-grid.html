@@ -4,6 +4,7 @@
             <h3 class="panel-title">
                 <a data-toggle="collapse" data-parent="#accordion" href="#getAziendas">
                     <b>getAziendas</b>
+                    <br class="visible-xs" />
                     <span data-bind="text: '(' + getAziendas().length + ' getAziendas)'"></span>
                 </a>
 
@@ -24,6 +25,7 @@
 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('nome') }">nome</a></th>
 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta.nome') }">citta.nome</a></th>
 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate') }">testDate</a></th>
+<th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate2') }">testDate2</a></th>
                             </tr>
                         </thead>
                         <tbody data-bind="foreach: getAziendasPaginate().itemsInPage()">
@@ -32,6 +34,7 @@
 <td data-bind="text: nome"></td>
 <td data-bind="text: citta.nome"></td>
 <td data-bind="text: testDate"></td>
+<td data-bind="text: testDate2"></td>
                             </tr>
                         </tbody>
                     </table>

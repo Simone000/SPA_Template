@@ -22,7 +22,7 @@
                             <tr>
                                 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('id') }">id</a></th>
                                 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('nome') }">nome</a></th>
-                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta') }">citta</a></th>
+                                <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('citta.nome') }">citta</a></th>
                                 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate.datajs') }">testDate</a></th>
                                 <th><a href='#' data-bind="click: function(){ getAziendasPaginate().changeSort('testDate2.datajs') }">testDate2</a></th>
                             </tr>
@@ -31,7 +31,7 @@
                             <tr>
                                 <td data-bind="text: id"></td>
                                 <td data-bind="text: nome"></td>
-                                <td data-bind="text: citta"></td>
+                                <td data-bind="text: citta.nome"></td>
                                 <td data-bind="text: testDate.toString()"></td>
                                 <td data-bind="text: testDate2.toString()"></td>
                             </tr>

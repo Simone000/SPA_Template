@@ -9,6 +9,7 @@
 /// <reference path="../app/amm/page-utenti/page-utenti.js" />
 /// <reference path="../app/api.js" />
 /// <reference path="../app/aziende/page-aziende/page-aziende.js" />
+/// <reference path="../app/aziende/page-aziende2/page-aziende2.js" />
 /// <reference path="../app/aziende/page-editazienda/page-editazienda.js" />
 /// <reference path="../app/common.js" />
 /// <reference path="../app/components/header/cordova-header.js" />

@@ -71,9 +71,17 @@
             self.id = GetAzienda.ID;
             self.nome = GetAzienda.Nome;
             self.reparti = GetAzienda.Reparti;
-            self.citta = GetAzienda.Citta;
+            self.citta = new Citta(GetAzienda.Citta);
             self.testDate = new Data(GetAzienda.TestDate);
             self.testDate2 = new Data(GetAzienda.TestDate2);
+
+            self.isSelected = ko.observable(false);
+        };
+
+        function Citta(Citta) {
+            var self = this;
+
+            self.nome = Citta != null ? Citta.Nome : "";
         };
 
 

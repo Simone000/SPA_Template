@@ -293,6 +293,8 @@
     <Content Include="App\amm\page-utenti\page-utenti.html" />
     <Content Include="App\amm\page-utenti\page-utenti.js" />
     <Content Include="App\api.js" />
+    <Content Include="App\aziende\page-aziende2\page-aziende2.html" />
+    <Content Include="App\aziende\page-aziende2\page-aziende2.js" />
     <Content Include="App\aziende\page-aziende\page-aziende.html" />
     <Content Include="App\aziende\page-aziende\page-aziende.js" />
     <Content Include="App\aziende\page-editazienda\page-editazienda.html" />

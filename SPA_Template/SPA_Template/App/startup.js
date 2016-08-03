@@ -48,6 +48,9 @@
     ko.components.register("aziende-page-aziende", {
         require: "App/aziende/page-aziende/page-aziende"
     });
+    ko.components.register("aziende-page-aziende2", {
+        require: "App/aziende/page-aziende2/page-aziende2"
+    });
     ko.components.register("aziende-page-editazienda", {
         require: "App/aziende/page-editazienda/page-editazienda"
     });
@@ -79,6 +82,7 @@
 
         //Aziende
         self.aziende = ko.observable();
+        self.aziende2 = ko.observable();
         self.editAzienda = ko.observable();
     };
     function MainModel() {
@@ -173,6 +177,11 @@
         this.get('#/aziende', function () {
             model.body(new BodyModel());
             model.body().aziende(true);
+        });
+
+        this.get('#/aziende2', function () {
+            model.body(new BodyModel());
+            model.body().aziende2(true);
         });
 
 
