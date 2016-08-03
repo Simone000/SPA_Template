@@ -46,7 +46,7 @@ namespace SPA_Template.Controllers
                 new GetAziendaModel()
                 {
                     ID = 2,
-                    Nome = "Azienda 2",
+                    Nome = "whatever GARDEN SAS of whatever & C.",
                     TestDate = DateTime.Now,
                     TestDate2 = DateTime.Now
                 }
