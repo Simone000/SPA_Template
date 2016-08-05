@@ -547,7 +547,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     var paramsConNavi = GetGridColumnsSorting(complexModel);
 
                     var headerSortingParams = paramsConNavi.Select(p =>
-                            "<th><a href='#' data-bind=\"click: function(){ nomeObsArrayPaginate().changeSort('" + p + "') }\">" + p + "</a></th>");
+                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>");
 
                     var headerDataParams = paramsConNavi.Select(p =>
                     "<td data-bind=\"text: " + p + "\"></td>");
