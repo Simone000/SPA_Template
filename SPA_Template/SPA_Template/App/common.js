@@ -51,6 +51,14 @@
         };
 
 
+        function BasicListItem(BasicListItem) {
+            var self = this;
+
+            self.id = BasicListItem.ID;
+            self.desc = BasicListItem.Desc;
+        };
+
+
         function UserInfo(UserInfo) {
             var self = this;
 
@@ -89,6 +97,7 @@
         return {
             Data: Data,
             Today: Today,
+            BasicListItem: BasicListItem,
 
             GetAzienda: GetAzienda,
             UserInfo: UserInfo,

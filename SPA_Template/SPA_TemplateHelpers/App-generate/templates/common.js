@@ -49,12 +49,20 @@
             //todo: aggiungere localizzazione
         };
 
+        function BasicListItem(BasicListItem) {
+            var self = this;
+
+            self.id = BasicListItem.ID;
+            self.desc = BasicListItem.Desc;
+        };
+
 
 {METHODS_CALL}
 
         return {
             Data: Data,
             Today: Today,
+            BasicListItem: BasicListItem,
 
 {METHODS_NAME}
 
