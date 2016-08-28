@@ -49,6 +49,24 @@
             }
 
 
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed table {
+            white-space:nowrap;
+        }
+
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed .td_firstFixed_First {
+            vertical-align:top;
+            overflow:auto;
+            border-right: 1px solid;
+            
+            /*can be overrided*/
+            width:160px;
+        }
+
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed .td_firstFixed_Others {
+            vertical-align:top;
+        }
+
+
         .knockout-grids_t1 .panel-body .table-responsive table {
         }
 

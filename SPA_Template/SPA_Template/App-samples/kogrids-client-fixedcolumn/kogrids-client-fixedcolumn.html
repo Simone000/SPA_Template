@@ -21,13 +21,13 @@
                     <a data-toggle="collapse" data-parent="#accordion" href="#reps">
                         <b>Dipendente</b>
                         <br class="visible-xs" />
-                        <span class="span_countobs" data-bind="text: '( ' + items().length + ' dipendenti)'"></span>
+                        <span class="span_countobs" data-bind="text: '(' + items().length + ' dipendenti)'"></span>
                     </a>
 
                     <br class="visible-xs" />
 
                     <input type="text" data-bind="value: search, valueUpdate:'afterkeydown'"
-                            placeholder="Nome Azienda" />                   <!--todo: change placeholder-->
+                            placeholder="Nome Azienda" /> <!--todo: placeholder-->
                 </h3>
 
                 <div style="clear:both;"></div>
@@ -35,10 +35,9 @@
 
             <div class="panel-collapse collapse in" id="reps">
                 <div class="panel-body">
-                    <span data-bind="visible: $data.length == 0"><b>Nessuna Dipendente presente</b></span>
+                    <span data-bind="visible: items().length == 0"><b>Nessuna Dipendente presente</b></span>
 
                     <div class="table-responsive" data-bind="visible: items().length > 0">
-
                         <table class="table_firstfixed">
                             <tbody>
                                 <tr>
@@ -89,27 +88,26 @@
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
 
+                    <div class="pagination-menu">
+                        <div class="div_menupaging">
+                            <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
+                            <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
+                            <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
+                            <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
+                        </div>
 
-                        <div class="pagination-menu">
-                            <div class="div_menupaging">
-                                <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
-                                <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
-                                <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
-                                <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
-                            </div>
-
-                            <div class="div_menusizing">
-                                <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
-                                <span>Page Size: </span>
-                                <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
-                                <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
-                                <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
-                            </div>
-                            
-                            <div style="clear:both;"></div>
+                        <div class="div_menusizing">
+                            <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
+                            <span>Page Size: </span>
+                            <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
+                            <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
+                            <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
                         </div>
                     </div>
+
+                    <div style="clear:both;"></div>
                 </div>
             </div>
         </div>
@@ -121,6 +119,6 @@
     <script src="../../../Scripts/bootstrap.min.js"></script>
     <script src="../../../Scripts/knockout-3.4.0.js"></script>
     <script src="../../../Scripts/knockout-grids.js"></script>
-    <script src="kogrids-clientsample2.js"></script>
+    <script src="kogrids-client-fixedcolumn.js"></script>
 </body>
 </html>

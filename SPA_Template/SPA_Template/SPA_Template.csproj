@@ -138,8 +138,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UtilsNoReference_461, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\cosi-UtilsNoReference.1.0.7\lib\net461\UtilsNoReference_461.dll</HintPath>
+    <Reference Include="UtilsNoReference_462, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\cosi-UtilsNoReference.1.0.8\lib\net462\UtilsNoReference_462.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -268,12 +268,14 @@
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App-generate\templates\startup.js" />
     <Content Include="App-samples\form-validation-sample\form-validation-sample.html" />
-    <Content Include="App-samples\kogrids-clientsample1\kogrids-clientsample1.html" />
-    <Content Include="App-samples\kogrids-clientsample1\kogrids-clientsample1.js" />
-    <Content Include="App-samples\kogrids-clientsample2\kogrids-clientsample2.html" />
-    <Content Include="App-samples\kogrids-clientsample2\kogrids-clientsample2.js" />
-    <Content Include="App-samples\kogrids-serversample1\kogrids-serversample1.html" />
-    <Content Include="App-samples\kogrids-serversample1\kogrids-serversample1.js" />
+    <Content Include="App-samples\kogrids-client-filters\kogrids-client-filters.html" />
+    <Content Include="App-samples\kogrids-client-filters\kogrids-client-filters.js" />
+    <Content Include="App-samples\kogrids-client-fixedcolumn\kogrids-client-fixedcolumn.html" />
+    <Content Include="App-samples\kogrids-client-fixedcolumn\kogrids-client-fixedcolumn.js" />
+    <Content Include="App-samples\kogrids-client\kogrids-client.html" />
+    <Content Include="App-samples\kogrids-client\kogrids-client.js" />
+    <Content Include="App-samples\kogrids-server\kogrids-server.html" />
+    <Content Include="App-samples\kogrids-server\kogrids-server.js" />
     <Content Include="App-samples\page-details-sample.html" />
     <Content Include="App-samples\page-empty\page-empty.html" />
     <Content Include="App-samples\page-empty\page-empty.js" />

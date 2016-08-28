@@ -118,8 +118,8 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
-    <Reference Include="UtilsNoReference_461, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\cosi-UtilsNoReference.1.0.7\lib\net461\UtilsNoReference_461.dll</HintPath>
+    <Reference Include="UtilsNoReference_462, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\cosi-UtilsNoReference.1.0.8\lib\net462\UtilsNoReference_462.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
