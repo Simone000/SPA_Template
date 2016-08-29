@@ -14,7 +14,6 @@
                 if (jqXHR["status"] == 0) {
                     toastr["error"](desc, "Errore!");
                 }
-                //toastr["error"](desc, "Errore!");
             };
             api.Login($('#div_login'), success, error, self.email(), self.password(), null);
         };
