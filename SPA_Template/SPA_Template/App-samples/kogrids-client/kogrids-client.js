@@ -24,26 +24,19 @@ function Dipendente(Dipendente) {
     self.isSelected = ko.observable(false);
 };
 
-
-/*
-    var eventiDisponibili_temp = ko.utils.arrayMap(DettaglioEvento.EventiDisponibili, function (evento) {
-        return new Evento(evento);
-    });
-    self.eventiDisponibili = ko.observableArray(eventiDisponibili_temp);
- */
-
 function pageModel(params) {
     var self = this;
 
     self.dipendenti = ko.observableArray();
+    self.dipendentiPaged = new knockoutgrids.ClientGrid(self.dipendenti, 5, 'reparto.azienda.nome');
 
-    self.dipendentiPaged = ko.computed(function () {
-        return new knockoutgrids.ClientGrid(self.dipendenti(), 5, 'reparto.azienda.nome');
-    }, self);
+    //self.dipendentiPaged_Old = ko.computed(function () {
+    //    return new knockoutgrids.ClientGrid(self.dipendenti(), 5, 'reparto.azienda.nome');
+    //}, self);
 
     self.loadDipendenti = function () {
         var dipendenti_tmp = new Array();
-        
+
         dipendenti_tmp.push(new Dipendente({
             ID: 1,
             Nome: "Dipendente Nome Lungo",
@@ -166,7 +159,7 @@ function pageModel(params) {
     };
     self.loadDipendenti();
 
-    
+
     /*
     self.loadAzienda = function () {
         if (self.id_azienda() == null)

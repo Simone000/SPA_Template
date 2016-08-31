@@ -105,9 +105,7 @@ function pageModel(params) {
         return filtered;
     }, self);
 
-    self.dipendentiPaged = ko.computed(function () {
-        return new knockoutgrids.ClientGrid(self.dipendenti_filtered(), 5, 'reparto.azienda.nome');
-    }, self);
+    self.dipendentiPaged = new knockoutgrids.ClientGrid(self.dipendenti_filtered, 5, 'reparto.azienda.nome');
 
 
     //Load sample data

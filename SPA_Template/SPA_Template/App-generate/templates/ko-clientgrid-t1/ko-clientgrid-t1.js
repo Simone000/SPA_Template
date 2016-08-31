@@ -3,10 +3,7 @@
         var self = this;
 
         self.nomeObsArray = ko.observableArray();
-
-        self.nomeObsArrayPaginate = ko.computed(function () {
-            return new knockoutgrids.ClientGrid(self.nomeObsArray(), 10, 'nome');
-        }, self);
+        self.nomeObsArrayPaginate = new knockoutgrids.ClientGrid(self.nomeObsArray, 10, 'nome');
 
         self.loadnomeObsArray = function () {
             function success(data) {
