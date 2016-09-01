@@ -254,15 +254,13 @@
                 //    return;
                 //}
 
-                //comment if not using validation-summary-errors
-                toastr["error"](desc, "Errore!");
-
-                //uncomment if using validation-summary-errors
-                //todo: renderlo non necessario
-                //Missing connection
+                //Missing connection (comment if using validation-summary-errors)
                 //if(jqXHR["status"] == 0) {
                 //    toastr["error"](desc, "Errore!");
                 //}
+
+                //comment if not using validation-summary-errors
+                toastr["error"](desc, "Errore!");
             };
             api.method($('#div'), success, error, params);
         };
