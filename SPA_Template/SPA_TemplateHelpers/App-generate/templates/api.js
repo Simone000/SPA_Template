@@ -128,6 +128,9 @@
                                 //cerco l'elemento by name (Model.Descrizione => cerco input con name Descrizione)
                                 var keyFailedValidation = key.split(".", 2);
                                 var inputFailedValidation = $('input[name=' + keyFailedValidation[1] + ']');
+                                if (inputFailedValidation == null || inputFailedValidation.length == 0) {
+                                    inputFailedValidation = $('textarea[name=' + keyFailedValidation[1] + ']');
+                                }
                                 if (inputFailedValidation != null) {
                                     //focus solo per il primo elemento
                                     if (isFirst) {
@@ -260,12 +263,12 @@
                 //    return;
                 //}
 
-                //Missing connection (comment if using validation-summary-errors)
-                //if(jqXHR["status"] == 0) {
-                //    toastr["error"](desc, "Errore!");
-                //}
+                //*** comment if using validation-summary-errors: ***
+                //Missing connection
+                if(jqXHR["status"] == 0) {
+                    toastr["error"](desc, "Errore!");
+                }
 
-                //comment if not using validation-summary-errors
                 toastr["error"](desc, "Errore!");
             };
             api.method($('#div'), success, error, params);
