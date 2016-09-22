@@ -33,7 +33,7 @@
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
                         if (id_elem) {
-                            $("#" +id_elem).addClass("in");
+                            $("#" + id_elem).addClass("in");
                         }
                     });
 
@@ -98,7 +98,7 @@
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
                         if (id_elem) {
-                            $("#" +id_elem).addClass("in");
+                            $("#" + id_elem).addClass("in");
                         }
                     });
 
@@ -210,7 +210,7 @@
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
                         if (id_elem) {
-                            $("#" +id_elem).addClass("in");
+                            $("#" + id_elem).addClass("in");
                         }
                     });
 
