@@ -1,5 +1,8 @@
 ﻿html{
     height:100%;
+
+    /*prevent cordova from text selection*/
+    -webkit-user-select: none;
 }
 
 body {
@@ -55,6 +58,13 @@ legend {
     text-align:center;
   }
 }
+
+
+/*Fix for bootstrap header (1030)*/
+.datepicker{
+    z-index:1050 !important;
+}
+
 
 /* Starting Logo */
 #div_starterPage {
