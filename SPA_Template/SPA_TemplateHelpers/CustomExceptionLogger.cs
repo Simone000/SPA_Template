@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -23,25 +24,22 @@ namespace SPA_TemplateHelpers
                     excToString += Environment.NewLine
                                 + string.Join(Environment.NewLine, entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors.Select(q => q.PropertyName + ": " + q.ErrorMessage)));
 
-                Trace.TraceError("CustomExceptionLogger/Log"
+                var usedController = ((System.Web.Http.ApiController)context.ExceptionContext.ControllerContext.Controller);
+
+                //similar to Global.asax/CustomLogRequest
+                //todo: missing user and IP, catch Exceptions and null reference
+                Trace.TraceError("CustomExceptionLogger"
                                  + Environment.NewLine
-                                 + "Request: {0}"
+                                 + "HTTP {0}, Url: {1}"
                                  + Environment.NewLine
-                                 + "Eccezione: {1}",
-                                 RequestToString(context.Request), excToString);
+                                 + "Form Keys: {2}"
+                                 + Environment.NewLine,
+                                 //+ "User: {3}, IP: {4}",
+                                 context.Request.Method.Method, context.Request.RequestUri,
+                                 string.Join(Environment.NewLine,
+                                            usedController.ActionContext.ActionArguments.Select(p => p.Key + ": " + JsonConvert.SerializeObject(p.Value))));
+                //username, ip);
             }
-        }
-
-        private static string RequestToString(HttpRequestMessage request)
-        {
-            var message = new StringBuilder();
-            if (request.Method != null)
-                message.Append(request.Method);
-
-            if (request.RequestUri != null)
-                message.Append(" ").Append(request.RequestUri);
-
-            return message.ToString();
         }
     }
 }
