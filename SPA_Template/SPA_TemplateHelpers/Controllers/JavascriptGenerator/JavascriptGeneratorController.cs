@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 //##### replace with project namespace #####
 using SPA_TemplateHelpers.Areas.HelpPage;
 using SPA_TemplateHelpers.Areas.HelpPage.ModelDescriptions;
+using System.Web;
 
 namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 {
@@ -19,6 +20,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
     //todo: per i post method usare degli oggetti stub con newValues (self.newValue1 = ko.observable(self.value1))
     //todo: GenerateGrids, potrebbero esistere piu' metodi che ritornano le stesse collezioni di oggetti (in quel caso dovrei aggiungere piu' chiamate api una sotto l'altra)
     //todo: commonjs, nel caso di property liste di oggetti dovrebbe mapparli ad altri oggetti ko
+    //todo: Remove the need of GetFriendlyId and GetHelpPageApiModel(FriendlyId)
 
     public class JavascriptGeneratorController : ApiController
     {
