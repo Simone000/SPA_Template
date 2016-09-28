@@ -8,13 +8,12 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SPA_TemplateHelpers_UNSAFE.App_Start;
 using System.Web.Optimization;
 
 //using System.Web.Security;
 //using System.Web.SessionState;
 
-namespace SPA_TemplateHelpers_UNSAFE
+namespace SPA_TemplateHelpers
 {
     public class WebApiApplication : System.Web.HttpApplication
     {

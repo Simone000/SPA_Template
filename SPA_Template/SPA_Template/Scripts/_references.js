@@ -12,7 +12,6 @@
 /// <reference path="../app/aziende/page-aziende2/page-aziende2.js" />
 /// <reference path="../app/aziende/page-editazienda/page-editazienda.js" />
 /// <reference path="../app/common.js" />
-/// <reference path="../app/components/header/cordova-header.js" />
 /// <reference path="../app/components/header/header.js" />
 /// <reference path="../app/page-home/page-home.js" />
 /// <reference path="../app/require.config.js" />

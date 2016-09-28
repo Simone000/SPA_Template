@@ -10,8 +10,18 @@
         });
 
         self.isAuth = ko.observable(false);
-        self.username = ko.observable();
         self.isAdmin = ko.observable(false);
+
+        self.username = ko.observable();
+        self.userTrimmed = ko.computed(function () {
+            if (!self.username())
+                return '';
+
+            if (self.username().length <= 30)
+                return self.username();
+
+            return self.username().substring(0, 27) + '...';
+        }, self);
 
         self.loadInfo = function () {
             function success(data) {

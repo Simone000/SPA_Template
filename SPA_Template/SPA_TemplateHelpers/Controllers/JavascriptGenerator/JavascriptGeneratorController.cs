@@ -12,7 +12,6 @@ using System.Web.Http.Description;
 //##### replace with project namespace #####
 using SPA_TemplateHelpers.Areas.HelpPage;
 using SPA_TemplateHelpers.Areas.HelpPage.ModelDescriptions;
-using System.Web;
 
 namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 {

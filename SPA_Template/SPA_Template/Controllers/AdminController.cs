@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-using SPA_Template.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +11,7 @@ using System.Web.Http.Description;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
+using SPA_TemplateHelpers;
 
 namespace SPA_Template.Controllers
 {

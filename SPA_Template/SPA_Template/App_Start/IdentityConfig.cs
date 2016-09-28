@@ -1,16 +1,18 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
+﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
-using SPA_Template.Models;
-using System.Diagnostics;
-using System;
-using System.Net.Mail;
 using Microsoft.Owin.Security;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Mail;
 using System.Security.Claims;
+using System.Threading.Tasks;
+using System.Web;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     #region Email e sms
 
@@ -76,7 +78,7 @@ namespace SPA_Template
                 RequireNonLetterOrDigit = false,
                 RequireDigit = true,
                 RequireLowercase = true,
-                RequireUppercase = true
+                RequireUppercase = true,
             };
 
             // Configure user lockout defaults

@@ -13,7 +13,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using SPA_Template.Models;
+using SPA_TemplateHelpers;
 
 namespace SPA_Template.Controllers
 {

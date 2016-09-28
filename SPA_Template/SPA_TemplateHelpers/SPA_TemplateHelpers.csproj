@@ -207,11 +207,6 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\JavascriptGenerator\JavascriptGeneratorController.cs" />
     <Compile Include="Controllers\TestJavascriptGeneratorController.cs" />
-    <Compile Include="CustomDateTimeConverter.cs" />
-    <Compile Include="CustomExceptionHandler.cs" />
-    <Compile Include="CustomExceptionLogger.cs" />
-    <Compile Include="CustomResponseHandler.cs" />
-    <Compile Include="CustomValidationException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

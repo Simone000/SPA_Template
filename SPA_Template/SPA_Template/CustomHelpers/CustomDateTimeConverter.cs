@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Newtonsoft.Json;
-using SharedUtilsNoReference;
 using System.Globalization;
 
 namespace SPA_TemplateHelpers
@@ -22,7 +21,10 @@ namespace SPA_TemplateHelpers
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteValue(((DateTime)value).ToJSData());
+            //writer.WriteValue(((DateTime)value).ToJSData());
+
+            writer.WriteValue(((DateTime)value).Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local))
+                                               .TotalMilliseconds);
         }
     }
 }

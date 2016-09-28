@@ -8,10 +8,9 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security.OAuth;
 using Owin;
-using SPA_Template.Providers;
-using SPA_Template.Models;
 using Microsoft.AspNet.Identity.Owin;
 using System.Web;
+using SPA_TemplateHelpers;
 
 namespace SPA_Template
 {

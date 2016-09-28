@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SPA_TemplateHelpers_UNSAFE.App_Start
+namespace SPA_TemplateHelpers
 {
     public class FilterConfig
     {

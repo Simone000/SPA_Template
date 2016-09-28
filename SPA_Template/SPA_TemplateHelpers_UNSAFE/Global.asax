@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SPA_TemplateHelpers_UNSAFE.Global" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="SPA_TemplateHelpers.WebApiApplication" Language="C#" %>

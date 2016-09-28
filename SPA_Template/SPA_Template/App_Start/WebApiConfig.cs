@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
-using Microsoft.Owin.Security.OAuth;
-using Newtonsoft.Json.Serialization;
 using System.Web.Http.ExceptionHandling;
-using SPA_TemplateHelpers;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     public static class WebApiConfig
     {
@@ -21,10 +18,10 @@ namespace SPA_Template
 
             // Web API routes
             config.MapHttpAttributeRoutes();
-
+            
             //abilito log globale errori
             config.Services.Add(typeof(IExceptionLogger), new CustomExceptionLogger());
-            
+
             //handler eccezioni
             config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
 
