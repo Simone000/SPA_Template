@@ -30,7 +30,7 @@ namespace SPA_TemplateHelpers
                 //todo: missing user and IP, catch Exceptions and null reference
                 Trace.TraceError("CustomExceptionLogger"
                                  + Environment.NewLine
-                                 + "HTTP {0}, Url: {1}"
+                                 + "HTTP {0} {1}"
                                  + Environment.NewLine
                                  + "Form Keys: {2}"
                                  + Environment.NewLine,

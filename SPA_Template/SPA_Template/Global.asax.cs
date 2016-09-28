@@ -50,9 +50,24 @@ namespace SPA_Template
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception error = Server.GetLastError();
-            if(error != null)
+            if (error != null)
             {
-                Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
+                //var castedExc = error as System.Web.HttpException;
+
+                if (HttpContext.Current != null && HttpContext.Current.Request != null)
+                {
+                    Trace.TraceError("Global/Application_Error"
+                                     + Environment.NewLine
+                                     + GetLogRequest(HttpContext.Current.Request)
+                                     + Environment.NewLine
+                                     + "Exception:"
+                                     + Environment.NewLine
+                                     + error.ToString());
+                }
+                else
+                {
+                    Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
+                }
                 Server.ClearError();
             }
         }
@@ -65,10 +80,10 @@ namespace SPA_Template
                 return;
             }
 
-            CustomLogRequest(HttpContext.Current.Request);
+            Trace.TraceInformation(GetLogRequest(HttpContext.Current.Request));
         }
 
-        private void CustomLogRequest(HttpRequest Request)
+        private string GetLogRequest(HttpRequest Request)
         {
             string tipoRichiesta = Request.HttpMethod;
             string url = Request.RawUrl;
@@ -80,12 +95,13 @@ namespace SPA_Template
                 username = User.Identity.Name;
             string ip = GetUserIP(Request);
 
-            Trace.TraceInformation("HTTP {0}, Url: {1}"
-                                   + Environment.NewLine
-                                   + "Form Keys: {2}"
-                                   + Environment.NewLine
-                                   + "User: {3}, IP: {4}",
-                                   tipoRichiesta, url, parametri, username, ip);
+            string logRequest = string.Format("HTTP {0} {1}"
+                                              + Environment.NewLine
+                                              + "Form Keys: {2}"
+                                              + Environment.NewLine
+                                              + "User: {3}, IP: {4}",
+                                              tipoRichiesta, url, parametri, username, ip);
+            return logRequest;
         }
 
         private string GetUserIP(HttpRequest Request)
