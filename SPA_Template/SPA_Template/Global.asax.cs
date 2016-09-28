@@ -65,17 +65,27 @@ namespace SPA_Template
                 return;
             }
 
-            string tipoRichiesta = HttpContext.Current.Request.HttpMethod;
-            string url = HttpContext.Current.Request.RawUrl;
+            CustomLogRequest(HttpContext.Current.Request);
+        }
 
-            string parametri = string.Join("; ", HttpContext.Current.Request.Form.AllKeys.Select(p => p + ": " + HttpContext.Current.Request.Form[p]));
+        private void CustomLogRequest(HttpRequest Request)
+        {
+            string tipoRichiesta = Request.HttpMethod;
+            string url = Request.RawUrl;
 
-            string username = "NonAutenticato";
+            string parametri = string.Join("; ", Request.Form.AllKeys.Select(p => p + ": " + Request.Form[p]));
+
+            string username = "NotAuthenticated";
             if (User != null && User.Identity.IsAuthenticated)
                 username = User.Identity.Name;
-            string ip = GetUserIP(HttpContext.Current.Request);
+            string ip = GetUserIP(Request);
 
-            Trace.TraceInformation("HTTP {0}, Url: {1}, parametri: {2}, Utente: {3}, IP: {4}", tipoRichiesta, url, parametri, username, ip);
+            Trace.TraceInformation("HTTP {0}, Url: {1}"
+                                   + Environment.NewLine
+                                   + "Form Keys: {2}"
+                                   + Environment.NewLine
+                                   + "User: {3}, IP: {4}",
+                                   tipoRichiesta, url, parametri, username, ip);
         }
 
         private string GetUserIP(HttpRequest Request)
