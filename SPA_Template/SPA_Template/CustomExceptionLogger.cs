@@ -23,14 +23,14 @@ namespace SPA_TemplateHelpers
                 if (entityValidationExc != null)
                     excToString += Environment.NewLine
                                 + string.Join(Environment.NewLine, entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors.Select(q => q.PropertyName + ": " + q.ErrorMessage)));
-                
+
                 var usedController = ((System.Web.Http.ApiController)context.ExceptionContext.ControllerContext.Controller);
 
                 //similar to Global.asax/CustomLogRequest
                 //todo: missing user and IP, catch Exceptions and null reference
                 Trace.TraceError("CustomExceptionLogger"
                                  + Environment.NewLine
-                                 + "HTTP {0}, Url: {1}"
+                                 + "HTTP {0} {1}"
                                  + Environment.NewLine
                                  + "Form Keys: {2}"
                                  + Environment.NewLine,
@@ -38,7 +38,7 @@ namespace SPA_TemplateHelpers
                                  context.Request.Method.Method, context.Request.RequestUri,
                                  string.Join(Environment.NewLine,
                                             usedController.ActionContext.ActionArguments.Select(p => p.Key + ": " + JsonConvert.SerializeObject(p.Value))));
-                                 //username, ip);
+                //username, ip);
             }
         }
     }

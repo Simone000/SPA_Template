@@ -451,8 +451,11 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     {
                         jsModels += "\t";
 
-                        //se è un oggetto base:     self.id = TipologiaPrestazione.ID;
-                        jsModels += "self." + ToJsName(prop.Name) + " = " + nomeModello + "." + prop.Name + ";";
+                        //self.id = TipologiaPrestazione.ID;
+                        if (typeof(DateTime) == prop.TypeDescription.ModelType || typeof(DateTime?) == prop.TypeDescription.ModelType)
+                            jsModels += "self." + ToJsName(prop.Name) + " = new Data(" + nomeModello + "." + prop.Name + ");";
+                        else
+                            jsModels += "self." + ToJsName(prop.Name) + " = " + nomeModello + "." + prop.Name + ";";
 
                         jsModels += Environment.NewLine;
                     }

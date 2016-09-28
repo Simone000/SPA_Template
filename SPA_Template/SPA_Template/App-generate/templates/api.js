@@ -32,7 +32,9 @@
                     //riapro ultimi accordion aperti
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
-                        $("#" + id_elem).addClass("in");
+                        if (id_elem) {
+                            $("#" + id_elem).addClass("in");
+                        }
                     });
 
                     success(data);
@@ -95,7 +97,9 @@
                     //riapro ultimi accordion aperti
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
-                        $("#" + id_elem).addClass("in");
+                        if (id_elem) {
+                            $("#" + id_elem).addClass("in");
+                        }
                     });
 
                     success(data);
@@ -124,6 +128,9 @@
                                 //cerco l'elemento by name (Model.Descrizione => cerco input con name Descrizione)
                                 var keyFailedValidation = key.split(".", 2);
                                 var inputFailedValidation = $('input[name=' + keyFailedValidation[1] + ']');
+                                if (inputFailedValidation == null || inputFailedValidation.length == 0) {
+                                    inputFailedValidation = $('textarea[name=' + keyFailedValidation[1] + ']');
+                                }
                                 if (inputFailedValidation != null) {
                                     //focus solo per il primo elemento
                                     if (isFirst) {
@@ -202,7 +209,9 @@
                     //riapro ultimi accordion aperti
                     $.each(accordionsAperti, function (index) {
                         var id_elem = accordionsAperti[index].id;
-                        $("#" + id_elem).addClass("in");
+                        if (id_elem) {
+                            $("#" + id_elem).addClass("in");
+                        }
                     });
 
                     success(data);
@@ -254,15 +263,13 @@
                 //    return;
                 //}
 
-                //comment if not using validation-summary-errors
-                toastr["error"](desc, "Errore!");
-
-                //uncomment if using validation-summary-errors
-                //todo: renderlo non necessario
+                //*** comment if using validation-summary-errors: ***
                 //Missing connection
-                //if(jqXHR["status"] == 0) {
-                //    toastr["error"](desc, "Errore!");
-                //}
+                if(jqXHR["status"] == 0) {
+                    toastr["error"](desc, "Errore!");
+                }
+
+                toastr["error"](desc, "Errore!");
             };
             api.method($('#div'), success, error, params);
         };
