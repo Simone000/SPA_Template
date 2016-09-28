@@ -23,7 +23,12 @@ namespace SPA_TemplateHelpers
                     excToString += Environment.NewLine
                                 + string.Join(Environment.NewLine, entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors.Select(q => q.PropertyName + ": " + q.ErrorMessage)));
 
-                Trace.TraceError("CustomExceptionLogger Log, Request: {0}, Eccezione: {1}", RequestToString(context.Request), excToString);
+                Trace.TraceError("CustomExceptionLogger/Log"
+                                 + Environment.NewLine
+                                 + "Request: {0}"
+                                 + Environment.NewLine
+                                 + "Eccezione: {1}",
+                                 RequestToString(context.Request), excToString);
             }
         }
 
