@@ -33,12 +33,14 @@ namespace SPA_TemplateHelpers
                                  + "HTTP {0} {1}"
                                  + Environment.NewLine
                                  + "Form Keys: {2}"
-                                 + Environment.NewLine,
-                                 //+ "User: {3}, IP: {4}",
+                                 + Environment.NewLine
+                                 + "Exception:"
+                                 + Environment.NewLine
+                                 + excToString
+                                 ,
                                  context.Request.Method.Method, context.Request.RequestUri,
                                  string.Join(Environment.NewLine,
                                             usedController.ActionContext.ActionArguments.Select(p => p.Key + ": " + JsonConvert.SerializeObject(p.Value))));
-                //username, ip);
             }
         }
     }
