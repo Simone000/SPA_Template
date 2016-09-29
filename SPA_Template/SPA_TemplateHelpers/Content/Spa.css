@@ -2,7 +2,7 @@
     height:100%;
 
     /*prevent cordova from text selection*/
-    -webkit-user-select: none;
+    /*-webkit-user-select: none;*/
 }
 
 body {
