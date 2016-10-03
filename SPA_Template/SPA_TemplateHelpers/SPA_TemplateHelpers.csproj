@@ -137,6 +137,8 @@
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App-generate\templates\startup.js" />
     <Content Include="App-samples\form-validation-sample\form-validation-sample.html" />
+    <Content Include="App-samples\modal-sample\modal-sample.html" />
+    <Content Include="App-samples\modal-sample\modal-sample.js" />
     <Content Include="App-samples\page-details-sample.html" />
     <Content Include="App-samples\page-empty\page-empty.html" />
     <Content Include="App-samples\page-empty\page-empty.js" />

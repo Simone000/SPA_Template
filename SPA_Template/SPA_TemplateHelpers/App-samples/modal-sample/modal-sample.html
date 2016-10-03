@@ -1,0 +1,55 @@
+﻿<div class="container ">
+
+    <div class="row">
+        <ul>
+            <li>
+                <a href="#" data-bind="click: function(){ showModal1(1); }">Modal per ID 1</a>
+            </li>
+            <li>
+                <a href="#" data-bind="click: function(){ showModal1(2); }">Modal per ID 2</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal_1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Title</h4>
+            </div>
+            <div class="modal-body">
+                <div id="div_modal_1">
+
+                    <table style="width:100%">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <b>Question:</b>
+                                </td>
+                                <td>
+                                    <input type="text" data-bind="value: newQuestion" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <b>Answer:</b>
+                                </td>
+                                <td>
+                                    <textarea rows="4" cols="50" style="max-width:380px;"
+                                              data-bind="value: newAnswer"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bind="click: updateModal1">Update</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Chiudi</button>
+            </div>
+        </div>
+    </div>
+</div>
