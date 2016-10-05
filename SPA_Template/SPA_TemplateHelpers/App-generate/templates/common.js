@@ -13,7 +13,7 @@
                 return giorno + "/" + mese + "/" + anno;
             }, self);
 
-            self.addDays = function(days) {
+            self.addDays = function (days) {
                 var temp = self.datetime();
                 temp.setDate(temp.getDate() + days);
                 self.datetime(temp);
@@ -78,7 +78,7 @@
                 return giornoToString + "/" + meseToString + "/" + anno + " " + hoursToString + ":" + minutesToString;
             }, self);
 
-            self.addDays = function(days) {
+            self.addDays = function (days) {
                 var temp = self.datetime();
                 temp.setDate(temp.getDate() + days);
                 self.datetime(temp);
