@@ -23,7 +23,7 @@ namespace SPA_TemplateHelpers
                 return Task.FromResult(0);
 
             //handle CustomValidationException
-            var customValidationExc = context.Exception as CustomValidationException;
+            var customValidationExc = context.Exception as SharedUtilsNoReference.Exceptions.CustomValidationException;
             if (customValidationExc != null)
             {
                 context.Result = new BadRequestErrorMessageResult(customValidationExc.Message,

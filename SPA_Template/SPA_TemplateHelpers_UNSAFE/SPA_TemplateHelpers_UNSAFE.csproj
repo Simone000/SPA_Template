@@ -157,6 +157,10 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="UtilsNoReference_462, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\cosi-UtilsNoReference.1.1.0\lib\net462\UtilsNoReference_462.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
       <Private>True</Private>
@@ -205,7 +209,6 @@
     <Compile Include="CustomHelpers\CustomExceptionHandler.cs" />
     <Compile Include="CustomHelpers\CustomExceptionLogger.cs" />
     <Compile Include="CustomHelpers\CustomResponseHandler.cs" />
-    <Compile Include="CustomHelpers\CustomValidationException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
