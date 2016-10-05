@@ -32,12 +32,19 @@ namespace SPA_TemplateHelpers
 
             var response = await base.SendAsync(request, cancellationToken);
 
-            if (response != null && response.Content != null)
+            if (response == null || response.Content == null)
+                return response;
+
+            //In case of File I just log the disposition instead of the entire content
+            if (response.Content.Headers.ContentDisposition != null)
             {
-                var responseToLog = await response.Content.ReadAsStringAsync();
-                Trace.TraceInformation("Response: {0} {1}", response.StatusCode.ToString(), responseToLog);
+                Trace.TraceInformation("Response: {0}, ContentDisposition: {1}", response.StatusCode.ToString(), response.Content.Headers.ContentDisposition.ToString());
+                return response;
             }
 
+
+            var responseToLog = await response.Content.ReadAsStringAsync();
+            Trace.TraceInformation("Response: {0} {1}", response.StatusCode.ToString(), responseToLog);
             return response;
         }
     }
