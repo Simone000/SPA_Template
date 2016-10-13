@@ -547,7 +547,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 
 
                     //genero le colonne per tutte le property (se sono complex una colonna per ogni sotto colonna, ad es. reparto.nome)
-                    //todo: gestire checked per boolean e datetime
+                    //todo: gestire checked per boolean e datetime (.datajs)
                     var paramsConNavi = GetGridColumnsSorting(complexModel);
 
                     var headerSortingParams = paramsConNavi.Select(p =>
