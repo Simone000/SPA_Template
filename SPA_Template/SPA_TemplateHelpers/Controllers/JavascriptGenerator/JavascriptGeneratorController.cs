@@ -586,6 +586,13 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                 var simplePar = par.TypeDescription as SimpleTypeModelDescription;
                 if (simplePar != null)
                 {
+                    //todo: to be tested, in case of Datetime => obs.datajs
+                    //if(simplePar.ModelType == typeof(DateTime)
+                    //   || simplePar.ModelType == typeof(DateTime?))
+                    //{
+                    //    properties.Add(ToJsName(par.Name) + ".datajs");
+                    //}
+
                     properties.Add(ToJsName(par.Name));
                     continue;
                 }
@@ -601,8 +608,6 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     properties.AddRange(innerPropertiesWithNavi);
                     continue;
                 }
-
-
             }
             return properties;
         }
