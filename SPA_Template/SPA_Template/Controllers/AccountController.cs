@@ -19,7 +19,7 @@ namespace SPA_Template.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : ApiController
+    public class AccountController : BaseAPIController
     {
         #region UserManager e SignInManager
         private ApplicationSignInManager _signInManager;
@@ -98,9 +98,7 @@ namespace SPA_Template.Controllers
             HttpContext.Current.Request.GetOwinContext().Authentication.SignOut();
 
             //redirect alla homepage
-            return Redirect(HttpContext.Current.Request.Url.Scheme
-                            + "://"
-                            + HttpContext.Current.Request.Url.Authority);
+            return Redirect(BaseUrl);
         }
 
 
@@ -143,9 +141,7 @@ namespace SPA_Template.Controllers
             if (result.Succeeded)
             {
                 //Redirect to HomePage
-                return Redirect(HttpContext.Current.Request.Url.Scheme
-                                + @"://"
-                                + HttpContext.Current.Request.Url.Authority);
+                return Redirect(BaseUrl);
             }
 
             Trace.TraceError("Account/ConfirmEmail, result != succeded: " + string.Join("; ", result.Errors));
@@ -167,9 +163,7 @@ namespace SPA_Template.Controllers
             //invio mail con link
             string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
             code = HttpUtility.UrlEncode(code);
-            var callbackUrl = HttpContext.Current.Request.Url.Scheme
-                              + "://"
-                              + HttpContext.Current.Request.Url.Authority
+            var callbackUrl = BaseUrl
                               + "/#/account/resetpass/"
                               + code
                               + "/"
@@ -236,11 +230,9 @@ namespace SPA_Template.Controllers
         [Route("ExternalLogin")]
         public IHttpActionResult ExternalLogin(string provider, string returnUrl) //provider = Facebook
         {
-            var callBack = HttpContext.Current.Request.Url.Scheme
-                                 + @"://"
-                                 + HttpContext.Current.Request.Url.Authority
-                                 + "/api/Account/ExternalLoginCallback"
-                                 + @"?returnUrl=" + returnUrl;
+            var callBack = BaseUrl
+                           + "/api/Account/ExternalLoginCallback"
+                           + @"?returnUrl=" + returnUrl;
 
             return new ChallengeResult(provider, this, callBack);
         }
@@ -255,9 +247,7 @@ namespace SPA_Template.Controllers
             {
                 //Errore con auth facebook => lo porto alla pagina di registrazione utente
                 Trace.TraceError("Account/ExternalLoginCallback, logininfo==null");
-                return Redirect(HttpContext.Current.Request.Url.Scheme
-                                + @"://"
-                                + HttpContext.Current.Request.Url.Authority
+                return Redirect(BaseUrl
                                 + @"/#/Account/regutente/");
             }
 
@@ -266,9 +256,7 @@ namespace SPA_Template.Controllers
             if (result == SignInStatus.Success)
             {
                 Trace.TraceInformation("Account/ExternalLoginCallback, Success: " + logininfo.Email);
-                return Redirect(HttpContext.Current.Request.Url.Scheme
-                                + @"://"
-                                + HttpContext.Current.Request.Url.Authority
+                return Redirect(BaseUrl
                                 + returnUrl);
             }
 
