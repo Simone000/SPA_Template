@@ -1,6 +1,11 @@
 ﻿; (function (define) {
     define(["jquery", "knockout"], function ($, ko) {
 
+        var settings = {
+            test1: "test1",
+            test2: "test2"
+        };
+
         function Today() {
             var self = this;
 
@@ -101,6 +106,8 @@
 {METHODS_CALL}
 
         return {
+            settings: settings,
+
             Data: Data,
             Today: Today,
             BasicListItem: BasicListItem,
