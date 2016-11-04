@@ -45,9 +45,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -110,9 +112,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -222,9 +226,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -263,12 +269,7 @@
                 //    return;
                 //}
 
-                //*** comment if using validation-summary-errors: ***
-                //Missing connection
-                if(jqXHR["status"] == 0) {
-                    toastr["error"](desc, "Errore!");
-                }
-
+                //comment if using validation-summary-errors
                 toastr["error"](desc, "Errore!");
             };
             api.method($('#div'), success, error, params);
