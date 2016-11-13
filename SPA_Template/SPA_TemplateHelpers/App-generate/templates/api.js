@@ -260,10 +260,10 @@
             };
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
-                //if (jqXHR["status"] == 401) {
-                //    window.location = "/#/account/login";
-                //    return;
-                //}
+                if (jqXHR["status"] == 401) {
+                    window.location = "/#/account/login";
+                    return;
+                }
 
                 //comment if using validation-summary-errors
                 toastr["error"](desc, "Errore!");

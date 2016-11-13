@@ -142,6 +142,8 @@
     <Content Include="App-samples\page-details-sample.html" />
     <Content Include="App-samples\page-empty\page-empty.html" />
     <Content Include="App-samples\page-empty\page-empty.js" />
+    <Content Include="App-samples\page-print-sample\page-print-sample.html" />
+    <Content Include="App-samples\page-print-sample\page-print-sample.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Spa.css" />
