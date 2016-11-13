@@ -6,12 +6,14 @@
         var erroreGenerico = 'Errore sconosciuto, prova a ricaricare la pagina (CTRL+R) o riprova.';
         var erroreConnessione = 'Errore di comunicazione, controlla il collegamento ad internet e riprova.';
 
+        var innerBlock = {
+            message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
+            css: { border: '1px solid #e2e2e2' }
+        };
+
         //funzioni richiamate da tutti gli altri
         function Get(divToBlock, success, error, doesReturnJson, url) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
@@ -68,10 +70,7 @@
         };
 
         function Post(divToBlock, success, error, doesReturnJson, url, data) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
@@ -185,10 +184,7 @@
         };
 
         function Post_File(divToBlock, success, error, doesReturnJson, url, formData) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
