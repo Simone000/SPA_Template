@@ -22,7 +22,7 @@ namespace SPA_Template.Controllers
         [HttpGet]
         [Route("GetUtenti")]
         [ResponseType(typeof(List<UtenteRuoliModel>))]
-        public async Task<IHttpActionResult> GetUtenti()
+        public async Task<IHttpActionResult> GetUtentiRuoli()
         {
             //tutti i ruoli presenti a sistema
             List<IdentityRole> ruoli;

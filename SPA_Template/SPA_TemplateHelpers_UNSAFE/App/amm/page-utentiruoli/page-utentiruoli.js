@@ -1,4 +1,4 @@
-﻿define(["knockout", "text!./page-utenti.html", "toastr", "api", "knockoutgrids", "bootstrap"], function (ko, pageTemplate, toastr, api, knockoutgrids) {
+﻿define(["knockout", "text!./page-utentiruoli.html", "toastr", "api", "knockoutgrids", "bootstrap"], function (ko, pageTemplate, toastr, api, knockoutgrids) {
     function pageModel(params) {
         var self = this;
 

@@ -2,8 +2,7 @@
     define(["jquery", "knockout"], function ($, ko) {
 
         var settings = {
-            test1: "test1",
-            test2: "test2"
+            isRegistrationEnabled: false
         };
 
         function Today() {

@@ -31,8 +31,8 @@
     });
 
     //Amm
-    ko.components.register("amm-page-utenti", {
-        require: "App/amm/page-utenti/page-utenti"
+    ko.components.register("amm-page-utentiruoli", {
+        require: "App/amm/page-utentiruoli/page-utentiruoli"
     });
     ko.components.register("amm-page-creautente", {
         require: "App/amm/page-creautente/page-creautente"
@@ -74,7 +74,7 @@
         self.user = ko.observable();
 
         //Amministrazione
-        self.ammUtenti = ko.observable();
+        self.ammUtentiRuoli = ko.observable();
         self.ammCreaUtente = ko.observable();
 
         //home
@@ -163,9 +163,9 @@
 
 
         //Amm
-        this.get('#/amministrazione/utenti', function () {
+        this.get('#/amministrazione/utenti/ruoli', function () {
             model.body(new BodyModel());
-            model.body().ammUtenti(true);
+            model.body().ammUtentiRuoli(true);
         });
         this.get('#/amministrazione/utenti/crea', function () {
             model.body(new BodyModel());
