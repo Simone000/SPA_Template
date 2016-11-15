@@ -15,6 +15,10 @@
         "common": "App/common",
         "toastr": "Scripts/toastr",
         "api": "App/api"
+
+        //signalr:
+        //"signalr": "Scripts/jquery.signalR-2.2.1",
+        //"hubs": "signalr/hubs?"
     },
     shim: {
         "bootstrap": {
@@ -44,5 +48,12 @@
         "api": {
             deps: ["jquery"]
         }
+        //signalr:
+        //"signalr": {
+        //    deps: ["jquery"]
+        //},
+        //"hubs": {
+        //    deps: ["signalr"]
+        //}
     }
 }

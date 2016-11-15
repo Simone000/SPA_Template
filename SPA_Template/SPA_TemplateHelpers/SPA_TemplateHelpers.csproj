@@ -144,6 +144,10 @@
     <Content Include="App-samples\page-empty\page-empty.js" />
     <Content Include="App-samples\page-print-sample\page-print-sample.html" />
     <Content Include="App-samples\page-print-sample\page-print-sample.js" />
+    <Content Include="App-samples\page-scrolltobottom-sample\page-scrolltobottom-sample.html" />
+    <Content Include="App-samples\page-scrolltobottom-sample\page-scrolltobottom-sample.js" />
+    <Content Include="App-samples\page-signalr-sample\page-signalr-sample.html" />
+    <Content Include="App-samples\page-signalr-sample\page-signalr-sample.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\Spa.css" />
