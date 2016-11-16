@@ -110,7 +110,6 @@
 /// <reference path="locales/bootstrap-datepicker.vi.min.js" />
 /// <reference path="locales/bootstrap-datepicker.zh-cn.min.js" />
 /// <reference path="locales/bootstrap-datepicker.zh-tw.min.js" />
-/// <reference path="modernizr-2.8.3.js" />
 /// <reference path="r.js" />
 /// <reference path="require.js" />
 /// <reference path="respond.matchmedia.addlistener.min.js" />
