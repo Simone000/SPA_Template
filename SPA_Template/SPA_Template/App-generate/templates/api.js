@@ -6,12 +6,14 @@
         var erroreGenerico = 'Errore sconosciuto, prova a ricaricare la pagina (CTRL+R) o riprova.';
         var erroreConnessione = 'Errore di comunicazione, controlla il collegamento ad internet e riprova.';
 
+        var innerBlock = {
+            message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
+            css: { border: '1px solid #e2e2e2' }
+        };
+
         //funzioni richiamate da tutti gli altri
         function Get(divToBlock, success, error, doesReturnJson, url) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
@@ -45,9 +47,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -66,10 +70,7 @@
         };
 
         function Post(divToBlock, success, error, doesReturnJson, url, data) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
@@ -110,9 +111,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -181,10 +184,7 @@
         };
 
         function Post_File(divToBlock, success, error, doesReturnJson, url, formData) {
-            divToBlock.block({
-                message: '<span><img src="' + busyGifPath + '" />Loading...</span>',
-                css: { border: '1px solid #e2e2e2' }
-            });
+            divToBlock.block(innerBlock);
 
             //salvo l'ultimo accordion aperto per riaprirlo dopo il load
             var accordionsAperti = $('.in');
@@ -222,9 +222,11 @@
                     if (jqXHR.status === 0) {
                         return error(jqXHR, erroreConnessione);
                     }
-
                     if (jqXHR.status == 401) {
                         return error(jqXHR, "Not Authorized");
+                    }
+                    if (jqXHR.status == 500) {
+                        return error(jqXHR, erroreGenerico);
                     }
 
                     try {
@@ -258,17 +260,12 @@
             };
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
-                //if (jqXHR["status"] == 401) {
-                //    window.location = "/#/account/login";
-                //    return;
-                //}
-
-                //*** comment if using validation-summary-errors: ***
-                //Missing connection
-                if(jqXHR["status"] == 0) {
-                    toastr["error"](desc, "Errore!");
+                if (jqXHR["status"] == 401) {
+                    window.location = "/#/account/login";
+                    return;
                 }
 
+                //comment if using validation-summary-errors
                 toastr["error"](desc, "Errore!");
             };
             api.method($('#div'), success, error, params);
