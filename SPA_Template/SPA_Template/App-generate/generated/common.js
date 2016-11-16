@@ -1,6 +1,10 @@
 ; (function (define) {
     define(["jquery", "knockout"], function ($, ko) {
 
+        var settings = {
+            isRegistrationEnabled: false
+        };
+
         function Today() {
             var self = this;
 
@@ -12,6 +16,13 @@
                 var anno = self.datetime().getFullYear();
                 return giorno + "/" + mese + "/" + anno;
             }, self);
+
+            self.addDays = function (days) {
+                var temp = self.datetime();
+                temp.setDate(temp.getDate() + days);
+                self.datetime(temp);
+                return self;
+            }
         };
 
         function Data(JS_Data) { //millisecondi da epochtime
@@ -44,9 +55,50 @@
                 return giornoToString + "/" + meseToString + "/" + anno;
             }, self);
 
+            self.toStringHHmm = ko.computed(function () {
+                if (self.datetime() == null)
+                    return "";
+
+                var giorno = self.datetime().getDate();
+                var mese = self.datetime().getMonth() + 1;
+                var anno = self.datetime().getFullYear();
+                var hours = self.datetime().getHours();
+                var minutes = self.datetime().getMinutes();
+
+                //fix formattazione per giorni e mesi
+                var giornoToString = giorno + "";
+                var meseToString = mese + "";
+                var hoursToString = hours + "";
+                var minutesToString = minutes + "";
+                if (giornoToString.length == 1)
+                    giornoToString = "0" + giornoToString;
+                if (meseToString.length == 1)
+                    meseToString = "0" + meseToString;
+                if (hoursToString.length == 1)
+                    hoursToString = "0" + hoursToString;
+                if (minutesToString.length == 1)
+                    minutesToString = "0" + minutesToString;
+
+                return giornoToString + "/" + meseToString + "/" + anno + " " + hoursToString + ":" + minutesToString;
+            }, self);
+
+            self.addDays = function (days) {
+                var temp = self.datetime();
+                temp.setDate(temp.getDate() + days);
+                self.datetime(temp);
+                return self;
+            }
+
             self.newValue = ko.observable(self.toString());
 
             //todo: aggiungere localizzazione
+        };
+
+        function BasicListItem(BasicListItem) {
+            var self = this;
+
+            self.id = BasicListItem.ID;
+            self.desc = BasicListItem.Desc;
         };
 
 
@@ -71,15 +123,18 @@ function GetAzienda(GetAzienda) {
 	self.nome = GetAzienda.Nome;
 	self.reparti = GetAzienda.Reparti;
 	self.citta = GetAzienda.Citta;
-	self.testDate = GetAzienda.TestDate;
-	self.testDate2 = GetAzienda.TestDate2;
+	self.testDate = new Data(GetAzienda.TestDate);
+	self.testDate2 = new Data(GetAzienda.TestDate2);
 };
 
 
 
         return {
+            settings: settings,
+
             Data: Data,
             Today: Today,
+            BasicListItem: BasicListItem,
 
 GetAzienda:GetAzienda, 
 UserInfo:UserInfo, 

@@ -43,6 +43,17 @@
         require: "App/page-home/page-home"
     });
 
+    //Errors
+    ko.components.register("errors-page-generic", {
+        require: "App/errors/page-generic/page-generic"
+    });
+    ko.components.register("errors-page-internal", {
+        require: "App/errors/page-internal/page-internal"
+    });
+    ko.components.register("errors-page-notfound", {
+        require: "App/errors/page-notfound/page-notfound"
+    });
+
 
     //aziende
     ko.components.register("aziende-page-aziende", {
@@ -79,6 +90,11 @@
 
         //home
         self.home = ko.observable();
+
+        //Errors
+        self.errorsGeneric = ko.observable();
+        self.errorsInternal = ko.observable();
+        self.errorsNotFound = ko.observable();
 
         //Aziende
         self.aziende = ko.observable();
@@ -172,6 +188,19 @@
             model.body().ammCreaUtente(true);
         });
 
+        //Errors
+        this.get('#/errors/generic', function () {
+            model.body(new BodyModel());
+            model.body().errorsGeneric(true);
+        });
+        this.get('#/errors/internal', function () {
+            model.body(new BodyModel());
+            model.body().errorsInternal(true);
+        });
+        this.get('#/errors/notfound', function () {
+            model.body(new BodyModel());
+            model.body().errorsNotFound(true);
+        });
 
 
         this.get('#/aziende', function () {

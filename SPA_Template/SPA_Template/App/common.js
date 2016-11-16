@@ -1,6 +1,10 @@
 ﻿; (function (define) {
     define(["jquery", "knockout"], function ($, ko) {
 
+        var settings = {
+            isRegistrationEnabled: false
+        };
+
         function Today() {
             var self = this;
 
@@ -12,6 +16,13 @@
                 var anno = self.datetime().getFullYear();
                 return giorno + "/" + mese + "/" + anno;
             }, self);
+
+            self.addDays = function (days) {
+                var temp = self.datetime();
+                temp.setDate(temp.getDate() + days);
+                self.datetime(temp);
+                return self;
+            }
         };
 
         function Data(JS_Data) { //millisecondi da epochtime
@@ -95,6 +106,8 @@
 
 
         return {
+            settings: settings,
+
             Data: Data,
             Today: Today,
             BasicListItem: BasicListItem,

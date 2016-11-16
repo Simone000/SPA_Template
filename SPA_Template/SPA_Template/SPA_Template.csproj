@@ -203,6 +203,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\JavascriptGenerator\JavascriptGeneratorController.cs" />
     <Compile Include="Controllers\Samples\ExceptionsApiController.cs" />
+    <Compile Include="Controllers\Samples\ExceptionsController.cs" />
     <Compile Include="Controllers\Samples\ODataController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -281,6 +282,12 @@
     <Content Include="App\components\header\cordova-header.js" />
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
+    <Content Include="App\errors\page-generic\page-generic.html" />
+    <Content Include="App\errors\page-generic\page-generic.js" />
+    <Content Include="App\errors\page-internal\page-internal.html" />
+    <Content Include="App\errors\page-internal\page-internal.js" />
+    <Content Include="App\errors\page-notfound\page-notfound.html" />
+    <Content Include="App\errors\page-notfound\page-notfound.js" />
     <Content Include="App\Index.html" />
     <Content Include="App\page-home\page-home.html" />
     <Content Include="App\page-home\page-home.js" />
@@ -465,6 +472,7 @@
   <ItemGroup>
     <Folder Include="App-generate\generated\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
