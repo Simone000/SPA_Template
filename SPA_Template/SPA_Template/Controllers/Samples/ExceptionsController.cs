@@ -1,4 +1,5 @@
-﻿using SPA_TemplateHelpers;
+﻿using SharedUtilsNoReference.Exceptions;
+using SPA_TemplateHelpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;

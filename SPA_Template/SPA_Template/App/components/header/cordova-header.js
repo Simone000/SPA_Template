@@ -1,6 +1,8 @@
-﻿define(["knockout", "text!./header.html", "toastr", "api", "bootstrap"], function (ko, pageTemplate, toastr, api) {
+﻿define(["knockout", "text!./header.html", "toastr", "api", "common", "bootstrap"], function (ko, pageTemplate, toastr, api, common) {
     function pageModel(params) {
         var self = this;
+
+        self.isRegistrationEnabled = common.settings.isRegistrationEnabled;
 
         //fix dropdown
         $(document).on('click', '.navbar-collapse.in', function (e) {
