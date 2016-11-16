@@ -9,8 +9,8 @@ using System.Web.Http;
 
 namespace SPA_Template.Controllers
 {
-    [RoutePrefix("api/Samples/Exceptions")]
-    public class ExceptionsController : ApiController
+    [RoutePrefix("api/Samples/ExceptionsApi")]
+    public class ExceptionsApiController : ApiController
     {
         [HttpGet]
         [Route("TestExc1")]

@@ -67,7 +67,7 @@ namespace SPA_TemplateHelpers
                 {
                     Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
                 }
-                Server.ClearError();
+                //Server.ClearError();
             }
         }
 
