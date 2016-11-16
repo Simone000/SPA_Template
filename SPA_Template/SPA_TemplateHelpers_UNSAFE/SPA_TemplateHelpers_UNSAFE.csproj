@@ -186,6 +186,12 @@
     <Content Include="App\components\header\cordova-header.js" />
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
+    <Content Include="App\errors\page-generic\page-generic.html" />
+    <Content Include="App\errors\page-generic\page-generic.js" />
+    <Content Include="App\errors\page-internal\page-internal.html" />
+    <Content Include="App\errors\page-internal\page-internal.js" />
+    <Content Include="App\errors\page-notfound\page-notfound.html" />
+    <Content Include="App\errors\page-notfound\page-notfound.js" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
