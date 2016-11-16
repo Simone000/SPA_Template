@@ -192,6 +192,7 @@
     <Content Include="App\errors\page-internal\page-internal.js" />
     <Content Include="App\errors\page-notfound\page-notfound.html" />
     <Content Include="App\errors\page-notfound\page-notfound.js" />
+    <Content Include="Content\Images\page-error.jpg" />
     <Content Include="Content\Images\page-notfound.jpg" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
