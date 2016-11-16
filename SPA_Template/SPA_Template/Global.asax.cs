@@ -9,6 +9,8 @@ using System.Web.Routing;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 
+//using System.Web.Optimization;
+
 //using System.Web.Security;
 //using System.Web.SessionState;
 
@@ -38,7 +40,9 @@ namespace SPA_TemplateHelpers
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+
             //Create basic roles
             using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
             {
