@@ -315,6 +315,7 @@
     <Content Include="Content\Images\logo_square.png" />
     <Content Include="Content\Images\logo_tiny.png" />
     <Content Include="Content\Images\logo_wide.png" />
+    <Content Include="Content\Images\page-notfound.jpg" />
     <Content Include="Content\knockout-grids.css" />
     <Content Include="Content\Spa.css" />
     <Content Include="Content\toastr.css" />
