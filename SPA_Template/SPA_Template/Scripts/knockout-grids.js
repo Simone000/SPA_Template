@@ -223,6 +223,10 @@
                     }
 
                     var newData = data[splits[0]];
+                    //handle observable
+                    if ($.isFunction(newData)) {
+                        newData = newData();
+                    }
                     splits.splice(0, 1); //remove first element from array and rejoin the rest
                     return getValueFromSplits(newData, splits.join("."));
                 }

@@ -52,6 +52,7 @@
                             <thead>
                                 <tr>
                                     <th><a href="#" data-bind="click: function(){ changeSort('nome') }">Nome</a></th>
+                                    <th></th>
                                     <th><a href="#" data-bind="click: function(){ changeSort('reparto.nome') }">Reparto</a></th>
                                     <th><a href="#" data-bind="click: function(){ changeSort('reparto.azienda.nome') }">Azienda</a></th>
                                     <th><a href="#" data-bind="click: function(){ changeSort('check1') }">check1</a></th>
@@ -63,6 +64,10 @@
                             <tbody data-bind="foreach: itemsInPageSorted()">
                                 <tr>
                                     <td data-bind="text: nome"></td>
+                                    <td>
+                                        <span class="glyphicon glyphicon-info-sign" aria-hidden="true" style="color:#337ab7"
+                                              data-bind="visible: note && note != '', attr: {title: note}"></span>
+                                    </td>
                                     <td data-bind="text: reparto.nome"></td>
                                     <td data-bind="text: reparto.azienda.nome"></td>
                                     <td>

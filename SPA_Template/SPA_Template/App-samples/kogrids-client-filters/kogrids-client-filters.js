@@ -18,6 +18,7 @@ function Dipendente(Dipendente) {
     self.id = Dipendente.ID;
     self.nome = Dipendente.Nome;
     self.check1 = Dipendente.Check1;
+    self.note = Dipendente.Note;
 
     self.reparto = Dipendente.Reparto ? new Reparto(Dipendente.Reparto) : null;
 

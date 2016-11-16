@@ -21,6 +21,8 @@ function Dipendente(Dipendente) {
 
     self.reparto = Dipendente.Reparto ? new Reparto(Dipendente.Reparto) : null;
 
+    self.note = Dipendente.Note;
+
     self.isSelected = ko.observable(false);
 };
 
@@ -29,10 +31,6 @@ function pageModel(params) {
 
     self.dipendenti = ko.observableArray();
     self.dipendentiPaged = new knockoutgrids.ClientGrid(self.dipendenti, 5, 'reparto.azienda.nome');
-
-    //self.dipendentiPaged_Old = ko.computed(function () {
-    //    return new knockoutgrids.ClientGrid(self.dipendenti(), 5, 'reparto.azienda.nome');
-    //}, self);
 
     self.loadDipendenti = function () {
         var dipendenti_tmp = new Array();
@@ -44,7 +42,8 @@ function pageModel(params) {
             Reparto: {
                 ID: 1, Nome: "Reparto 1",
                 Azienda: { ID: 1, Nome: "Azienda 1" }
-            }
+            },
+            Note: "Note dipendente 1"
         }));
         dipendenti_tmp.push(new Dipendente({
             ID: 2,
@@ -54,7 +53,8 @@ function pageModel(params) {
                 ID: 2,
                 Nome: "Reparto 2",
                 Azienda: { ID: 3, Nome: "Azienda 3" }
-            }
+            },
+            Note: ""
         }));
         dipendenti_tmp.push(new Dipendente({
             ID: 3,

@@ -50,7 +50,6 @@ function pageModel(params) {
     self.dipendentiPaged = ko.observable(
         new knockoutgrids.ServerGrid(self.dipendenti, 5, 'reparto.azienda.nome',
             function (PageSize, CurrPage, SortBy, IsDesc, SearchBy, Search) { //OnChange
-                console.log("OnChange" + " PageSize:" + PageSize + " CurrPage:" + CurrPage + " SortBy:" + SortBy + " IsDesc:" + IsDesc + " SearchBy:" + SearchBy + " Search:" + Search);
                 if (!Search)
                     Search = '';
                 self.loadDipendenti(PageSize, CurrPage, SortBy, IsDesc, SearchBy, Search);
