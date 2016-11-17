@@ -38,11 +38,6 @@
         require: "App/amm/page-creautente/page-creautente"
     });
 
-    //Home
-    ko.components.register("page-home", {
-        require: "App/page-home/page-home"
-    });
-
     //Errors
     ko.components.register("errors-page-generic", {
         require: "App/errors/page-generic/page-generic"
@@ -52,6 +47,11 @@
     });
     ko.components.register("errors-page-notfound", {
         require: "App/errors/page-notfound/page-notfound"
+    });
+
+    //Home
+    ko.components.register("page-home", {
+        require: "App/page-home/page-home"
     });
 
 
@@ -88,13 +88,14 @@
         self.ammUtentiRuoli = ko.observable();
         self.ammCreaUtente = ko.observable();
 
-        //home
-        self.home = ko.observable();
-
         //Errors
         self.errorsGeneric = ko.observable();
         self.errorsInternal = ko.observable();
         self.errorsNotFound = ko.observable();
+
+        //home
+        self.home = ko.observable();
+
 
         //Aziende
         self.aziende = ko.observable();
