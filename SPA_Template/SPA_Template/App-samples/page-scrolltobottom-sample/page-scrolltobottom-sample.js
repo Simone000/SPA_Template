@@ -4,7 +4,7 @@
 
         self.shouldScrollToBottom = ko.observable(true);
 
-        //scroll to bottom (to be called after adding an element
+        //scroll to bottom (to be called after adding an element)
         if (self.shouldScrollToBottom() === true) {
             var element = document.getElementById("div_container");
             if (element) {
