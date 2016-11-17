@@ -13,6 +13,9 @@ namespace SPA_TemplateHelpers
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //The home page will be handled by a static file (App/Index.html)
+            routes.IgnoreRoute("");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
