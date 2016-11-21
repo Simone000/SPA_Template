@@ -51,7 +51,12 @@ namespace SPA_TemplateHelpers
             Exception error = Server.GetLastError();
             if (error != null)
             {
-                //var castedExc = error as System.Web.HttpException;
+                var httpExc = error as System.Web.HttpException;
+                if (httpExc != null && httpExc.GetHttpCode() == 404)
+                {
+                    Trace.TraceWarning("Global/Application_Error, Page Not Found: {0}", Request.RawUrl);
+                    return;
+                }
 
                 if (HttpContext.Current != null && HttpContext.Current.Request != null)
                 {
@@ -69,6 +74,7 @@ namespace SPA_TemplateHelpers
                 }
 
                 //to be called only if the Exception is actually handled here (ignored)
+                //if called it will also stop customError in the web.config
                 //Server.ClearError();
             }
         }

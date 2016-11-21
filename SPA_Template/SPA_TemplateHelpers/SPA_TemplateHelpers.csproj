@@ -181,7 +181,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="robots.txt" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
