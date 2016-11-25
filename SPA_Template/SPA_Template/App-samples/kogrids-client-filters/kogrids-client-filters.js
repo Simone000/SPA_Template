@@ -52,6 +52,8 @@ function pageModel(params) {
         risArray = risArray.sort(function (l, r) {
             if (l.value == 'Tutti')
                 return -1;
+            if (r.value == 'Tutti')
+                return 1;
             return l.desc > r.desc ? 1 : -1;
         });
 
@@ -80,6 +82,8 @@ function pageModel(params) {
         risArray = risArray.sort(function (l, r) {
             if (l.value == 'Tutti')
                 return -1;
+            if (r.value == 'Tutti')
+                return 1;
             return l.desc > r.desc ? 1 : -1;
         });
 

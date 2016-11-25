@@ -21,6 +21,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
     //todo: commonjs, nel caso di property liste di oggetti dovrebbe mapparli ad altri oggetti ko
     //todo: Remove the need of GetFriendlyId and GetHelpPageApiModel(FriendlyId)
 
+    [RoutePrefix("api/JavascriptGenerator")]
     public class JavascriptGeneratorController : ApiController
     {
         #region Paths
@@ -144,6 +145,14 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                 return filePath;
             }
         }
+        public static string KoGridsContainerGeneratedPath
+        {
+            get
+            {
+                string containerFolder = Path.Combine(GeneratedPath, "KoGrids");
+                return containerFolder;
+            }
+        }
 
         #endregion
 
@@ -161,11 +170,10 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
         }
 
 
-#if !DEBUG
-        [NonAction]
-#endif
+#if DEBUG
+
         [HttpGet]
-        [Route("api/JavascriptGenerator/GenerateIndex")]
+        [Route("GenerateIndex")]
         public IHttpActionResult GenerateIndex()
         {
             var filesJs = Directory.EnumerateFiles(AppPath, "*.js", SearchOption.AllDirectories).OrderBy(p => p);
@@ -177,88 +185,8 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
             return Ok();
         }
 
-        public class ComponentStartupModel
-        {
-            private string FilePath { get; set; }
-            private string ComponentName { get; set; }
-            public string RequirePath { get; set; } //   App/components/azienda-recap/azienda-recap
-            public string ObservableName { get; set; } // self.attivaFatturaEdit = ko.observable();
-
-            public string Params { get; set; } //todo: gestire params (sia in index.html che in route)
-
-            //non valorizzata per components
-            public string Route { get; set; } //   #/fatturazione/attiva/fatture/:id_fattura/edit
-            /*
-            this.get('#/fatturazione', function () {
-                model.body(new BodyModel());
-                model.body().ObservableName(true);  //({ code: this.params.code, userid: this.params.userid })
-            });
-            */
-
-            public ComponentStartupModel(string FilePath)
-            {
-                this.FilePath = FilePath;
-                this.ComponentName = GetComponentName(FilePath);
-                this.RequirePath = GetRequiredPath();
-                this.ObservableName = GetObservableName();
-                this.Route = this.GetRoute();
-            }
-
-            private string GetComponentName(string FilePath)
-            {
-                if (FilePath == null)
-                    return string.Empty;
-
-                var directoryName = Path.GetDirectoryName(FilePath);
-                if (directoryName == AppPath)
-                    return string.Empty;
-
-
-                var temp = GetComponentName(directoryName);
-                if (temp == string.Empty)
-                    return Path.GetFileName(directoryName);
-
-                return GetComponentName(directoryName) + "-" + Path.GetFileName(directoryName);
-            }
-
-            private string GetRequiredPath()
-            {
-                var temp = Path.ChangeExtension(FilePath, string.Empty);
-                temp = temp.Remove(temp.Length - 1); //rimuovo il punto finale
-
-
-                temp = temp.Replace(AppDomain.CurrentDomain.BaseDirectory, string.Empty);
-
-                return temp;
-            }
-
-            private string GetObservableName()
-            {
-                string temp = this.RequirePath;
-                temp = Path.GetDirectoryName(temp);
-                temp = temp.Replace("App", string.Empty);
-
-                //todo: mancano le maiuscole
-                temp = temp.Replace("-", string.Empty).Replace("\\", string.Empty);
-                return temp;
-            }
-
-            private string GetRoute()
-            {
-                string temp = this.RequirePath;
-                temp = Path.GetDirectoryName(temp);
-                temp = temp.Replace("App", string.Empty);
-                temp = "#" + temp.Replace("\\", "/");
-                return temp;
-            }
-        }
-
-
-#if !DEBUG
-        [NonAction]
-#endif
         [HttpGet]
-        [Route("api/JavascriptGenerator/GenerateAPI")]
+        [Route("GenerateAPI")]
         public IHttpActionResult GenerateAPI()
         {
             string jsMethodsCall = string.Empty;
@@ -393,12 +321,8 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
             return Ok(msgOk);
         }
 
-
-#if !DEBUG
-        [NonAction]
-#endif
         [HttpGet]
-        [Route("api/JavascriptGenerator/GenerateCommon")]
+        [Route("GenerateCommon")]
         public IHttpActionResult GenerateCommon()
         {
             var modelNames = new List<string>();
@@ -489,13 +413,13 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
             return Ok(msgOk);
         }
 
-
-#if !DEBUG
-        [NonAction]
-#endif
+        /// <summary>
+        /// generate ko-grids for all GET methods that returns collections
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        [Route("api/JavascriptGenerator/GenerateGrids")]
-        public IHttpActionResult GenerateGrids() //genero ko-grids per tutti metodi get che ritornano collection
+        [Route("GenerateGrids")]
+        public IHttpActionResult GenerateGrids()
         {
             string templateClientGridT1_js = KoClientGridTemplateJs;
             string templateClientGridT1_html = KoClientGridTemplateHtml;
@@ -564,7 +488,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     clientGridT1_html = clientGridT1_html.Replace("nomeObsArray", nomeObsArray);
 
                     //salvo i file
-                    string containerFolder = Path.Combine(GeneratedPath, "KoGrids", nomeComponent);
+                    string containerFolder = Path.Combine(KoGridsContainerGeneratedPath, nomeComponent);
                     Directory.CreateDirectory(containerFolder);
 
                     string jsPath = Path.Combine(containerFolder, nomeComponent + ".js");
@@ -575,6 +499,98 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
             }
 
             return Ok("Knockout Grids generated");
+        }
+
+
+        /// <summary>
+        /// Generate sample pages for each POST methods that accept a Model parameter
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("GenerateUpdates")]
+        public IHttpActionResult GenerateUpdates()
+        {
+            return Ok();
+        }
+
+#endif
+
+        #region Utils
+
+        public class ComponentStartupModel
+        {
+            private string FilePath { get; set; }
+            private string ComponentName { get; set; }
+            public string RequirePath { get; set; } //   App/components/azienda-recap/azienda-recap
+            public string ObservableName { get; set; } // self.attivaFatturaEdit = ko.observable();
+
+            public string Params { get; set; } //todo: gestire params (sia in index.html che in route)
+
+            //non valorizzata per components
+            public string Route { get; set; } //   #/fatturazione/attiva/fatture/:id_fattura/edit
+            /*
+            this.get('#/fatturazione', function () {
+                model.body(new BodyModel());
+                model.body().ObservableName(true);  //({ code: this.params.code, userid: this.params.userid })
+            });
+            */
+
+            public ComponentStartupModel(string FilePath)
+            {
+                this.FilePath = FilePath;
+                this.ComponentName = GetComponentName(FilePath);
+                this.RequirePath = GetRequiredPath();
+                this.ObservableName = GetObservableName();
+                this.Route = this.GetRoute();
+            }
+
+            private string GetComponentName(string FilePath)
+            {
+                if (FilePath == null)
+                    return string.Empty;
+
+                var directoryName = Path.GetDirectoryName(FilePath);
+                if (directoryName == AppPath)
+                    return string.Empty;
+
+
+                var temp = GetComponentName(directoryName);
+                if (temp == string.Empty)
+                    return Path.GetFileName(directoryName);
+
+                return GetComponentName(directoryName) + "-" + Path.GetFileName(directoryName);
+            }
+
+            private string GetRequiredPath()
+            {
+                var temp = Path.ChangeExtension(FilePath, string.Empty);
+                temp = temp.Remove(temp.Length - 1); //rimuovo il punto finale
+
+
+                temp = temp.Replace(AppDomain.CurrentDomain.BaseDirectory, string.Empty);
+
+                return temp;
+            }
+
+            private string GetObservableName()
+            {
+                string temp = this.RequirePath;
+                temp = Path.GetDirectoryName(temp);
+                temp = temp.Replace("App", string.Empty);
+
+                //todo: mancano le maiuscole
+                temp = temp.Replace("-", string.Empty).Replace("\\", string.Empty);
+                return temp;
+            }
+
+            private string GetRoute()
+            {
+                string temp = this.RequirePath;
+                temp = Path.GetDirectoryName(temp);
+                temp = temp.Replace("App", string.Empty);
+                temp = "#" + temp.Replace("\\", "/");
+                return temp;
+            }
         }
 
         [NonAction]
@@ -625,5 +641,8 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
             return Testo.Substring(0, 1).ToLowerInvariant()
                                         + Testo.Substring(1, Testo.Length - 1);
         }
+
+        #endregion
+
     }
 }
