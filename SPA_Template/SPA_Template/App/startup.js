@@ -70,6 +70,9 @@
     ko.components.register("samples-page-client-filters", {
         require: "App/samples/page-client-filters/page-client-filters"
     });
+    ko.components.register("samples-page-client-filters-ws", {
+        require: "App/samples/page-client-filters-ws/page-client-filters-ws"
+    });
 
 
     //Main
@@ -107,6 +110,7 @@
 
         //Samples
         self.clientFilters = ko.observable();
+        self.clientFiltersWs = ko.observable();
     };
     function MainModel() {
         var self = this;
@@ -231,6 +235,10 @@
         this.get('#/samples/client/filters', function () {
             model.body(new BodyModel());
             model.body().clientFilters(true);
+        });
+        this.get('#/samples/client/filtersws', function () {
+            model.body(new BodyModel());
+            model.body().clientFiltersWs(true);
         });
 
 

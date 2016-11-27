@@ -292,6 +292,8 @@
     <Content Include="App\page-home\page-home.html" />
     <Content Include="App\page-home\page-home.js" />
     <Content Include="App\require.config.js" />
+    <Content Include="App\samples\page-client-filters-ws\page-client-filters-ws.html" />
+    <Content Include="App\samples\page-client-filters-ws\page-client-filters-ws.js" />
     <Content Include="App\samples\page-client-filters\page-client-filters.html" />
     <Content Include="App\samples\page-client-filters\page-client-filters.js" />
     <Content Include="App\startup.js" />
