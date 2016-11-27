@@ -340,7 +340,6 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 
 
                     bool doesReturnJson = apiModel.ResourceDescription.ModelType.Name != "IHttpActionResult" ? true : false;
-
                     if (!doesReturnJson)
                         continue;
 
@@ -384,6 +383,12 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 
                         jsModels += Environment.NewLine;
                     }
+
+                    //add isSelected for grids (only if model is a collection)
+                    jsModels += Environment.NewLine;
+                    jsModels += "\t";
+                    jsModels += @"self.isSelected = ko.observable(false);";
+                    jsModels += Environment.NewLine;
 
                     jsModels += "};";
                     jsModels += Environment.NewLine;
