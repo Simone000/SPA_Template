@@ -28,9 +28,14 @@ namespace SPA_TemplateHelpers
             //handler risposte
             config.MessageHandlers.Add(new CustomResponseHandler());
 
+            //needed?
+            //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
             //custom datetime formatting
             config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new CustomDateTimeConverter());
+
+            //only if directly returning data from entity framework
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
