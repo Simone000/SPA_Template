@@ -150,6 +150,8 @@
     <Content Include="App-samples\page-signalr-sample\page-signalr-sample.js" />
     <Content Include="App-samples\pagenavigation-sample.html" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="CodeTemplates\AssemblyVersions.xml" />
+    <Content Include="CodeTemplates\PackageVersions5.2.3.xml" />
     <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
@@ -173,6 +175,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="CodeTemplates\ApiControllerWithContext\Controller.cs.t4" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
