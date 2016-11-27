@@ -480,10 +480,22 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     var paramsConNavi = GetGridColumnsSorting(complexModel);
 
                     var headerSortingParams = paramsConNavi.Select(p =>
-                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>");
+                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>")
+                            .ToList();
 
-                    var headerDataParams = paramsConNavi.Select(p =>
-                    "<td data-bind=\"text: " + p + "\"></td>");
+                    //add isSelected header for grids
+                    headerSortingParams.AddRange(new string[] { "<td>",
+                                                                "<input type=\"checkbox\" data-bind=\"checked: isAllSelected\" />",
+                                                                "</td>" });
+
+                    var headerDataParams = paramsConNavi
+                                           .Select(p => "<td data-bind=\"text: " + p + "\"></td>")
+                                           .ToList();
+
+                    //add isSelected for grids
+                    headerDataParams.AddRange(new string[] { "<td>",
+                                                             "<input type=\"checkbox\" data-bind=\"checked: isSelected\" />",
+                                                             "</td>" });
 
                     string headerSortingHtml = string.Join(Environment.NewLine, headerSortingParams);
                     string headerDataHtml = string.Join(Environment.NewLine, headerDataParams);
