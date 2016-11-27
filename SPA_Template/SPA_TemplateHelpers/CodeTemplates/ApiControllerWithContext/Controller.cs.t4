@@ -90,7 +90,7 @@ namespace <#= Namespace #>
 
 		[HttpPost]
         [Route("Update<#= ModelTypeName #>")]
-        public IHttpActionResult Update<#= ModelTypeName #>(Update<#= ModelTypeName #>Model Model)
+        public async Task<IHttpActionResult> Update<#= ModelTypeName #>(Update<#= ModelTypeName #>Model Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -108,7 +108,7 @@ namespace <#= Namespace #>
 
 		[HttpPost]
         [Route("Add<#= ModelTypeName #>")]
-        public IHttpActionResult Add<#= ModelTypeName #>(Add<#= ModelTypeName #>Model Model)
+        public async Task<IHttpActionResult> Add<#= ModelTypeName #>(Add<#= ModelTypeName #>Model Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -120,7 +120,7 @@ namespace <#= Namespace #>
 
 		[HttpPost]
         [Route("Delete<#= ModelTypeName #>")]
-        public IHttpActionResult Delete<#= ModelTypeName #>(Delete<#= ModelTypeName #>Model Model)
+        public async Task<IHttpActionResult> Delete<#= ModelTypeName #>(Delete<#= ModelTypeName #>Model Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
