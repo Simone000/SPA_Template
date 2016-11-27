@@ -90,12 +90,12 @@ namespace <#= Namespace #>
 
 		[HttpPost]
         [Route("Update<#= ModelTypeName #>")]
-        public IHttpActionResult Update<#= ModelTypeName #>(Get<#= ModelTypeName #>Model Model)
+        public IHttpActionResult Update<#= ModelTypeName #>(Update<#= ModelTypeName #>Model Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+            var <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(Model.ID);
             if (<#= ModelVariable #> == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace <#= Namespace #>
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-			var <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(id);
+			var <#= ModelVariable #> = await db.<#= entitySetName #>.FindAsync(Model.ID);
             if (<#= ModelVariable #> == null)
             {
                 return NotFound();
