@@ -19,6 +19,7 @@
 /// <reference path="../app/errors/page-notfound/page-notfound.js" />
 /// <reference path="../app/page-home/page-home.js" />
 /// <reference path="../app/require.config.js" />
+/// <reference path="../app/samples/page-client-filters/page-client-filters.js" />
 /// <reference path="../app/startup.js" />
 /// <reference path="../app/tests/page-test1/page-test1.js" />
 /// <reference path="../app-generate/templates/api.js" />

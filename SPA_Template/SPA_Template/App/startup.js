@@ -66,7 +66,10 @@
         require: "App/aziende/page-editazienda/page-editazienda"
     });
 
-
+    //samples
+    ko.components.register("samples-page-client-filters", {
+        require: "App/samples/page-client-filters/page-client-filters"
+    });
 
 
     //Main
@@ -101,6 +104,9 @@
         self.aziende = ko.observable();
         self.aziende2 = ko.observable();
         self.editAzienda = ko.observable();
+
+        //Samples
+        self.clientFilters = ko.observable();
     };
     function MainModel() {
         var self = this;
@@ -219,6 +225,12 @@
         this.get('#/aziende/:id_azienda/edit', function () {
             model.body(new BodyModel());
             model.body().editAzienda({ id: this.params.id_azienda });
+        });
+
+        //Samples
+        this.get('#/samples/client/filters', function () {
+            model.body(new BodyModel());
+            model.body().clientFilters(true);
         });
 
 
