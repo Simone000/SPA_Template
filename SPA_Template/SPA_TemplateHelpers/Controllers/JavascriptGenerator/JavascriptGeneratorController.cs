@@ -484,9 +484,9 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                             .ToList();
 
                     //add isSelected header for grids
-                    headerSortingParams.AddRange(new string[] { "<td>",
+                    headerSortingParams.AddRange(new string[] { "<th>",
                                                                 "<input type=\"checkbox\" data-bind=\"checked: isAllSelected\" />",
-                                                                "</td>" });
+                                                                "</th>" });
 
                     var headerDataParams = paramsConNavi
                                            .Select(p => "<td data-bind=\"text: " + p + "\"></td>")
