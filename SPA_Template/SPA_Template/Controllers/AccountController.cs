@@ -162,10 +162,10 @@ namespace SPA_Template.Controllers
 
             //invio mail con link
             string code = await UserManager.GeneratePasswordResetTokenAsync(user.Id);
-            code = HttpUtility.UrlEncode(code);
+            string encodedCode = HttpUtility.UrlEncode(code);
             var callbackUrl = BaseUrl
                               + "/#/account/resetpass/"
-                              + code
+                              + encodedCode
                               + "/"
                               + user.Id;
 
@@ -185,7 +185,8 @@ namespace SPA_Template.Controllers
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await UserManager.ResetPasswordAsync(Model.UserID, Model.Code, Model.Password);
+            string decodedCode = HttpUtility.UrlDecode(Model.Code);
+            var result = await UserManager.ResetPasswordAsync(Model.UserID, decodedCode, Model.Password);
             if (result.Succeeded)
             {
                 return Ok();
