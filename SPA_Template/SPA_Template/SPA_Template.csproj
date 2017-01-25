@@ -209,7 +209,6 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\Samples\AziendeController.cs" />
     <Compile Include="Controllers\BaseAPIController.cs" />
-    <Compile Include="Controllers\TempController.cs" />
     <Compile Include="CustomHelpers\CustomDateTimeConverter.cs" />
     <Compile Include="CustomHelpers\CustomExceptionHandler.cs" />
     <Compile Include="CustomHelpers\CustomExceptionLogger.cs" />
