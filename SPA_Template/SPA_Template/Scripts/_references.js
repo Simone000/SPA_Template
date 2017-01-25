@@ -32,6 +32,7 @@
 /// <reference path="../app-generate/templates/startup.js" />
 /// <reference path="../app-samples/kogrids-client/kogrids-client.js" />
 /// <reference path="../app-samples/kogrids-client-filters/kogrids-client-filters.js" />
+/// <reference path="../app-samples/kogrids-client-filters-ws/kogrids-client-filters-ws.js" />
 /// <reference path="../app-samples/kogrids-client-fixedcolumn/kogrids-client-fixedcolumn.js" />
 /// <reference path="../app-samples/kogrids-server/kogrids-server.js" />
 /// <reference path="../app-samples/modal-sample/modal-sample.js" />
