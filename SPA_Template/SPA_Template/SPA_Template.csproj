@@ -305,6 +305,9 @@
     <Content Include="App\tests\page-test1\page-test1.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="browserconfig.xml" />
+    <Content Include="CodeTemplates\AssemblyVersions.xml" />
+    <Content Include="CodeTemplates\PackageVersions5.2.3.xml" />
+    <Content Include="CodeTemplates\Readme.txt" />
     <Content Include="Content\bootstrap-datepicker.css" />
     <Content Include="Content\bootstrap-datepicker.min.css" />
     <Content Include="Content\bootstrap-datepicker.standalone.css" />
@@ -368,6 +371,7 @@
     <Content Include="Content\bootstrap-datepicker.standalone.css.map" />
     <Content Include="Content\bootstrap-datepicker.min.css.map" />
     <Content Include="Content\bootstrap-datepicker.css.map" />
+    <Content Include="CodeTemplates\ApiControllerWithContext\Controller.cs.t4" />
     <None Include="Scripts\jquery-3.1.0.intellisense.js" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap-datepicker.js" />

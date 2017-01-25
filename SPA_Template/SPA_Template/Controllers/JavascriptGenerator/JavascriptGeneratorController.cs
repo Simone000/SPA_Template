@@ -340,7 +340,6 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 
 
                     bool doesReturnJson = apiModel.ResourceDescription.ModelType.Name != "IHttpActionResult" ? true : false;
-
                     if (!doesReturnJson)
                         continue;
 
@@ -384,6 +383,12 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
 
                         jsModels += Environment.NewLine;
                     }
+
+                    //add isSelected for grids (only if model is a collection)
+                    jsModels += Environment.NewLine;
+                    jsModels += "\t";
+                    jsModels += @"self.isSelected = ko.observable(false);";
+                    jsModels += Environment.NewLine;
 
                     jsModels += "};";
                     jsModels += Environment.NewLine;
@@ -475,10 +480,22 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     var paramsConNavi = GetGridColumnsSorting(complexModel);
 
                     var headerSortingParams = paramsConNavi.Select(p =>
-                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>");
+                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>")
+                            .ToList();
 
-                    var headerDataParams = paramsConNavi.Select(p =>
-                    "<td data-bind=\"text: " + p + "\"></td>");
+                    //add isSelected header for grids
+                    headerSortingParams.AddRange(new string[] { "<th>",
+                                                                "<input type=\"checkbox\" data-bind=\"checked: isAllSelected\" />",
+                                                                "</th>" });
+
+                    var headerDataParams = paramsConNavi
+                                           .Select(p => "<td data-bind=\"text: " + p + "\"></td>")
+                                           .ToList();
+
+                    //add isSelected for grids
+                    headerDataParams.AddRange(new string[] { "<td>",
+                                                             "<input type=\"checkbox\" data-bind=\"checked: isSelected\" />",
+                                                             "</td>" });
 
                     string headerSortingHtml = string.Join(Environment.NewLine, headerSortingParams);
                     string headerDataHtml = string.Join(Environment.NewLine, headerDataParams);
