@@ -8,6 +8,12 @@
 
         self.register = function () {
             function success(data) {
+                if (data.IsLogged === false && data.IsConfirmEmailSent === true) {
+                    toastr["success"]("Ti abbiamo inviato una email con un link", "Registrazione Effettuata!");
+                    window.location = "#";
+                    return;
+                }
+
                 window.location.replace("");
             };
             function error(jqXHR, desc) {

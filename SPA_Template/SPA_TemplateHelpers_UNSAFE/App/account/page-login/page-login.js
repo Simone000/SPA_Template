@@ -1,6 +1,8 @@
-﻿define(["knockout", "text!./page-login.html", "toastr", "api", "bootstrap"], function (ko, AnyLoginTemplate, toastr, api) {
+﻿define(["knockout", "text!./page-login.html", "toastr", "api", "common", "bootstrap"], function (ko, AnyLoginTemplate, toastr, api, common) {
     function AnyLogin(params) {
         var self = this;
+
+        self.lostPasswordUrl = common.settings.lostPasswordUrl;
 
         self.email = ko.observable('');
         self.password = ko.observable('');
