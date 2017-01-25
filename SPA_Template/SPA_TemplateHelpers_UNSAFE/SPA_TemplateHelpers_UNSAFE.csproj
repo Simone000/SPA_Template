@@ -181,8 +181,12 @@
     <Content Include="App\account\page-user\page-user.js" />
     <Content Include="App\amm\page-creautente\page-creautente.html" />
     <Content Include="App\amm\page-creautente\page-creautente.js" />
+    <Content Include="App\amm\page-home\page-home.html" />
+    <Content Include="App\amm\page-home\page-home.js" />
     <Content Include="App\amm\page-utentiruoli\page-utentiruoli.html" />
     <Content Include="App\amm\page-utentiruoli\page-utentiruoli.js" />
+    <Content Include="App\amm\page-utenti\page-utenti.html" />
+    <Content Include="App\amm\page-utenti\page-utenti.js" />
     <Content Include="App\components\header\cordova-header.js" />
     <Content Include="App\components\header\header.html" />
     <Content Include="App\components\header\header.js" />
