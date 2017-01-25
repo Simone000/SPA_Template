@@ -2,7 +2,8 @@
     define(["jquery", "knockout"], function ($, ko) {
 
         var settings = {
-            isRegistrationEnabled: false
+            isRegistrationEnabled: false,
+            lostPasswordUrl: "#/account/lostpassword"
         };
 
         function Today() {
