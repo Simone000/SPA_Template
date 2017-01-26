@@ -54,6 +54,10 @@
         require: "App/page-home/page-home"
     });
 
+    //Faq
+    ko.components.register("faq-page-faq", {
+        require: "App/faq/page-faq/page-faq"
+    });
 
     //aziende
     ko.components.register("aziende-page-aziende", {
