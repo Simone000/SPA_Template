@@ -7,7 +7,7 @@
         self.lostPass = function () {
             function success(data) {
                 toastr["success"]("Email di recupero inviata");
-                window.location = "/#/account/login";
+                window.location = "#/account/login";
             };
             function error(jqXHR, desc) {
                 toastr["error"](desc, "Errore!");
