@@ -12,7 +12,8 @@
         self.resetPass = function () {
             function success(data) {
                 toastr["success"]("Password Cambiata!");
-                window.location = "/#/account/login";
+                window.location = "#/account/login";
+                window.location.reload(false);
             };
             function error(jqXHR, desc) {
                 toastr["error"](desc, "Errore!");

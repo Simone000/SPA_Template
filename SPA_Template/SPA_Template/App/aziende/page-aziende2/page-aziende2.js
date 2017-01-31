@@ -16,7 +16,6 @@ define(["knockout", "text!./page-aziende2.html", "toastr", "api", "common", "kno
             };
             function error(jqXHR, desc) {
                 if (jqXHR["status"] == 401) {
-                    //window.location = "/#/account/login";
                     return;
                 }
                 //comment if not using validation-summary-errors
