@@ -17,6 +17,11 @@ namespace SPA_Template.Controllers
         {
             get
             {
+                if (!string.IsNullOrWhiteSpace(SpaSettings.ForceBaseUrl))
+                {
+                    return SpaSettings.ForceBaseUrl;
+                }
+
                 //Home Page
                 return HttpContext.Current.Request.Url.Scheme
                        + @"://"

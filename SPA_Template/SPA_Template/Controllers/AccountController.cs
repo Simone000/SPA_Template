@@ -48,6 +48,8 @@ namespace SPA_Template.Controllers
         }
         #endregion
 
+        #region SpaTemplate Methods
+
         [HttpGet]
         [Route("GetUserInfo")]
         [ResponseType(typeof(UserInfoModel))]
@@ -63,7 +65,6 @@ namespace SPA_Template.Controllers
             return Ok(model);
         }
 
-
         [AllowAnonymous]
         [HttpPost]
         [Route("Login")]
@@ -71,6 +72,36 @@ namespace SPA_Template.Controllers
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
+
+            ApplicationUser user = await UserManager.FindAsync(Model.Email, Model.Password);
+            if (user == null)
+            {
+                Trace.TraceWarning("Account/Login, User o Password non valide, UserManager.FindAsync({0}, {1}) == null",
+                                   Model.Email, Model.Password);
+                return BadRequest("User o Password non valide");
+            }
+
+            //Controllo che sia attivo
+            if (!user.IsEnabled)
+            {
+                Trace.TraceWarning("Account/Login, Login ma account IsEnabled=false, Email: {0}", Model.Email);
+                return BadRequest("L'account NON è attivo, per favore contatta il fornitore del servizio");
+            }
+
+            //controllo che l'email sia stata confermata (dai web service arrivano come già confermate)
+            //se non è confermata, reinvio il link ti attivazione
+            if (!user.EmailConfirmed)
+            {
+                Trace.TraceWarning("Account/Login, Login ma account EmailConfirmed=false, Email: {0}", Model.Email);
+
+                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                string encodedCode = HttpUtility.UrlEncode(code);
+                var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
+                await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
+
+                return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il codice di attivazione.");
+            }
 
             var result = await SignInManager.PasswordSignInAsync(Model.Email, Model.Password, true, shouldLockout: false);
             switch (result)
@@ -101,26 +132,46 @@ namespace SPA_Template.Controllers
             return Redirect(BaseUrl);
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         [Route("Register")]
+        [ResponseType(typeof(RegisterResultModel))]
         public async Task<IHttpActionResult> Register(RegisterViewModel Model)
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email };
+            if (!SpaSettings.IsRegistrationEnabled)
+            {
+                Trace.TraceError("Account/Register, l'utente: {0} ha provato a registrarsi ma IsRegistrationEnabled=false",
+                                 Model.Email);
+                return BadRequest("Spiacente, la registrazione utenti non è attivata per questo sito.");
+            }
+
+            var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email, IsEnabled = true };
             var result = await UserManager.CreateAsync(user, Model.Password);
             if (result.Succeeded)
             {
-                await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                var ris = new RegisterResultModel()
+                {
+                    IsLogged = false,
+                    IsConfirmEmailSent = false
+                };
+
+                if (SpaSettings.ShouldSignInAfterRegister)
+                {
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    ris.IsLogged = true;
+                }
 
                 string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                string encodedCode = HttpUtility.UrlEncode(code);
+                var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
                 await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
+                ris.IsConfirmEmailSent = true;
 
-                return Ok();
+                return Ok(ris);
             }
 
             Trace.TraceError("Account/Register, result != Succeded: " + string.Join("; ", result.Errors));
@@ -136,6 +187,7 @@ namespace SPA_Template.Controllers
             {
                 return BadRequest("UserId or Code not valid");
             }
+
             var result = await UserManager.ConfirmEmailAsync(userId, code);
 
             if (result.Succeeded)
@@ -176,7 +228,6 @@ namespace SPA_Template.Controllers
             return Ok();
         }
 
-
         [HttpPost]
         [AllowAnonymous]
         [Route("ResetPassword")]
@@ -196,7 +247,6 @@ namespace SPA_Template.Controllers
             Trace.TraceError("Account/ResetPassword, result!succeded: " + errors);
             return BadRequest(errors);
         }
-
 
         [HttpPost]
         [Route("ChangePassword")]
@@ -222,8 +272,8 @@ namespace SPA_Template.Controllers
             return BadRequest(errors);
         }
 
-
-
+        #endregion
+        
         #region External Auth
 
         [AllowAnonymous]
@@ -269,10 +319,8 @@ namespace SPA_Template.Controllers
                 var risAddLogin = await UserManager.AddLoginAsync(User.Identity.GetUserId(), logininfo.Login);
                 if (risAddLogin.Succeeded)
                 {
-                    return Redirect(HttpContext.Current.Request.Url.Scheme
-                                + @"://"
-                                + HttpContext.Current.Request.Url.Authority
-                                + returnUrl);
+                    return Redirect(BaseUrl
+                                    + returnUrl);
                 }
                 var errori = string.Join(Environment.NewLine, risAddLogin.Errors);
                 Trace.TraceError("Account/ExternalLoginCallback, risAddLogin Failed: " + errori);
@@ -327,9 +375,7 @@ namespace SPA_Template.Controllers
             //await signinManager.SignInAsync(user, false, false);
 
             //redirect a compila campi obbligatori
-            return Redirect(HttpContext.Current.Request.Url.Scheme
-                            + @"://"
-                            + HttpContext.Current.Request.Url.Authority
+            return Redirect(BaseUrl
                             + @"#/utente/anagrafica/");
         }
 
@@ -440,6 +486,12 @@ namespace SPA_Template.Controllers
         [Display(Name = "Conferma password")]
         [Compare("Password", ErrorMessage = "La password e la password di conferma non corrispondono.")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterResultModel
+    {
+        public bool IsLogged { get; set; }
+        public bool IsConfirmEmailSent { get; set; }
     }
 
     public class ForgotPasswordViewModel

@@ -31,9 +31,11 @@ function pageModel(params) {
     self.dipendenti = ko.observableArray();
 
     //Distinct Aziende contained in dipendenti
-    self.id_azienda = ko.observable('Tutti');
+    self.id_azienda = ko.observable();
     self.aziende = ko.computed(function () {
-        var risArray = new Array({ desc: 'Tutti', value: 'Tutti' });
+        var risArray = new Array();
+        //if I want to add an additional option always present
+        //risArray.push({ desc: 'Nessuno', value: 0 });
 
         if (self.dipendenti()) {
             var tmp = new Array();
@@ -50,10 +52,11 @@ function pageModel(params) {
 
         //Sorting
         risArray = risArray.sort(function (l, r) {
-            if (l.value == 'Tutti')
+            //if I want to display an item always on top
+            /*if (l.value == 0)
                 return -1;
-            if (r.value == 'Tutti')
-                return 1;
+            if (r.value == 0)
+                return 1;*/
             return l.desc > r.desc ? 1 : -1;
         });
 
@@ -61,9 +64,11 @@ function pageModel(params) {
     }, self);
 
     //Distinct Reparti contained in dipendenti
-    self.id_reparto = ko.observable('Tutti');
+    self.id_reparto = ko.observable();
     self.reparti = ko.computed(function () {
-        var risArray = new Array({ desc: 'Tutti', value: 'Tutti' });
+        var risArray = new Array();
+        //if I want to add an additional option always present
+        //risArray.push({ desc: 'Nessuno', value: 0 });
 
         if (self.dipendenti()) {
             var tmp = new Array();
@@ -80,10 +85,11 @@ function pageModel(params) {
 
         //Sorting
         risArray = risArray.sort(function (l, r) {
-            if (l.value == 'Tutti')
+            //if I want to display an item always on top
+            /*if (l.value == 0)
                 return -1;
-            if (r.value == 'Tutti')
-                return 1;
+            if (r.value == 0)
+                return 1;*/
             return l.desc > r.desc ? 1 : -1;
         });
 
@@ -94,14 +100,14 @@ function pageModel(params) {
         var filtered = self.dipendenti();
 
         //Filtro su azienda
-        if (self.id_azienda() != 'Tutti') {
+        if (self.id_azienda()) {
             filtered = ko.utils.arrayFilter(filtered, function (item) {
                 return item.reparto.azienda.id == self.id_azienda();
             });
         }
 
         //Filtro su reparto
-        if (self.id_reparto() != 'Tutti') {
+        if (self.id_reparto()) {
             filtered = ko.utils.arrayFilter(filtered, function (item) {
                 return item.reparto.id == self.id_reparto();
             });

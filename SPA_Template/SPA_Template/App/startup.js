@@ -54,6 +54,10 @@
         require: "App/page-home/page-home"
     });
 
+    //Faq
+    ko.components.register("faq-page-faq", {
+        require: "App/faq/page-faq/page-faq"
+    });
 
     //aziende
     ko.components.register("aziende-page-aziende", {
@@ -102,6 +106,8 @@
         //home
         self.home = ko.observable();
 
+        //Faq
+        self.faq = ko.observable();
 
         //Aziende
         self.aziende = ko.observable();
@@ -224,6 +230,15 @@
             model.body().aziende2(true);
         });
 
+        //Faq
+        this.get('#/faq', function () {
+            model.body(new BodyModel());
+            model.body().faq({ id_faq: null });
+        });
+        this.get('#/faq/:id_faq', function () {
+            model.body(new BodyModel());
+            model.body().faq({ id_faq: this.params.id_faq });
+        });
 
         //edit azienda
         this.get('#/aziende/:id_azienda/edit', function () {

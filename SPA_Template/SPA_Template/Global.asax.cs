@@ -87,6 +87,9 @@ namespace SPA_TemplateHelpers
                 return;
             }
 
+            if (HttpContext.Current.Request.FilePath == "/Glimpse.axd")
+                return;
+
             Trace.TraceInformation(GetLogRequest(HttpContext.Current.Request));
         }
 

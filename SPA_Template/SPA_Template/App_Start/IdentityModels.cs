@@ -12,6 +12,8 @@ namespace SPA_TemplateHelpers
 {
     public class ApplicationUser : IdentityUser
     {
+        public bool IsEnabled { get; set; }
+
         //[Required]
         //[StringLength(50)]
         //public string Nome { get; set; }

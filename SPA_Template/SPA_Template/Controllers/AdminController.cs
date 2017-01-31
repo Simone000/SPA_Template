@@ -19,17 +19,47 @@ namespace SPA_Template.Controllers
     [RoutePrefix("api/Admin")]
     public class AdminController : ApiController
     {
+        #region SpaTemplate
+
+        [NonAction]
+        private static async Task<List<IdentityRole>> GetRolesAsync()
+        {
+            List<IdentityRole> ruoli;
+            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+            {
+                ruoli = await roleManager.Roles.ToListAsync().ConfigureAwait(false);
+            }
+            return ruoli;
+        }
+
         [HttpGet]
         [Route("GetUtenti")]
+        [ResponseType(typeof(List<UtenteModel>))]
+        public async Task<IHttpActionResult> GetUtenti()
+        {
+            using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
+            {
+                var utenti = await userManager.Users
+                                              .Select(p => new UtenteModel()
+                                              {
+                                                  ID = p.Id,
+                                                  Username = p.UserName,
+                                                  Email = p.Email,
+                                                  IsEnabled = p.IsEnabled,
+                                                  EmailConfirmed = p.EmailConfirmed
+                                              })
+                                              .ToListAsync();
+                return Ok(utenti);
+            }
+        }
+
+        [HttpGet]
+        [Route("GetUtentiRuoli")]
         [ResponseType(typeof(List<UtenteRuoliModel>))]
         public async Task<IHttpActionResult> GetUtentiRuoli()
         {
             //tutti i ruoli presenti a sistema
-            List<IdentityRole> ruoli;
-            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
-            {
-                ruoli = await roleManager.Roles.ToListAsync();
-            }
+            var ruoli = await GetRolesAsync();
             string idRuoloAdmin = ruoli.Where(p => p.Name == "Admin").Select(p => p.Id).First();
 
 
@@ -81,7 +111,7 @@ namespace SPA_Template.Controllers
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email };
+            var user = new ApplicationUser { UserName = Model.Email, Email = Model.Email, IsEnabled = true };
             using (var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
             {
                 var result = await userManager.CreateAsync(user, Model.Password);
@@ -99,10 +129,21 @@ namespace SPA_Template.Controllers
                 return BadRequest(string.Join("; ", result.Errors));
             }
         }
+
+        #endregion
     }
 
 
     #region Admin Models
+
+    public class UtenteModel
+    {
+        public string ID { get; set; }
+        public string Username { get; set; }
+        public string Email { get; set; }
+        public bool IsEnabled { get; set; }
+        public bool EmailConfirmed { get; set; }
+    }
 
     public class UtenteRuoliModel
     {

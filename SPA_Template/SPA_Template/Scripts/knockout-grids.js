@@ -16,14 +16,14 @@
                 //unique id (for saving pagesize, etc..)
                 self.id = Math.floor(Math.random() * 100000, 1);
 
-                self.items; //array di oggetti da paginare
+                self.items = ko.observableArray(); //elements to be paged
 
                 //temp fix (I should only use self.items = Items)
                 if (ko.isObservable(Items)) {
                     self.items = Items;
                 }
                 else {
-                    self.items = ko.observableArray(Items);
+                    self.items(Items);
                 }
 
                 self.pageSize = ko.observable(PageSize ? PageSize : 10); //numero di elementi per pagina
@@ -188,7 +188,15 @@
                                 return leftValue < rightValue ? 1 : -1;
                             }
                         });
-                        self.items.valueHasMutated(); //altrimenti non si refresha
+
+
+                        //Force refresh
+                        if (ko.isComputed(self.items)) {
+                            self.items.notifySubscribers(0);
+                        }
+                        else {
+                            self.items.valueHasMutated();
+                        }
 
                         return self.itemsInPage();
                     }
