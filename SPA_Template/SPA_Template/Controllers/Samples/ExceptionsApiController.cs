@@ -13,10 +13,17 @@ namespace SPA_Template.Controllers
     public class ExceptionsApiController : ApiController
     {
         [HttpGet]
-        [Route("TestExc1")]
-        public IHttpActionResult TestExc1()
+        [Route("TestCustomValidationException")]
+        public IHttpActionResult TestCustomValidationException()
         {
             throw new CustomValidationException("CustomExc Message");
+        }
+
+        [HttpGet]
+        [Route("TestException")]
+        public IHttpActionResult TestException()
+        {
+            throw new Exception("Exception Message");
         }
     }
 }
