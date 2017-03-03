@@ -202,6 +202,7 @@
     <Content Include="Content\Images\page-notfound.jpg" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
+    <Content Include="SpaTemplate.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
