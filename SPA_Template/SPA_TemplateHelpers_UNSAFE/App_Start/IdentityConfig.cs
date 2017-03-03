@@ -10,7 +10,6 @@ using System.Linq;
 using System.Net.Mail;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 
 namespace SPA_TemplateHelpers
 {
@@ -69,7 +68,7 @@ namespace SPA_TemplateHelpers
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
-                RequireUniqueEmail = true //false per autenticazione facebook
+                RequireUniqueEmail = true //false for facebook auth
             };
             // Configure validation logic for passwords
             manager.PasswordValidator = new PasswordValidator
