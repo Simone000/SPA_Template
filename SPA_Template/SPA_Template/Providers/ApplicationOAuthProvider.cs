@@ -11,7 +11,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
 using SPA_TemplateHelpers;
 
-namespace SPA_Template.Providers
+namespace SPA_TemplateHelpers.Providers
 {
     public class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {

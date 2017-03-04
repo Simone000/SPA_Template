@@ -8,46 +8,18 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
 using System.Web.Http.Description;
-using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
-using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
-using SPA_TemplateHelpers;
+using System.ComponentModel.DataAnnotations;
+using Microsoft.Owin.Security;
 
-namespace SPA_Template.Controllers
+namespace SPA_TemplateHelpers.Controllers
 {
     [Authorize]
     [RoutePrefix("api/Account")]
-    public class AccountController : BaseAPIController
+    public class AccountController : BaseApiController
     {
-        #region UserManager e SignInManager
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.Current.Request.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set
-            {
-                _signInManager = value;
-            }
-        }
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.Current.Request.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-        #endregion
-
         #region SpaTemplate Methods
 
         [HttpGet]
@@ -55,10 +27,17 @@ namespace SPA_Template.Controllers
         [ResponseType(typeof(UserInfoModel))]
         public async Task<IHttpActionResult> GetUserInfo()
         {
-            var email = await UserManager.GetEmailAsync(User.Identity.GetUserId());
+            string userId = User.Identity.GetUserId();
+            var utente = await UserManager.FindByIdAsync(userId);
+            if (utente == null)
+            {
+                Trace.TraceError("GetUserInfoByRange, user == null, userId: {0}", userId);
+                return BadRequest("Utente non trovato");
+            }
+
             var model = new UserInfoModel()
             {
-                Email = email,
+                Email = utente.Email,
                 IsAdmin = User.IsInRole("Admin")
             };
 
@@ -72,7 +51,7 @@ namespace SPA_Template.Controllers
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
-
+            
             ApplicationUser user = await UserManager.FindAsync(Model.Email, Model.Password);
             if (user == null)
             {
@@ -100,7 +79,7 @@ namespace SPA_Template.Controllers
                 var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
                 await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
 
-                return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il codice di attivazione.");
+                return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il link di attivazione.");
             }
 
             var result = await SignInManager.PasswordSignInAsync(Model.Email, Model.Password, true, shouldLockout: false);
@@ -254,8 +233,7 @@ namespace SPA_Template.Controllers
         {
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
-
-
+            
             var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), Model.OldPassword, Model.NewPassword);
             if (result.Succeeded)
             {
@@ -273,7 +251,7 @@ namespace SPA_Template.Controllers
         }
 
         #endregion
-        
+
         #region External Auth
 
         [AllowAnonymous]
@@ -326,7 +304,7 @@ namespace SPA_Template.Controllers
                 Trace.TraceError("Account/ExternalLoginCallback, risAddLogin Failed: " + errori);
                 return BadRequest(errori);
             }
-            
+
 
 
             ////creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
@@ -404,26 +382,6 @@ namespace SPA_Template.Controllers
         }
 
         #endregion
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (_userManager != null)
-                {
-                    _userManager.Dispose();
-                    _userManager = null;
-                }
-
-                if (_signInManager != null)
-                {
-                    _signInManager.Dispose();
-                    _signInManager = null;
-                }
-            }
-
-            base.Dispose(disposing);
-        }
     }
 
     public class ChallengeResult : IHttpActionResult
@@ -541,4 +499,5 @@ namespace SPA_Template.Controllers
     }
 
     #endregion
+
 }

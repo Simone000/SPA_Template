@@ -1,6 +1,8 @@
-﻿define(["knockout", "text!./page-login.html", "toastr", "api", "bootstrap"], function (ko, AnyLoginTemplate, toastr, api) {
+﻿define(["knockout", "text!./page-login.html", "toastr", "api", "common", "bootstrap"], function (ko, AnyLoginTemplate, toastr, api, common) {
     function AnyLogin(params) {
         var self = this;
+
+        self.lostPasswordUrl = common.settings.lostPasswordUrl;
 
         self.email = ko.observable('');
         self.password = ko.observable('');
@@ -10,7 +12,10 @@
                 window.location.replace("");
             };
             function error(jqXHR, desc) {
-                //toastr["error"](desc, "Errore!");
+                //In case of missing connection do not use form
+                if (jqXHR["status"] == 0) {
+                    toastr["error"](desc, "Errore!");
+                }
             };
             api.Login($('#div_login'), success, error, self.email(), self.password(), null);
         };

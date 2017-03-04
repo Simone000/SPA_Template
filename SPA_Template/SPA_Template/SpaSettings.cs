@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
-using System.Web;
 
-namespace SPA_Template
+namespace SPA_TemplateHelpers
 {
     public static class SpaSettings
     {

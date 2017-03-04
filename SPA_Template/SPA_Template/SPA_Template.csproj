@@ -272,8 +272,12 @@
     <Content Include="App\account\page-user\page-user.js" />
     <Content Include="App\amm\page-creautente\page-creautente.html" />
     <Content Include="App\amm\page-creautente\page-creautente.js" />
+    <Content Include="App\amm\page-home\page-home.html" />
+    <Content Include="App\amm\page-home\page-home.js" />
     <Content Include="App\amm\page-utentiruoli\page-utentiruoli.html" />
     <Content Include="App\amm\page-utentiruoli\page-utentiruoli.js" />
+    <Content Include="App\amm\page-utenti\page-utenti.html" />
+    <Content Include="App\amm\page-utenti\page-utenti.js" />
     <Content Include="App\api.js" />
     <Content Include="App\aziende\page-aziende2\page-aziende2.html" />
     <Content Include="App\aziende\page-aziende2\page-aziende2.js" />
@@ -291,6 +295,8 @@
     <Content Include="App\errors\page-internal\page-internal.js" />
     <Content Include="App\errors\page-notfound\page-notfound.html" />
     <Content Include="App\errors\page-notfound\page-notfound.js" />
+    <Content Include="App\faq\page-faq\page-faq.html" />
+    <Content Include="App\faq\page-faq\page-faq.js" />
     <Content Include="App\Index.html" />
     <Content Include="App\page-home\page-home.html" />
     <Content Include="App\page-home\page-home.js" />
@@ -482,6 +488,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="SpaTemplate.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App-generate\generated\" />

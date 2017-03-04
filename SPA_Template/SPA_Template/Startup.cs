@@ -4,9 +4,8 @@ using System.Linq;
 using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartup(typeof(SPA_Template.Startup))]
-
-namespace SPA_Template
+[assembly: OwinStartup(typeof(SPA_TemplateHelpers.Startup))]
+namespace SPA_TemplateHelpers
 {
     public partial class Startup
     {

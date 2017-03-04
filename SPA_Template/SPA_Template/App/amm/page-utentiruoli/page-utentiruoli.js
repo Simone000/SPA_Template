@@ -16,7 +16,7 @@
                 }
                 toastr["error"](desc, "Errore!");
             };
-            api.GetUtenti($("#div_utenti"), success, error);
+            api.GetUtentiRuoli($("#div_utenti"), success, error);
         };
 
         self.loadUtenti();

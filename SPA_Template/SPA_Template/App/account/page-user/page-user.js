@@ -1,12 +1,12 @@
-﻿define(["knockout", "text!./page-user.html", "toastr", "api","bootstrap"], function (ko, pageTemplate, toastr, api) {
+﻿define(["knockout", "text!./page-user.html", "toastr", "api", "common", "knockoutgrids", "bootstrap", "datepicker", "datepickerITA"], function (ko, pageTemplate, toastr, api, common, knockoutgrids) {
     function pageModel(params) {
         var self = this;
 
-        self.email = ko.observable();
+        self.userInfo = ko.observable();
 
         self.loadInfo = function () {
             function success(data) {
-                self.email(data.Email);
+                self.userInfo(new common.UserInfo(data));
             };
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
@@ -20,9 +20,7 @@
             };
             api.GetUserInfo($('#div_userInfo'), success, error);
         };
-
         self.loadInfo();
-
 
         self.logout = function () {
             function success(data) {

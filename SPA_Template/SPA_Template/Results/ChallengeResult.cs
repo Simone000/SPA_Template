@@ -7,7 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace SPA_Template.Results
+namespace SPA_TemplateHelpers.Results
 {
     public class ChallengeResult : IHttpActionResult
     {
@@ -22,6 +22,7 @@ namespace SPA_Template.Results
 
         public Task<HttpResponseMessage> ExecuteAsync(CancellationToken cancellationToken)
         {
+            //requires Microsoft.AspNet.WebApi.Owin
             Request.GetOwinContext().Authentication.Challenge(LoginProvider);
 
             HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Unauthorized);

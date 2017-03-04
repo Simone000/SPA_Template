@@ -1,17 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using Newtonsoft.Json;
+using SPA_TemplateHelpers.Controllers;
 
 namespace SPA_Template.Controllers
 {
     [RoutePrefix("api/Samples/Aziende")]
-    public class AziendeController : BaseAPIController
+    public class AziendeController : BaseApiController
     {
         [HttpGet]
         [Route("GetAzienda")]
