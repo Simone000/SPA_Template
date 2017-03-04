@@ -15,12 +15,12 @@ namespace SPA_TemplateHelpers
         public bool IsEnabled { get; set; }
 
         //[Required]
-        [StringLength(50)]
-        public string Nome { get; set; }
+        //[StringLength(50)]
+        //public string Nome { get; set; }
         
         //[Required]
-        [StringLength(100)]
-        public string Cognome { get; set; }
+        //[StringLength(100)]
+        //public string Cognome { get; set; }
         
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
