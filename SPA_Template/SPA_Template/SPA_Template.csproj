@@ -112,7 +112,7 @@
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UtilsNoReference_462, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\cosi-UtilsNoReference.1.1.3\lib\net462\UtilsNoReference_462.dll</HintPath>
+      <HintPath>..\packages\cosi-UtilsNoReference.1.1.4\lib\net462\UtilsNoReference_462.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
