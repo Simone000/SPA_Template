@@ -187,7 +187,7 @@ namespace SPA_TemplateHelpers.Controllers
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var user = await UserManager.FindByNameAsync(Model.Email);
+            var user = await UserManager.FindByEmailAsync(Model.Email);
             if (user == null)
                 return BadRequest("Utente non trovato");
 
