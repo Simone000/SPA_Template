@@ -66,11 +66,11 @@ namespace SPA_TemplateHelpers
                                      + Environment.NewLine
                                      + "Exception:"
                                      + Environment.NewLine
-                                     + error.ToString());
+                                     + (SpaSettings.ShouldTraceFullExceptions ? error.ToString() : error.Message));
                 }
                 else
                 {
-                    Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
+                    Trace.TraceError("Application_Error, Eccezione: {0}", SpaSettings.ShouldTraceFullExceptions ? error.ToString() : error.Message);
                 }
 
                 //to be called only if the Exception is actually handled here (ignored)
