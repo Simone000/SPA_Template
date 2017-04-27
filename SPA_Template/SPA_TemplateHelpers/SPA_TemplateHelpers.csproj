@@ -153,6 +153,7 @@
     <Content Include="CodeTemplates\AssemblyVersions.xml" />
     <Content Include="CodeTemplates\PackageVersions5.2.3.xml" />
     <Content Include="CodeTemplates\Readme.txt" />
+    <Content Include="Content\bootstrap-fix.css" />
     <Content Include="Content\Spa.css" />
     <Content Include="Global.asax" />
     <Content Include="packages.config" />
