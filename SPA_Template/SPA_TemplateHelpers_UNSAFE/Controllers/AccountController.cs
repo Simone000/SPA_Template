@@ -67,9 +67,9 @@ namespace SPA_TemplateHelpers.Controllers
                 return BadRequest("L'account NON è attivo, per favore contatta il fornitore del servizio");
             }
 
-            //controllo che l'email sia stata confermata (dai web service arrivano come già confermate)
+            //controllo che l'email sia stata confermata
             //se non è confermata, reinvio il link ti attivazione
-            if (!user.EmailConfirmed)
+            if (SpaSettings.IsEmailConfirmedRequired && !user.EmailConfirmed)
             {
                 Trace.TraceWarning("Account/Login, Login ma account EmailConfirmed=false, Email: {0}", Model.Email);
 
@@ -137,7 +137,7 @@ namespace SPA_TemplateHelpers.Controllers
                     IsConfirmEmailSent = false
                 };
 
-                if (SpaSettings.ShouldSignInAfterRegister)
+                if (SpaSettings.IsEmailConfirmedRequired)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     ris.IsLogged = true;
