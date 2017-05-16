@@ -96,6 +96,10 @@
     <Content Include="App\errors\page-notfound\page-notfound.js" />
     <Content Include="App\faq\page-faq\page-faq.html" />
     <Content Include="App\faq\page-faq\page-faq.js" />
+    <Content Include="Content\Images\busy.gif" />
+    <Content Include="Content\Images\loading_spinner.gif" />
+    <Content Include="Content\Images\page-error.jpg" />
+    <Content Include="Content\Images\page-notfound.jpg" />
     <Content Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
