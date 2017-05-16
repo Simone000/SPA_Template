@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPA_TemplateHelpers", "SPA_
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPA_TemplateHelpers_UNSAFE", "SPA_TemplateHelpers_UNSAFE\SPA_TemplateHelpers_UNSAFE.csproj", "{D10B80AB-919B-4A30-89F5-1DCB14B78F12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spa_TemplateHelpers_Frontend", "Spa_TemplateHelpers_Frontend\Spa_TemplateHelpers_Frontend.csproj", "{4FA23ABD-5198-4AC1-8DF9-9CBF5FF299EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spa_TemplateFrontend", "Spa_TemplateHelpers_Frontend\Spa_TemplateFrontend.csproj", "{4FA23ABD-5198-4AC1-8DF9-9CBF5FF299EE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
