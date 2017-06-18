@@ -105,7 +105,8 @@ namespace SPA_TemplateHelpers.Controllers
         [Route("LogOff")]
         public IHttpActionResult LogOff()
         {
-            HttpContext.Current.Request.GetOwinContext().Authentication.SignOut();
+            //HttpContext.Current.Request.GetOwinContext().Authentication.SignOut();
+            HttpContext.Current.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie);
 
             //redirect alla homepage
             return Redirect(BaseUrl);
