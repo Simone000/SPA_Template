@@ -20,8 +20,9 @@
     }
 
     @media (max-width: 768px) {
-        .knockout-grids_t1 .panel-heading input{
-            float:none;
+        .knockout-grids_t1 .panel-heading input {
+            float: none;
+            margin-top: 2px;
         }
     }
 

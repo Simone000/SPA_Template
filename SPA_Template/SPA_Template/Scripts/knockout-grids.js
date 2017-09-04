@@ -13,6 +13,9 @@
             function ClientGrid(Items, PageSize, SearchBy) {
                 var self = this;
 
+                //the number of items to be added when adding/removing page size
+                self.pageSizeNumber = 5;
+
                 //unique id (for saving pagesize, etc..)
                 self.id = Math.floor(Math.random() * 100000, 1);
 
@@ -28,6 +31,15 @@
 
                 self.pageSize = ko.observable(PageSize ? PageSize : 10); //numero di elementi per pagina
                 self.paginaAttuale = ko.observable(0); //la pagina a cui mi trovo
+                self.paginaAttualeChange = ko.observable(1); //to rappresent the the index + 1 (0 is first page but its 1 for the user)
+                self.paginaAttualeChange.subscribe(function (newValue) {
+                    var parsedShownPageIndex = parseInt(newValue);
+                    if (!parsedShownPageIndex || parsedShownPageIndex < 1)
+                    {
+                        parsedShownPageIndex = 1;
+                    }
+                    self.paginaAttuale(parsedShownPageIndex - 1);
+                });
 
                 self.isEditingPageIndex = ko.observable(false);
                 self.isEditingPageSize = ko.observable(false);
@@ -49,6 +61,7 @@
                         newPageIndex = self.pagesNumber() - 1;
                     }
                     self.paginaAttuale(newPageIndex);
+                    self.paginaAttualeChange(newPageIndex + 1);
                 }
                 self.previous = function () {
                     var newPageIndex = self.paginaAttuale() - 1;
@@ -59,10 +72,11 @@
                         newPageIndex = self.pagesNumber() - 1;
                     }
                     self.paginaAttuale(newPageIndex);
+                    self.paginaAttualeChange(newPageIndex + 1);
                 }
 
                 self.pageSizePlus = function () {
-                    var newpageSize = self.pageSize() + 1;
+                    var newpageSize = parseInt(self.pageSize()) + self.pageSizeNumber;
                     if (newpageSize < 0) {
                         newpageSize = 0;
                     }
@@ -72,9 +86,9 @@
                     self.pageSize(newpageSize);
                 }
                 self.pageSizeMinus = function () {
-                    var newpageSize = self.pageSize() - 1;
-                    if (newpageSize < 0) {
-                        newpageSize = 0;
+                    var newpageSize = parseInt(self.pageSize()) - self.pageSizeNumber;
+                    if (newpageSize < 1) {
+                        newpageSize = 1;
                     }
                     if (newpageSize > self.items().length) {
                         newpageSize = self.items().length;

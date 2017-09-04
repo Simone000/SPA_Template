@@ -86,7 +86,7 @@
                         <div class="div_menupaging">
                             <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
                             <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
-                            <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
+                            <input type="number" data-bind="value: paginaAttualeChange, visible: isEditingPageIndex() == true" />
                             <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
                         </div>
 
