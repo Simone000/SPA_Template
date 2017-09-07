@@ -13,6 +13,8 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Owin.Security;
+using SharedUtilsNoReference;
+using System.Data.Entity;
 
 namespace SPA_TemplateHelpers.Controllers
 {
@@ -289,9 +291,7 @@ namespace SPA_TemplateHelpers.Controllers
                                 + returnUrl);
             }
 
-
-
-            //l'utente era già autenticato => aggiunge facebook come sistema di login (TEORICAMENTE NON SI VERIFICA MAI)
+            //l'utente era già autenticato => aggiunge facebook come sistema di login (in theory never happens)
             if (User.Identity.IsAuthenticated)
             {
                 var risAddLogin = await UserManager.AddLoginAsync(User.Identity.GetUserId(), logininfo.Login);
@@ -304,53 +304,64 @@ namespace SPA_TemplateHelpers.Controllers
                 Trace.TraceError("Account/ExternalLoginCallback, risAddLogin Failed: " + errori);
                 return BadRequest(errori);
             }
+            
+            //creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
+            var externalName = logininfo.ExternalIdentity.Name;
+            string extName = string.Empty;
+            string extCognome = string.Empty;
+            if (externalName.Split(' ').Length > 1)
+            {
+                extName = externalName.Split(' ').First();
+                extCognome = externalName.Split(' ').Skip(1).First();
+            }
+            else
+            {
+                extName = externalName;
+            }
 
-
-
-            ////creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
-            //var externalName = logininfo.ExternalIdentity.Name;
-            //string extName = string.Empty;
-            //string extCognome = string.Empty;
-            //if (externalName.Split(' ').Length > 1)
-            //{
-            //    extName = externalName.Split(' ').First();
-            //    extCognome = externalName.Split(' ').Skip(1).First();
-            //}
-            //else
-            //{
-            //    extName = externalName;
-            //}
             //rendo univoco l'username
-            //var countUtenti = await db.Users.LongCountAsync();
-            //string uniqueUsername = logininfo.DefaultUserName + countUtenti;
-            //
-            //var user = new ApplicationUser()
-            //{
-            //    UserName = uniqueUsername,
-            //    Email = logininfo.Email,
-            //    Nome = extName,
-            //    Cognome = extCognome,
-            //    Telefono = string.Empty,
-            //    Cellulare = string.Empty
-            //};
-            //
-            //var creaUser = await userManager.CreateAsync(user);
-            //if (creaUser.Succeeded != true)
-            //{
-            //    var errori = string.Join(Environment.NewLine, creaUser.Errors);
-            //    Trace.TraceError("Account/ExternalLoginCallback, creaUser Failed: " + errori);
-            //    return BadRequest(errori);
-            //}
-            ////aggiungo il login esterno a questo nuovo utente e lo redirecto per fargli compilare anche i campi obbligatori
-            //var addLoginSuNuovo = await userManager.AddLoginAsync(user.Id, logininfo.Login);
-            //if (addLoginSuNuovo.Succeeded != true)
-            //{
-            //    var errori = string.Join(Environment.NewLine, addLoginSuNuovo.Errors);
-            //    Trace.TraceError("Account/ExternalLoginCallback, addLoginSuNuovo Failed: " + errori);
-            //    return BadRequest(errori);
-            //}
-            ////login col nuovo user
-            //await signinManager.SignInAsync(user, false, false);
+            logininfo.DefaultUserName = logininfo.DefaultUserName.TrimNull();
+            string uniqueUsername = logininfo.DefaultUserName;
+
+            //todo: test that it works!
+            var countUtenti = await UserManager.Users
+                                               .Where(p => p.UserName == uniqueUsername)
+                                               .LongCountAsync();
+            if (countUtenti > 0)
+                uniqueUsername += countUtenti;
+
+            //check it returned a valid email
+            if (string.IsNullOrEmpty(logininfo.Email))
+            {
+                Trace.TraceWarning("Account/ExternalLoginCallback, logininfo.Email is null or empty");
+            }
+
+            var user = new ApplicationUser()
+            {
+                UserName = uniqueUsername,
+                Email = logininfo.Email,
+                //Nome = extName,
+                //Cognome = extCognome,
+                IsEnabled = true
+            };
+            
+            var creaUser = await UserManager.CreateAsync(user);
+            if (creaUser.Succeeded != true)
+            {
+                var errori = string.Join(Environment.NewLine, creaUser.Errors);
+                Trace.TraceError("Account/ExternalLoginCallback, creaUser Failed: " + errori);
+                return BadRequest(errori);
+            }
+            //aggiungo il login esterno a questo nuovo utente e lo redirecto per fargli compilare anche i campi obbligatori
+            var addLoginSuNuovo = await UserManager.AddLoginAsync(user.Id, logininfo.Login);
+            if (addLoginSuNuovo.Succeeded != true)
+            {
+                var errori = string.Join(Environment.NewLine, addLoginSuNuovo.Errors);
+                Trace.TraceError("Account/ExternalLoginCallback, addLoginSuNuovo Failed: " + errori);
+                return BadRequest(errori);
+            }
+            //login col nuovo user
+            await SignInManager.SignInAsync(user, false, false);
 
             //redirect a compila campi obbligatori
             return Redirect(BaseUrl

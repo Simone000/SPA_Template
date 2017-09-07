@@ -13,6 +13,8 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Diagnostics;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Owin.Security;
+using SharedUtilsNoReference;
+using System.Data.Entity;
 
 namespace SPA_TemplateHelpers.Controllers
 {
@@ -37,6 +39,7 @@ namespace SPA_TemplateHelpers.Controllers
 
             var model = new UserInfoModel()
             {
+                Username = utente.UserName,
                 Email = utente.Email,
                 IsAdmin = User.IsInRole("Admin")
             };
@@ -49,6 +52,7 @@ namespace SPA_TemplateHelpers.Controllers
         [Route("Login")]
         public async Task<IHttpActionResult> Login(LoginViewModel Model)
         {
+            //todo: I should pass username instead of email in order to optionally support username that aren't emails
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
             
@@ -68,18 +72,21 @@ namespace SPA_TemplateHelpers.Controllers
             }
 
             //controllo che l'email sia stata confermata
-            //se non è confermata, reinvio il link ti attivazione
-            if (SpaSettings.IsEmailConfirmedRequired && !user.EmailConfirmed)
+            if (!user.EmailConfirmed)
             {
-                Trace.TraceWarning("Account/Login, Login ma account EmailConfirmed=false, Email: {0}", Model.Email);
+                //todo: aggiungere opzione in spaSettings per invio automatico email conferma al login
+                if(true) //se non è confermata, reinvio il link ti attivazione
+                {
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                    string encodedCode = HttpUtility.UrlEncode(code);
+                    var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
+                    await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
+                }
 
-                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
-                string encodedCode = HttpUtility.UrlEncode(code);
-                var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
-                await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
-
-                return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il link di attivazione.");
+                //if I don't allow NotEmailConfirmed to be logged => I return badrequest instead of doing the login
+                if(SpaSettings.IsEmailConfirmedRequired)
+                    return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il link di attivazione.");
             }
 
             var result = await SignInManager.PasswordSignInAsync(Model.Email, Model.Password, true, shouldLockout: false);
@@ -290,9 +297,7 @@ namespace SPA_TemplateHelpers.Controllers
                                 + returnUrl);
             }
 
-
-
-            //l'utente era già autenticato => aggiunge facebook come sistema di login (TEORICAMENTE NON SI VERIFICA MAI)
+            //l'utente era già autenticato => aggiunge facebook come sistema di login (in theory never happens)
             if (User.Identity.IsAuthenticated)
             {
                 var risAddLogin = await UserManager.AddLoginAsync(User.Identity.GetUserId(), logininfo.Login);
@@ -306,52 +311,63 @@ namespace SPA_TemplateHelpers.Controllers
                 return BadRequest(errori);
             }
 
+            //creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
+            var externalName = logininfo.ExternalIdentity.Name;
+            string extName = string.Empty;
+            string extCognome = string.Empty;
+            if (externalName.Split(' ').Length > 1)
+            {
+                extName = externalName.Split(' ').First();
+                extCognome = externalName.Split(' ').Skip(1).First();
+            }
+            else
+            {
+                extName = externalName;
+            }
 
-
-            ////creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
-            //var externalName = logininfo.ExternalIdentity.Name;
-            //string extName = string.Empty;
-            //string extCognome = string.Empty;
-            //if (externalName.Split(' ').Length > 1)
-            //{
-            //    extName = externalName.Split(' ').First();
-            //    extCognome = externalName.Split(' ').Skip(1).First();
-            //}
-            //else
-            //{
-            //    extName = externalName;
-            //}
             //rendo univoco l'username
-            //var countUtenti = await db.Users.LongCountAsync();
-            //string uniqueUsername = logininfo.DefaultUserName + countUtenti;
-            //
-            //var user = new ApplicationUser()
-            //{
-            //    UserName = uniqueUsername,
-            //    Email = logininfo.Email,
-            //    Nome = extName,
-            //    Cognome = extCognome,
-            //    Telefono = string.Empty,
-            //    Cellulare = string.Empty
-            //};
-            //
-            //var creaUser = await userManager.CreateAsync(user);
-            //if (creaUser.Succeeded != true)
-            //{
-            //    var errori = string.Join(Environment.NewLine, creaUser.Errors);
-            //    Trace.TraceError("Account/ExternalLoginCallback, creaUser Failed: " + errori);
-            //    return BadRequest(errori);
-            //}
-            ////aggiungo il login esterno a questo nuovo utente e lo redirecto per fargli compilare anche i campi obbligatori
-            //var addLoginSuNuovo = await userManager.AddLoginAsync(user.Id, logininfo.Login);
-            //if (addLoginSuNuovo.Succeeded != true)
-            //{
-            //    var errori = string.Join(Environment.NewLine, addLoginSuNuovo.Errors);
-            //    Trace.TraceError("Account/ExternalLoginCallback, addLoginSuNuovo Failed: " + errori);
-            //    return BadRequest(errori);
-            //}
-            ////login col nuovo user
-            //await signinManager.SignInAsync(user, false, false);
+            logininfo.DefaultUserName = logininfo.DefaultUserName.TrimNull();
+            string uniqueUsername = logininfo.DefaultUserName;
+
+            //todo: test that it works!
+            var countUtenti = await UserManager.Users
+                                               .Where(p => p.UserName == uniqueUsername)
+                                               .LongCountAsync();
+            if (countUtenti > 0)
+                uniqueUsername += countUtenti;
+
+            //check it returned a valid email
+            if (string.IsNullOrEmpty(logininfo.Email))
+            {
+                Trace.TraceWarning("Account/ExternalLoginCallback, logininfo.Email is null or empty");
+            }
+
+            var user = new ApplicationUser()
+            {
+                UserName = uniqueUsername,
+                Email = logininfo.Email,
+                //Nome = extName,
+                //Cognome = extCognome,
+                IsEnabled = true
+            };
+
+            var creaUser = await UserManager.CreateAsync(user);
+            if (creaUser.Succeeded != true)
+            {
+                var errori = string.Join(Environment.NewLine, creaUser.Errors);
+                Trace.TraceError("Account/ExternalLoginCallback, creaUser Failed: " + errori);
+                return BadRequest(errori);
+            }
+            //aggiungo il login esterno a questo nuovo utente e lo redirecto per fargli compilare anche i campi obbligatori
+            var addLoginSuNuovo = await UserManager.AddLoginAsync(user.Id, logininfo.Login);
+            if (addLoginSuNuovo.Succeeded != true)
+            {
+                var errori = string.Join(Environment.NewLine, addLoginSuNuovo.Errors);
+                Trace.TraceError("Account/ExternalLoginCallback, addLoginSuNuovo Failed: " + errori);
+                return BadRequest(errori);
+            }
+            //login col nuovo user
+            await SignInManager.SignInAsync(user, false, false);
 
             //redirect a compila campi obbligatori
             return Redirect(BaseUrl
@@ -493,9 +509,10 @@ namespace SPA_TemplateHelpers.Controllers
 
     public class UserInfoModel
     {
+        public string Username { get; set; }
         public string Email { get; set; }
 
-        //Ruoli
+        //Roles
         public bool IsAdmin { get; set; }
     }
 
