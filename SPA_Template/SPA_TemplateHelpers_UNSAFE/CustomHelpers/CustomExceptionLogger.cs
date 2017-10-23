@@ -14,9 +14,7 @@ namespace SPA_TemplateHelpers
         {
             if (context != null && context.Exception != null && context.Request != null)
             {
-                string excToLog = SpaSettings.ShouldTraceFullExceptions ?
-                                  context.Exception.ToString() :
-                                  context.Exception.Message;
+                string excToLog = context.Exception.GetBaseException().ToString();
 
                 var entityValidationExc = context.Exception as System.Data.Entity.Validation.DbEntityValidationException;
                 if (entityValidationExc != null)

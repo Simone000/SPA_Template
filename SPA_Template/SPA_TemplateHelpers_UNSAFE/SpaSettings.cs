@@ -43,19 +43,5 @@ namespace SPA_TemplateHelpers
                 return ris;
             }
         }
-
-        public static bool ShouldTraceFullExceptions
-        {
-            get
-            {
-                string conf = ConfigurationManager.AppSettings["ShouldTraceFullExceptions"];
-                if (string.IsNullOrEmpty(conf))
-                    return false;
-
-                bool ris = false;
-                bool.TryParse(conf, out ris);
-                return ris;
-            }
-        }
     }
 }
