@@ -4,7 +4,7 @@
     waitSeconds: 0,
     paths: {
         "bootstrap": "Scripts/bootstrap",
-        "jquery": "Scripts/jquery-3.1.1",
+        "jquery": "Scripts/jquery-3.2.1",
         "blockUI": "Scripts/jquery.blockUI",
         "knockout": "Scripts/knockout-3.4.2",
         "knockoutgrids": "Scripts/knockout-grids",

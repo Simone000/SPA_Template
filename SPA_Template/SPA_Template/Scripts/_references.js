@@ -1,4 +1,4 @@
-﻿/// <reference path="jquery-3.1.1.js" />
+﻿/// <reference path="jquery-3.2.1.js" />
 /// <autosync enabled="true" />
 /// <reference path="../app/account/page-changepass/page-changepass.js" />
 /// <reference path="../app/account/page-login/page-login.js" />
