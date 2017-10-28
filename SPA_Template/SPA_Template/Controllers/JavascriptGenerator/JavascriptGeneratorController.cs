@@ -387,7 +387,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     //add isSelected for grids (only if model is a collection)
                     jsModels += Environment.NewLine;
                     jsModels += "\t";
-                    jsModels += @"self.isSelected = ko.observable(false);";
+                    jsModels += @"//self.isSelected = ko.observable(false);";
                     jsModels += Environment.NewLine;
 
                     jsModels += "};";
@@ -466,7 +466,7 @@ namespace SPA_TemplateHelpers.Controllers.JavascriptGenerator
                     string nomeObsArray = ToJsName(nomeModello) //rendo minuscola la prima lettera
                                           + "s"; //pluralizzo aggiungendo una s alla fine
 
-                    string nomeComponent = nomeObsArray + "-grid";
+                    string nomeComponent = nomeObsArray.ToLowerInvariant(); // + "-grid";
 
                     //replace dai template
                     clientGridT1_js = clientGridT1_js.Replace("nomeModello", nomeModello);

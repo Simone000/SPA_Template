@@ -261,8 +261,7 @@
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
                 if (jqXHR["status"] == 401) {
-                    window.location = "#/account/login";
-                    window.location.reload(false);
+                    window.location = "/#/account/login";
                     return;
                 }
 
