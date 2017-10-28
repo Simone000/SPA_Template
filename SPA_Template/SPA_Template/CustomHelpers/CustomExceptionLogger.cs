@@ -1,12 +1,9 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Http.ExceptionHandling;
+using Newtonsoft.Json;
 
 namespace SPA_TemplateHelpers
 {
@@ -17,12 +14,16 @@ namespace SPA_TemplateHelpers
         {
             if (context != null && context.Exception != null && context.Request != null)
             {
-                string excToString = context.Exception.ToString();
+                string excToLog = context.Exception.GetBaseException().ToString();
 
                 var entityValidationExc = context.Exception as System.Data.Entity.Validation.DbEntityValidationException;
                 if (entityValidationExc != null)
-                    excToString += Environment.NewLine
-                                + string.Join(Environment.NewLine, entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors.Select(q => q.PropertyName + ": " + q.ErrorMessage)));
+                    excToLog += Environment.NewLine
+                                + string.Join(Environment.NewLine,
+                                              entityValidationExc
+                                              .EntityValidationErrors
+                                              .SelectMany(p => p.ValidationErrors
+                                                                .Select(q => q.PropertyName + ": " + q.ErrorMessage)));
 
                 var usedController = ((System.Web.Http.ApiController)context.ExceptionContext.ControllerContext.Controller);
 
@@ -36,11 +37,14 @@ namespace SPA_TemplateHelpers
                                  + Environment.NewLine
                                  + "Exception:"
                                  + Environment.NewLine
-                                 + excToString
+                                 + excToLog
                                  ,
                                  context.Request.Method.Method, context.Request.RequestUri,
                                  string.Join(Environment.NewLine,
-                                            usedController.ActionContext.ActionArguments.Select(p => p.Key + ": " + JsonConvert.SerializeObject(p.Value))));
+                                             usedController
+                                             .ActionContext
+                                             .ActionArguments
+                                             .Select(p => p.Key + ": " + JsonConvert.SerializeObject(p.Value))));
             }
         }
     }

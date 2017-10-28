@@ -30,11 +30,11 @@ namespace SPA_TemplateHelpers
             }
         }
 
-        public static bool ShouldSignInAfterRegister
+        public static bool IsEmailConfirmedRequired
         {
             get
             {
-                string conf = ConfigurationManager.AppSettings["ShouldSignInAfterRegister"];
+                string conf = ConfigurationManager.AppSettings["IsEmailConfirmedRequired"];
                 if (string.IsNullOrEmpty(conf))
                     return false;
 

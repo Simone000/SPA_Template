@@ -39,6 +39,7 @@ namespace SPA_TemplateHelpers.Controllers
 
             var model = new UserInfoModel()
             {
+                Username = utente.UserName,
                 Email = utente.Email,
                 IsAdmin = User.IsInRole("Admin")
             };
@@ -51,6 +52,7 @@ namespace SPA_TemplateHelpers.Controllers
         [Route("Login")]
         public async Task<IHttpActionResult> Login(LoginViewModel Model)
         {
+            //todo: I should pass username instead of email in order to optionally support username that aren't emails
             if (Model == null || !ModelState.IsValid)
                 return BadRequest(ModelState);
             
@@ -69,19 +71,22 @@ namespace SPA_TemplateHelpers.Controllers
                 return BadRequest("L'account NON è attivo, per favore contatta il fornitore del servizio");
             }
 
-            //controllo che l'email sia stata confermata (dai web service arrivano come già confermate)
-            //se non è confermata, reinvio il link ti attivazione
+            //controllo che l'email sia stata confermata
             if (!user.EmailConfirmed)
             {
-                Trace.TraceWarning("Account/Login, Login ma account EmailConfirmed=false, Email: {0}", Model.Email);
+                //todo: aggiungere opzione in spaSettings per invio automatico email conferma al login
+                if(true) //se non è confermata, reinvio il link ti attivazione
+                {
+                    string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+                    string encodedCode = HttpUtility.UrlEncode(code);
+                    var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
+                    await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
+                }
 
-                string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                //var callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
-                string encodedCode = HttpUtility.UrlEncode(code);
-                var callbackUrl = BaseUrl + string.Format("/api/Account/ConfirmEmail?userId={0}&code={1}", user.Id, encodedCode);
-                await UserManager.SendEmailAsync(user.Id, "Conferma account", "Per confermare l'account, fare clic <a href=\"" + callbackUrl + "\">qui</a>");
-
-                return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il link di attivazione.");
+                //if I don't allow NotEmailConfirmed to be logged => I return badrequest instead of doing the login
+                if(SpaSettings.IsEmailConfirmedRequired)
+                    return BadRequest("La email non è stata confermata, ti abbiamo inviato una nuova email con il link di attivazione.");
             }
 
             var result = await SignInManager.PasswordSignInAsync(Model.Email, Model.Password, true, shouldLockout: false);
@@ -107,7 +112,8 @@ namespace SPA_TemplateHelpers.Controllers
         [Route("LogOff")]
         public IHttpActionResult LogOff()
         {
-            HttpContext.Current.Request.GetOwinContext().Authentication.SignOut();
+            //HttpContext.Current.Request.GetOwinContext().Authentication.SignOut();
+            HttpContext.Current.GetOwinContext().Authentication.SignOut(Microsoft.AspNet.Identity.DefaultAuthenticationTypes.ApplicationCookie);
 
             //redirect alla homepage
             return Redirect(BaseUrl);
@@ -139,7 +145,7 @@ namespace SPA_TemplateHelpers.Controllers
                     IsConfirmEmailSent = false
                 };
 
-                if (SpaSettings.ShouldSignInAfterRegister)
+                if (SpaSettings.IsEmailConfirmedRequired)
                 {
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     ris.IsLogged = true;
@@ -304,7 +310,7 @@ namespace SPA_TemplateHelpers.Controllers
                 Trace.TraceError("Account/ExternalLoginCallback, risAddLogin Failed: " + errori);
                 return BadRequest(errori);
             }
-            
+
             //creo un nuovo utente nel sistema e redirect per fargli completare i campi obbligatori
             var externalName = logininfo.ExternalIdentity.Name;
             string extName = string.Empty;
@@ -344,7 +350,7 @@ namespace SPA_TemplateHelpers.Controllers
                 //Cognome = extCognome,
                 IsEnabled = true
             };
-            
+
             var creaUser = await UserManager.CreateAsync(user);
             if (creaUser.Succeeded != true)
             {
@@ -503,9 +509,10 @@ namespace SPA_TemplateHelpers.Controllers
 
     public class UserInfoModel
     {
+        public string Username { get; set; }
         public string Email { get; set; }
 
-        //Ruoli
+        //Roles
         public bool IsAdmin { get; set; }
     }
 

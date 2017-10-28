@@ -51,6 +51,8 @@ namespace SPA_TemplateHelpers
             Exception error = Server.GetLastError();
             if (error != null)
             {
+                string excToLog = error.GetBaseException().ToString();
+
                 var httpExc = error as System.Web.HttpException;
                 if (httpExc != null && httpExc.GetHttpCode() == 404)
                 {
@@ -66,11 +68,11 @@ namespace SPA_TemplateHelpers
                                      + Environment.NewLine
                                      + "Exception:"
                                      + Environment.NewLine
-                                     + error.ToString());
+                                     + excToLog);
                 }
                 else
                 {
-                    Trace.TraceError("Application_Error, Eccezione: {0}", error.ToString());
+                    Trace.TraceError("Application_Error, Eccezione: {0}", excToLog);
                 }
 
                 //to be called only if the Exception is actually handled here (ignored)

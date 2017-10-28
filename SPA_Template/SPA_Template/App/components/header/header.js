@@ -29,7 +29,7 @@
             function success(data) {
                 self.isAuth(true);
 
-                self.username(data.Email);
+                self.username(data.Username);
             };
             function error(jqXHR, desc) {
                 if (jqXHR["status"] == 401) {
