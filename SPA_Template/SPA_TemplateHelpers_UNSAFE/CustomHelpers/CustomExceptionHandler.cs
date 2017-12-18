@@ -37,7 +37,7 @@ namespace SPA_TemplateHelpers
                 //todo: aggiungere errori al modelstate (possibilmente assegnandoli anche alle key giuste)
                 var errors = entityValidationExc.EntityValidationErrors.SelectMany(p => p.ValidationErrors).Select(p => p.ErrorMessage);
 
-                context.Result = new BadRequestErrorMessageResult(customValidationExc.Message,
+                context.Result = new BadRequestErrorMessageResult(entityValidationExc.Message,
                                                                   context.RequestContext.Configuration.Services.GetContentNegotiator(),
                                                                   context.Request,
                                                                   context.RequestContext.Configuration.Formatters);
