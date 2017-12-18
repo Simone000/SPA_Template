@@ -24,7 +24,7 @@
         self.prestazioniAziendaDaFatturaresPaginate = ko.observable(
             new knockoutgrids.ServerGrid(self.prestazioniAziendaDaFatturares, 10, 'NomeOrganizzazione',
                 function (PageSize, CurrPage, SortBy, IsDesc, SearchBy, Search) { //OnChange
-                    console.log("OnChange" + " PageSize:" + PageSize + " CurrPage:" + CurrPage + " SortBy:" + SortBy + " IsDesc:" + IsDesc + " SearchBy:" + SearchBy + " Search:" + Search);
+                    //console.log("OnChange" + " PageSize:" + PageSize + " CurrPage:" + CurrPage + " SortBy:" + SortBy + " IsDesc:" + IsDesc + " SearchBy:" + SearchBy + " Search:" + Search);
                     if (!Search)
                         Search = '';
                     self.loadprestazioniAziendaDaFatturares(PageSize, CurrPage, SortBy, IsDesc, SearchBy, Search);
