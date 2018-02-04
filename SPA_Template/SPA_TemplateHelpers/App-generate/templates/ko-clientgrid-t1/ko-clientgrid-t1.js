@@ -13,7 +13,8 @@
             };
             function error(jqXHR, desc) {
                 if (jqXHR["status"] == 401) {
-                    //window.location = "/#/account/login";
+                    //window.location = "#/account/login";
+                    //window.location.reload(false);
                     return;
                 }
                 //comment if not using validation-summary-errors

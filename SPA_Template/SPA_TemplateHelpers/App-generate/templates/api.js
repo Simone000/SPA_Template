@@ -261,9 +261,15 @@
             function error(jqXHR, desc) {
                 //redirect on Unauthorized
                 if (jqXHR["status"] == 401) {
-                    window.location = "/#/account/login";
+                    window.location = "#/account/login";
+                    window.location.reload(false);
                     return;
                 }
+
+                //Missing connection (comment if using validation-summary-errors)
+                //if(jqXHR["status"] == 0) {
+                //    toastr["error"](desc, "Errore!");
+                //}
 
                 //comment if using validation-summary-errors
                 toastr["error"](desc, "Errore!");
