@@ -36,6 +36,12 @@ namespace SPA_TemplateHelpers
             //only if directly serving objects from entity framework
             //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
 
+            //Enable CORS for https (jQuery needs this)
+            //requires package Microsoft.AspNet.WebApi.Cors
+            //https://stackoverflow.com/questions/26649361/options-405-method-not-allowed-web-api-2
+            //var cors = new EnableCorsAttribute("*", "*", "*");
+            //config.EnableCors(cors);
+
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
