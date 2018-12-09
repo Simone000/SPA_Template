@@ -171,54 +171,17 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     string friendlyID = apiMethod.GetFriendlyId();
                     var apiModel = GlobalConfiguration.Configuration.GetHelpPageApiModel(friendlyID);
 
-                    bool doesReturnJson = apiModel.ResourceDescription
-                        .ModelType.Name != "IHttpActionResult" ? true : false;
+                    bool doesReturnJson = apiModel.ResourceDescription.ModelType.Name != "IHttpActionResult" ? true : false;
                     if (!doesReturnJson)
                         continue;
 
-                    //doesn't need Model for simple type
-                    if ((apiModel.ResourceDescription as SimpleTypeModelDescription) != null)
-                        continue;
-                    if ((apiModel.ResourceDescription as EnumTypeModelDescription) != null)
-                        continue;
-
-                    string modelName = apiModel.ResourceDescription.Name;
-                    var modelCollection = apiModel.ResourceDescription as CollectionModelDescription;
-                    if (modelCollection != null)
+                    var modelsjs = GetCommonJsModels(apiModel.ResourceDescription);
+                    foreach (var item in modelsjs)
                     {
-                        modelName = modelCollection.ElementDescription.Name;
-                    }
-
-                    //Usually I create model class with "Model" at the end
-                    modelName = modelName.Replace("Model", string.Empty);
-
-                    //Skip already added models (multiple method could return the same model)
-                    if (modelNames.Contains(modelName))
-                        continue;
-                    modelNames.Add(modelName);
-
-                    //generate the javascript version of this model and add it here
-                    jsModels += GetCommonJsModel(apiModel.ResourceDescription as ModelDescription, modelName);
-
-                    //temporary fix for one level down complex model
-                    foreach (var prop in apiModel.ResourceProperties)
-                    {
-                        var subComplexModel = prop.TypeDescription as CollectionModelDescription;
-                        if (subComplexModel != null)
-                        {
-                            if ((subComplexModel.ElementDescription as SimpleTypeModelDescription) != null)
-                                continue;
-                            if ((subComplexModel.ElementDescription as EnumTypeModelDescription) != null)
-                                continue;
-
-                            string subModelName = subComplexModel.ElementDescription.Name;
-                            subModelName = subModelName.Replace("Model", string.Empty);
-                            if (modelNames.Contains(subModelName))
-                                continue;
-                            modelNames.Add(subModelName);
-
-                            jsModels += GetCommonJsModel(subComplexModel, subModelName);
-                        }
+                        if (modelNames.Contains(item.ModelName))
+                            continue;
+                        modelNames.Add(item.ModelName);
+                        jsModels += item.ModelCommonJs;
                     }
                 }
             }
@@ -237,7 +200,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             File.WriteAllText(CommonGeneratedPath, nuovoTemplateCommon);
 
             var msgOk = "file common_generated.js generato, " + @"<br/>";
-            string commonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
+            string commonFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
             if (File.Exists(commonFilePath))
             {
                 msgOk += "VS command window: Tools.DiffFiles " + CommonGeneratedPath + " " + commonFilePath;
@@ -345,6 +308,140 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
         }
 #endif
 
+        #region CommonJS
+        public class CommonJsModel
+        {
+            public string ModelName { get; set; }
+            public string ModelCommonJs { get; set; }
+        }
+
+        [NonAction]
+        private List<CommonJsModel> GetCommonJsModels(ModelDescription ApiModel)
+        {
+            //in case of a collection I take the inner element instead
+            var collection = ApiModel as CollectionModelDescription;
+            if (collection != null)
+                ApiModel = collection.ElementDescription;
+
+            var complexModel = ApiModel as ComplexTypeModelDescription;
+            if (complexModel == null)
+                return new List<CommonJsModel>();
+
+            var modelJsList = new List<CommonJsModel>();
+            string modelJs = GetCommonJsModel(complexModel,
+                ApiModel.Name.Replace("Model", string.Empty));
+            modelJsList.Add(new CommonJsModel()
+            {
+                ModelName = ApiModel.Name.Replace("Model", string.Empty),
+                ModelCommonJs = modelJs
+            });
+            foreach (var prop in complexModel.Properties)
+            {
+                modelJsList.AddRange(GetCommonJsModels(prop.TypeDescription));
+            }
+            return modelJsList;
+        }
+
+        [NonAction]
+        private string GetCommonJsModel(ComplexTypeModelDescription ComplexModel, string ModelName)
+        {
+            string jsModels = string.Empty;
+
+            // function TipologiaPrestazione(TipologiaPrestazione) {
+            jsModels += "function " + ModelName + "(" + ModelName + ") {";
+
+            jsModels += Environment.NewLine;
+            jsModels += "\t";
+            jsModels += "var self = this;";
+            jsModels += Environment.NewLine + Environment.NewLine;
+
+            foreach (var prop in ComplexModel.Properties)
+            {
+                jsModels += "\t";
+
+                //self.id = TipologiaPrestazione.ID;
+                if (typeof(DateTime) == prop.TypeDescription.ModelType
+                   || typeof(DateTime?) == prop.TypeDescription.ModelType)
+                    jsModels += "self." + ToJsName(prop.Name)
+                        + " = new Data(" + ModelName + "." + prop.Name + ");";
+                else
+                    jsModels += "self." + ToJsName(prop.Name)
+                        + " = " + ModelName + "." + prop.Name + ";";
+
+                jsModels += Environment.NewLine;
+            }
+
+            jsModels += "};";
+            jsModels += Environment.NewLine;
+            jsModels += Environment.NewLine;
+
+            return jsModels;
+        }
+        #endregion
+
+        #region Utils
+        public IEnumerable<IGrouping<HttpControllerDescriptor, ApiDescription>> ApiControllers
+        {
+            get
+            {
+                //Group APIs by controller
+                var model = GlobalConfiguration.Configuration.Services
+                    .GetApiExplorer().ApiDescriptions;
+                ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model
+                    .ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
+                return apiGroups.OrderBy(p => p.Key.ControllerName)
+                    //Exclude generation for this controller
+                    .Where(p => p.Key.ControllerName != "JavascriptGenerator")
+                    .ToList();
+            }
+        }
+        
+        [NonAction]
+        private List<string> GetGridColumnsSorting(ComplexTypeModelDescription ComplexModel)
+        {
+            var properties = new List<string>();
+            foreach (var par in ComplexModel.Properties)
+            {
+                var simplePar = par.TypeDescription as SimpleTypeModelDescription;
+                if (simplePar != null)
+                {
+                    properties.Add(ToJsName(par.Name));
+                    continue;
+                }
+
+                //chiamata ricorsiva per complex model
+                var innerComplexModel = par.TypeDescription as ComplexTypeModelDescription;
+                if (innerComplexModel != null)
+                {
+                    var innerProperties = GetGridColumnsSorting(innerComplexModel);
+
+                    //aggiungo navigazione (ad. es reparto.nome)
+                    var innerPropertiesWithNavi = innerProperties.Select(p => ToJsName(par.Name) + "." + p);
+                    properties.AddRange(innerPropertiesWithNavi);
+                    continue;
+                }
+            }
+            return properties;
+        }
+        
+        [NonAction]
+        private string ToJsName(string Testo)
+        {
+            //eccezioni
+            if (Testo == "CAP")
+                return Testo;
+            if (Testo == "ID")
+                return "id";
+
+            if (Testo.StartsWith("ID"))
+                return "id" + Testo.Substring(2);
+
+            //altrimenti metto a minuscola solo la prima lettera
+            return Testo.Substring(0, 1).ToLowerInvariant()
+                                        + Testo.Substring(1, Testo.Length - 1);
+        }
+        #endregion
+
         #region Paths
         public static string AppGeneratePath
         {
@@ -428,120 +525,6 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                 string containerFolder = Path.Combine(GeneratedPath, "KoGrids");
                 return containerFolder;
             }
-        }
-        #endregion
-
-        #region Utils
-        public IEnumerable<IGrouping<HttpControllerDescriptor, ApiDescription>> ApiControllers
-        {
-            get
-            {
-                //Group APIs by controller
-                var model = GlobalConfiguration.Configuration.Services
-                    .GetApiExplorer().ApiDescriptions;
-                ILookup<HttpControllerDescriptor, ApiDescription> apiGroups = model
-                    .ToLookup(api => api.ActionDescriptor.ControllerDescriptor);
-                return apiGroups.OrderBy(p => p.Key.ControllerName)
-                    //Exclude generation for this controller
-                    .Where(p => p.Key.ControllerName != "JavascriptGenerator")
-                    .ToList();
-            }
-        }
-
-        [NonAction]
-        private string GetCommonJsModel(ModelDescription ApiModel, string ModelName)
-        {
-            string jsModels = string.Empty;
-
-            // function TipologiaPrestazione(TipologiaPrestazione) {
-            jsModels += "function " + ModelName + "(" + ModelName + ") {";
-
-            jsModels += Environment.NewLine;
-            jsModels += "\t";
-            jsModels += "var self = this;";
-            jsModels += Environment.NewLine + Environment.NewLine;
-
-            ComplexTypeModelDescription complexModel = null;
-            var collectionModel = ApiModel as CollectionModelDescription;
-            if (collectionModel != null)
-            {
-                complexModel = collectionModel.ElementDescription as ComplexTypeModelDescription;
-            }
-            if (complexModel == null)
-                complexModel = ApiModel as ComplexTypeModelDescription;
-            if (complexModel == null)
-            {
-                Debugger.Break();
-            }
-            else
-            {
-                foreach (var prop in complexModel.Properties)
-                {
-                    jsModels += "\t";
-
-                    //self.id = TipologiaPrestazione.ID;
-                    if (typeof(DateTime) == prop.TypeDescription.ModelType
-                       || typeof(DateTime?) == prop.TypeDescription.ModelType)
-                        jsModels += "self." + ToJsName(prop.Name)
-                            + " = new Data(" + ModelName + "." + prop.Name + ");";
-                    else
-                        jsModels += "self." + ToJsName(prop.Name)
-                            + " = " + ModelName + "." + prop.Name + ";";
-
-                    jsModels += Environment.NewLine;
-                }
-            }
-
-            jsModels += "};";
-            jsModels += Environment.NewLine;
-            jsModels += Environment.NewLine;
-
-            return jsModels;
-        }
-
-        [NonAction]
-        private List<string> GetGridColumnsSorting(ComplexTypeModelDescription ComplexModel)
-        {
-            var properties = new List<string>();
-            foreach (var par in ComplexModel.Properties)
-            {
-                var simplePar = par.TypeDescription as SimpleTypeModelDescription;
-                if (simplePar != null)
-                {
-                    properties.Add(ToJsName(par.Name));
-                    continue;
-                }
-
-                //chiamata ricorsiva per complex model
-                var innerComplexModel = par.TypeDescription as ComplexTypeModelDescription;
-                if (innerComplexModel != null)
-                {
-                    var innerProperties = GetGridColumnsSorting(innerComplexModel);
-
-                    //aggiungo navigazione (ad. es reparto.nome)
-                    var innerPropertiesWithNavi = innerProperties.Select(p => ToJsName(par.Name) + "." + p);
-                    properties.AddRange(innerPropertiesWithNavi);
-                    continue;
-                }
-            }
-            return properties;
-        }
-        
-        [NonAction]
-        private string ToJsName(string Testo)
-        {
-            //eccezioni
-            if (Testo == "CAP")
-                return Testo;
-            if (Testo == "ID")
-                return "id";
-
-            if (Testo.StartsWith("ID"))
-                return "id" + Testo.Substring(2);
-
-            //altrimenti metto a minuscola solo la prima lettera
-            return Testo.Substring(0, 1).ToLowerInvariant()
-                                        + Testo.Substring(1, Testo.Length - 1);
         }
         #endregion
     }
