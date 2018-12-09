@@ -55,7 +55,8 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     string jsCurrentMethodCall = string.Empty;
 
                     // function GetAziende(divToBlock, success, error
-                    jsCurrentMethodCall = @"function " + actionMethod + @"(divToBlock, success, error";
+                    jsCurrentMethodCall = @"function " + actionMethod
+                        + @"(divToBlock, success, error";
 
                     //parametri GET e POST
                     var parametriGet = new List<string>();
@@ -71,22 +72,23 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     {
                         jsCurrentMethodCall += ", ";
 
-                        // function GetAziende(divToBlock, success, error, param1, param2) {
+                        //function GetAziende(divToBlock, success, error, param1, param2) {
                         jsCurrentMethodCall += string.Join(", ", parametriGet);
                         jsCurrentMethodCall += string.Join(", ", parametriPost);
                     }
                     jsCurrentMethodCall += @") {" + Environment.NewLine;
 
-                    //      Get(divToBlock, success, error, false, 
+                    //Get(divToBlock, success, error, false, 
                     jsCurrentMethodCall += "\t"; //tab
                     jsCurrentMethodCall += isGet ? "Get" : "Post";
-                    jsCurrentMethodCall += @"(divToBlock, success, error, " + doesReturnJsonString + ", ";
-
+                    jsCurrentMethodCall += @"(divToBlock, success, error, "
+                        + doesReturnJsonString + ", ";
 
                     //url dell'api (coi parametri GET da inserire nell'url)
                     string apiUrl = "\"/"  // "/
-                                    + relativePath.Replace("{", "\" + ").Replace("}", " + \"")  //api/metodo?param=asd&param2=asd
-                                    + "\"";
+                        //api/metodo?param=asd&param2=asd
+                        + relativePath.Replace("{", "\" + ").Replace("}", " + \"")
+                        + "\"";
 
                     //cancello l'ultimo pezzo  + "" diventa stringa vuota
                     apiUrl = apiUrl.Replace(" + \"\"", string.Empty);
@@ -119,12 +121,13 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             {
                 methodsNameBuilder.AppendLine(@"//" + item.Key.ControllerName);
                 methodsNameBuilder.AppendLine(string.Join(", " + Environment.NewLine,
-                                              item.Select(p => p.ActionDescriptor.ActionName + ": " + p.ActionDescriptor.ActionName))
-                                              + ",");
+                    item.Select(p => p.ActionDescriptor.ActionName + ": " + p.ActionDescriptor.ActionName))
+                    + ",");
                 methodsNameBuilder.AppendLine();
             }
             string methodsName = methodsNameBuilder.ToString();
-            methodsName = methodsName.Remove(methodsName.LastIndexOf(','), 1); //rimuovo l'ultima virgola
+            //rimuovo l'ultima virgola
+            methodsName = methodsName.Remove(methodsName.LastIndexOf(','), 1);
 
             nuovoTemplateApi = nuovoTemplateApi.Replace("{METHODS_NAME}", methodsName);
 
@@ -168,7 +171,8 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     string friendlyID = apiMethod.GetFriendlyId();
                     var apiModel = GlobalConfiguration.Configuration.GetHelpPageApiModel(friendlyID);
 
-                    bool doesReturnJson = apiModel.ResourceDescription.ModelType.Name != "IHttpActionResult" ? true : false;
+                    bool doesReturnJson = apiModel.ResourceDescription
+                        .ModelType.Name != "IHttpActionResult" ? true : false;
                     if (!doesReturnJson)
                         continue;
 
@@ -233,7 +237,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             File.WriteAllText(CommonGeneratedPath, nuovoTemplateCommon);
 
             var msgOk = "file common_generated.js generato, " + @"<br/>";
-            string commonFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
+            string commonFilePath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
             if (File.Exists(commonFilePath))
             {
                 msgOk += "VS command window: Tools.DiffFiles " + CommonGeneratedPath + " " + commonFilePath;
@@ -302,8 +306,8 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     var paramsConNavi = GetGridColumnsSorting(complexModel);
 
                     var headerSortingParams = paramsConNavi.Select(p =>
-                            "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>")
-                            .ToList();
+                        "<th><a href='#' data-bind=\"click: function(){ changeSort('" + p + "') }\">" + p + "</a></th>")
+                        .ToList();
 
                     //add isSelected header for grids
                     headerSortingParams.AddRange(new string[] { "<th>",
@@ -311,8 +315,8 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                         "</th>" });
 
                     var headerDataParams = paramsConNavi
-                                           .Select(p => "<td data-bind=\"text: " + p + "\"></td>")
-                                           .ToList();
+                        .Select(p => "<td data-bind=\"text: " + p + "\"></td>")
+                        .ToList();
 
                     //add isSelected for grids
                     headerDataParams.AddRange(new string[] { "<td>",
