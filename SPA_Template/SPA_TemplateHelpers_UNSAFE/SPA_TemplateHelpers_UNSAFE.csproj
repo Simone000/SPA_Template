@@ -224,6 +224,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseApiController.cs" />
+    <Compile Include="CustomHelpers\BasicAuthenticationMessageHandler.cs" />
     <Compile Include="CustomHelpers\CustomDateTimeConverter.cs" />
     <Compile Include="CustomHelpers\CustomExceptionHandler.cs" />
     <Compile Include="CustomHelpers\CustomExceptionLogger.cs" />

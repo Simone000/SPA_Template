@@ -8,7 +8,7 @@ using System.Web;
 namespace SPA_TemplateHelpers
 {
     /// <summary>
-    /// add config.MessageHandlers.Replace(new CustomRequestAndResponseHandler());
+    /// config.MessageHandlers.Add(new CustomRequestAndResponseHandler());
     /// in WebApiConfig.Register(HttpConfiguration config)
     /// </summary>
     public class CustomRequestAndResponseHandler : DelegatingHandler
