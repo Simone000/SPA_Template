@@ -1,7 +1,9 @@
-﻿using System;
+﻿using SPA_TemplateHelpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.ExceptionHandling;
 
 namespace SpaTemplateCustomHelpers
 {
@@ -13,6 +15,18 @@ namespace SpaTemplateCustomHelpers
 
             // Route dell'API Web
             config.MapHttpAttributeRoutes();
+
+            //global exception logging
+            config.Services.Add(typeof(IExceptionLogger), new CustomExceptionLogger());
+
+            //handler exceptions
+            config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
+
+            //Log request and response
+            config.MessageHandlers.Add(new CustomRequestAndResponseHandler());
+
+            //custom datetime formatting
+            config.Formatters.JsonFormatter.SerializerSettings.Converters.Add(new CustomDateTimeConverter());
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",

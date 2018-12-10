@@ -27,6 +27,9 @@ namespace SPA_TemplateHelpers
             //Log request and response
             config.MessageHandlers.Add(new CustomRequestAndResponseHandler());
 
+            //Basic Auth
+            config.MessageHandlers.Add(new BasicAuthenticationMessageHandler());
+
             //todo: is it necessary?
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));
 
