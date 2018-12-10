@@ -13,6 +13,10 @@ using System.Web;
 
 namespace SPA_TemplateHelpers
 {
+    /// <summary>
+    /// config.MessageHandlers.Add(new BasicAuthenticationMessageHandler());
+    /// in WebApiConfig.Register(HttpConfiguration config)
+    /// </summary>
     public class BasicAuthenticationMessageHandler : DelegatingHandler
     {
         #region Settings
