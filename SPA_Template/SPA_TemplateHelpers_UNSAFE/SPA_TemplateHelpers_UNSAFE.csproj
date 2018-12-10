@@ -227,7 +227,7 @@
     <Compile Include="CustomHelpers\CustomDateTimeConverter.cs" />
     <Compile Include="CustomHelpers\CustomExceptionHandler.cs" />
     <Compile Include="CustomHelpers\CustomExceptionLogger.cs" />
-    <Compile Include="CustomHelpers\CustomResponseHandler.cs" />
+    <Compile Include="CustomHelpers\CustomRequestAndResponseHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -24,8 +24,8 @@ namespace SPA_TemplateHelpers
             //handler exceptions
             config.Services.Replace(typeof(IExceptionHandler), new CustomExceptionHandler());
 
-            //handler answers
-            config.MessageHandlers.Add(new CustomResponseHandler());
+            //Log request and response
+            config.MessageHandlers.Add(new CustomRequestAndResponseHandler());
 
             //todo: is it necessary?
             //config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("text/html"));

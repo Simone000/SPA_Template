@@ -31,7 +31,6 @@ namespace SPA_TemplateHelpers
         //    }
         //}
 
-
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
@@ -40,10 +39,10 @@ namespace SPA_TemplateHelpers
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             
             //Create basic roles
-            using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
+            /*using (var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext())))
             {
                 roleManager.Create(new IdentityRole("Admin"));
-            }
+            }*/
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -56,19 +55,20 @@ namespace SPA_TemplateHelpers
                 var httpExc = error as System.Web.HttpException;
                 if (httpExc != null && httpExc.GetHttpCode() == 404)
                 {
-                    Trace.TraceWarning("Global/Application_Error, Page Not Found: {0}", Request.RawUrl);
+                    Trace.TraceWarning("Global/Application_Error, Page Not Found: {0}",
+                        Request.RawUrl);
                     return;
                 }
 
                 if (HttpContext.Current != null && HttpContext.Current.Request != null)
                 {
                     Trace.TraceError("Global/Application_Error"
-                                     + Environment.NewLine
-                                     + GetLogRequest(HttpContext.Current.Request)
-                                     + Environment.NewLine
-                                     + "Exception:"
-                                     + Environment.NewLine
-                                     + excToLog);
+                        + Environment.NewLine
+                        + GetLogRequest(HttpContext.Current.Request)
+                        + Environment.NewLine
+                        + "Exception:"
+                        + Environment.NewLine
+                        + excToLog);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace SPA_TemplateHelpers
             }
         }
 
-        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        /*protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
             if (HttpContext.Current == null)
             {
@@ -89,18 +89,16 @@ namespace SPA_TemplateHelpers
                 return;
             }
 
-            if (HttpContext.Current.Request.FilePath == "/Glimpse.axd")
-                return;
-
             Trace.TraceInformation(GetLogRequest(HttpContext.Current.Request));
-        }
+        }*/
 
         private string GetLogRequest(HttpRequest Request)
         {
             string tipoRichiesta = Request.HttpMethod;
             string url = Request.RawUrl;
 
-            string parametri = string.Join("; ", Request.Form.AllKeys.Select(p => p + ": " + Request.Form[p]));
+            string parametri = string.Join("; ", Request.Form.AllKeys
+                .Select(p => p + ": " + Request.Form[p]));
 
             string username = "NotAuthenticated";
             if (User != null && User.Identity.IsAuthenticated)
@@ -108,11 +106,11 @@ namespace SPA_TemplateHelpers
             string ip = GetUserIP(Request);
 
             string logRequest = string.Format("HTTP {0} {1}"
-                                              + Environment.NewLine
-                                              + "Form Keys: {2}"
-                                              + Environment.NewLine
-                                              + "User: {3}, IP: {4}",
-                                              tipoRichiesta, url, parametri, username, ip);
+                + Environment.NewLine
+                + "Form Keys: {2}"
+                + Environment.NewLine
+                + "User: {3}, IP: {4}",
+                tipoRichiesta, url, parametri, username, ip);
             return logRequest;
         }
 
