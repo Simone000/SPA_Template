@@ -145,8 +145,9 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                 "App", "api.js");
             if (File.Exists(apiFilePath))
             {
-                msgOk += "VS command window: Tools.DiffFiles " + ApiGeneratedPath + " "
-                    + apiFilePath;
+                msgOk += "VS command window: Tools.DiffFiles"
+                    + " \"" + ApiGeneratedPath + "\""
+                    + " \"" + apiFilePath + "\"";
             }
             return Ok(msgOk);
         }
@@ -200,7 +201,9 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             string commonFilePath = System.IO.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "App", "common.js");
             if (File.Exists(commonFilePath))
             {
-                msgOk += "VS command window: Tools.DiffFiles " + CommonGeneratedPath + " " + commonFilePath;
+                msgOk += "VS command window: Tools.DiffFiles"
+                    + " \"" + CommonGeneratedPath + "\""
+                    + " \"" + commonFilePath + "\"";
             }
 
             return Ok(msgOk);
