@@ -1,0 +1,89 @@
+﻿.knockout-grids_t1 .panel-heading {
+    background-color: #d3d3d3;
+    border: solid black 1px;
+    padding: 20px;
+}
+    @media (max-width: 768px) {
+        .knockout-grids_t1 .panel-heading{
+            text-align:center;
+        }
+    }
+
+    .knockout-grids_t1 .panel-heading .panel-title a {
+        font-weight:bold;
+    }
+
+    .knockout-grids_t1 .panel-heading input{
+        border-radius: 8px;
+        padding-left: 4px;
+        float:right;
+    }
+
+    @media (max-width: 768px) {
+        .knockout-grids_t1 .panel-heading input {
+            float: none;
+            margin-top: 2px;
+        }
+    }
+
+
+.knockout-grids_t1 .panel-body {
+    border: solid;
+    border-top-style: none;
+}
+
+    .knockout-grids_t1 .panel-body .table-responsive {
+        border-radius:8px;
+    }
+
+        /* Fixed first column version */
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed {
+            width:100%;
+            table-layout:fixed;
+        }
+            .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed table thead tr {
+                height: 40px;
+            }
+
+            .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed table tbody tr {
+                height: 60px;
+            }
+
+
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed table {
+            white-space:nowrap;
+        }
+
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed .td_firstFixed_First {
+            vertical-align:top;
+            overflow:auto;
+            border-right: 1px solid;
+            
+            /*can be overrided*/
+            width:160px;
+        }
+
+        .knockout-grids_t1 .panel-body .table-responsive .table_firstfixed .td_firstFixed_Others {
+            vertical-align:top;
+        }
+
+
+        .knockout-grids_t1 .panel-body .table-responsive table {
+        }
+
+    .knockout-grids_t1 .panel-body .pagination-menu {
+        text-align:center;
+        background-color: #BEBEBE;
+        padding: 4px;
+        border-radius: 8px;
+    }
+
+        .knockout-grids_t1 .panel-body .pagination-menu label {
+            text-decoration: underline;
+        }
+
+        .knockout-grids_t1 .panel-body .pagination-menu div {
+            display:inline-block;
+        }
+
+

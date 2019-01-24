@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaTemplateCustomHelpers", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaTemplateStartHere", "SpaTemplateStartHere\SpaTemplateStartHere.csproj", "{8B3228B3-4476-4FBA-BBA3-C072C69E4438}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deprecated", "Deprecated", "{4B652B15-0AEB-4B2E-B650-C2D875A865B6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Android = Debug|Android
@@ -256,6 +258,11 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{26256568-E42F-447B-8EA3-40F441A1E692} = {4B652B15-0AEB-4B2E-B650-C2D875A865B6}
+		{97F3C43A-118A-48F5-B218-450551A7D758} = {4B652B15-0AEB-4B2E-B650-C2D875A865B6}
+		{D10B80AB-919B-4A30-89F5-1DCB14B78F12} = {4B652B15-0AEB-4B2E-B650-C2D875A865B6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A2A97600-E06C-42CE-96AF-F95AFED03CA5}

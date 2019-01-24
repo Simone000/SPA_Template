@@ -1,0 +1,83 @@
+﻿<div class="panel-group knockout-grids_t1" id="div_movimentis">
+    <div class="panel" data-bind="with: movimentisPaginate">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#movimentis">
+                    <b>movimentis</b>
+                    <br class="visible-xs" />
+                    <span data-bind="text: '(' + items().length + ' movimentis)'"></span>
+                </a>
+                <br class="visible-xs" />
+                <input type="text" data-bind="value: search, valueUpdate:'afterkeydown'"
+                       placeholder="PlaceHolder" />
+
+                <select style="float:right;" class="div_tipi"
+                        data-bind="options: $parent.tipi, optionsText: 'desc', optionsValue: 'id', value: $parent.id_tipo, optionsCaption: 'Tutti'"></select>
+            </h3>
+
+            <div style="clear:both;"></div>
+        </div>
+
+        <div class="panel-collapse collapse in" id="movimentis">
+            <div class="panel-body">
+                <span data-bind="visible: items().length == 0"><b>Nessun movimentis presente</b></span>
+
+                <div class="table-responsive" data-bind="visible: items().length > 0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a href='#' data-bind="click: function(){ changeSort('dataContabile') }">dataContabile</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('dataValuta') }">dataValuta</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('causale') }">causale</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('importo') }">importo</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('tipo') }">tipo</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('categoriaMovimento') }">categoriaMovimento</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('tipoPagamento') }">tipoPagamento</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('descrizioneBreve') }">descrizioneBreve</a></th>
+                                <th><a href='#' data-bind="click: function(){ changeSort('descrizioneEstesa') }">descrizioneEstesa</a></th>
+                                <td>
+                                    <input type="checkbox" data-bind="checked: isAllSelected" />
+                                </td>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: itemsInPageSorted()">
+                            <tr>
+                                <td data-bind="text: dataContabile"></td>
+                                <td data-bind="text: dataValuta"></td>
+                                <td data-bind="text: causale"></td>
+                                <td data-bind="text: importo"></td>
+                                <td data-bind="text: tipo"></td>
+                                <td data-bind="text: categoriaMovimento"></td>
+                                <td data-bind="text: tipoPagamento"></td>
+                                <td data-bind="text: descrizioneBreve"></td>
+                                <td data-bind="text: descrizioneEstesa"></td>
+                                <td>
+                                    <input type="checkbox" data-bind="checked: isSelected" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-menu" data-bind="visible: items().length > 0">
+                    <div class="div_menupaging">
+                        <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
+                        <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
+                        <input type="number" data-bind="value: paginaAttualeChange, visible: isEditingPageIndex() == true" />
+                        <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
+                    </div>
+
+                    <div class="div_menusizing">
+                        <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
+                        <span>Page Size: </span>
+                        <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
+                        <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
+                        <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                    </div>
+                </div>
+
+                <div style="clear:both;"></div>
+            </div>
+        </div>
+    </div>
+</div>

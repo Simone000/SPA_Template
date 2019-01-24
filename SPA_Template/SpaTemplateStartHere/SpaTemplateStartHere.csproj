@@ -127,6 +127,16 @@
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.html" />
     <Content Include="App-generate\templates\ko-servergrid-t1\ko-servergrid-t1.js" />
     <Content Include="App-generate\templates\startup.js" />
+    <Content Include="App-samples\kogrids-client-filters-ws\kogrids-client-filters-ws.html" />
+    <Content Include="App-samples\kogrids-client-filters-ws\kogrids-client-filters-ws.js" />
+    <Content Include="App-samples\kogrids-client-filters\kogrids-client-filters.html" />
+    <Content Include="App-samples\kogrids-client-filters\kogrids-client-filters.js" />
+    <Content Include="App-samples\kogrids-client-fixedcolumn\kogrids-client-fixedcolumn.html" />
+    <Content Include="App-samples\kogrids-client-fixedcolumn\kogrids-client-fixedcolumn.js" />
+    <Content Include="App-samples\kogrids-client\kogrids-client.html" />
+    <Content Include="App-samples\kogrids-client\kogrids-client.js" />
+    <Content Include="App-samples\kogrids-server\kogrids-server.html" />
+    <Content Include="App-samples\kogrids-server\kogrids-server.js" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -148,13 +158,29 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Global.asax.pp" />
+    <Content Include="Global.asax.cs.pp" />
+    <Content Include="App_Start\FilterConfig.cs.pp" />
+    <Content Include="App_Start\RouteConfig.cs.pp" />
+    <Content Include="App_Start\WebApiConfig.cs.pp" />
     <None Include="packages.config" />
     <None Include="Readme.md" />
     <Content Include="App\Index.html" />
+    <Content Include="Content\knockout-grids.css" />
+    <Content Include="Global.asax" />
     <Content Include="Index.html" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\knockout-grids.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -190,12 +216,16 @@
     <Compile Include="CustomHelpers\CustomExceptionLogger.cs" />
     <Compile Include="CustomHelpers\CustomRequestAndResponseHandler.cs" />
     <Compile Include="CustomValidationException.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.config.transform">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -203,6 +233,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
