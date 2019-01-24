@@ -1,0 +1,83 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--<meta http-equiv="pragma" content="no-cache" />-->
+
+    <meta name="application-name" content="Title" />
+    <title>Titolo</title>
+
+    <link href="../Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-theme.min.css" rel="stylesheet" />
+    <link href="../Content/bootstrap-datepicker3.min.css" rel="stylesheet" />
+    <!--
+    <link href="../Content/bootstrap-fix.css" rel="stylesheet" />
+    -->
+    <link href="../Content/toastr.min.css" rel="stylesheet" />
+    <link href="../Content/knockout-grids.css" rel="stylesheet" />
+
+    <link href="../Content/Spa.css" rel="stylesheet" />
+    <link href="../Content/Site.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        var appInsights=window.appInsights||function(config){
+        function r(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s=u.createElement(o),i,f;for(s.src=config.url||"//az416426.vo.msecnd.net/scripts/a/ai.0.js",u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=["Event","Exception","Metric","PageView","Trace"];i.length;)r("track"+i.pop());return r("setAuthenticatedUserContext"),r("clearAuthenticatedUserContext"),config.disableExceptionTracking||(i="onerror",r("_"+i),f=e[i],e[i]=function(config,r,u,e,o){var s=f&&f(config,r,u,e,o);return s!==!0&&t["_"+i](config,r,u,e,o),s}),t
+        }({
+            instrumentationKey:""
+        });
+
+        window.appInsights=appInsights;
+    </script>
+</head>
+<body>
+
+    <!-- loading -->
+    <div id="div_starterPage">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <h1>Titolo</h1>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <img src="../Content/Images/loading_spinner.gif" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>Loading...</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <a href="#" onclick="location.reload()">Clicca qui se impiega troppo tempo...</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <!-- Body per SammyJs -->
+    <div id="div_body">
+        <components-header></components-header>
+
+        <!-- ko with: body -->
+        <!-- /ko -->
+
+
+        <!--
+        <footer>
+            <hr />
+            <p></p>
+        </footer>
+        -->
+    </div>
+
+    <script src="/App/require.config.js"></script>
+    <script data-main="App/startup" src="/Scripts/require.js"></script>
+</body>
+</html>

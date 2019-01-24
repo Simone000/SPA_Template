@@ -1,0 +1,64 @@
+﻿<div class="panel-group knockout-grids_t1" id="div_prestazioniAziendaDaFatturares">
+    <div class="panel">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#prestazioniAziendaDaFatturares">
+                    <b>prestazioniAziendaDaFatturares</b>
+                </a>
+
+                <input type="text" data-bind="value: prestazioniAziendaDaFatturaresPaginate().search, valueUpdate:'afterkeydown'"
+                       placeholder="Nome" />
+            </h3>
+        </div>
+
+        <div class="panel-collapse collapse in" id="prestazioniAziendaDaFatturares">
+            <div class="panel-body">
+                <span data-bind="visible: prestazioniAziendaDaFatturares().length == 0"><b>Nessun prestazioniAziendaDaFatturares presente</b></span>
+
+                <div class="table-responsive" data-bind="visible: prestazioniAziendaDaFatturares().length > 0">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('id_azienda') }">ID_Azienda</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('nomeOrganizzazione') }">nomeOrganizzazione</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('countPrestazioniSezionale1') }">countPrestazioniSezionale1</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('importoSezionale1') }">importoSezionale1</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('countPrestazioniSezionale2') }">countPrestazioniSezionale2</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('importoSezionale2') }">importoSezionale2</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('countFattureDaEmettere') }">countFattureDaEmettere</a></th>
+                                <th><a href='#' data-bind="click: function(){ prestazioniAziendaDaFatturaresPaginate().changeSort('countFattureEmesse') }">countFattureEmesse</a></th>
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach: prestazioniAziendaDaFatturaresPaginate().itemsInPage()">
+                            <tr>
+                                <td data-bind="text: id_azienda"></td>
+                                <td data-bind="text: nomeOrganizzazione"></td>
+                                <td data-bind="text: countPrestazioniSezionale1"></td>
+                                <td data-bind="text: importoSezionale1"></td>
+                                <td data-bind="text: countPrestazioniSezionale2"></td>
+                                <td data-bind="text: importoSezionale2"></td>
+                                <td data-bind="text: countFattureDaEmettere"></td>
+                                <td data-bind="text: countFattureEmesse"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="pagination-menu" data-bind="with: prestazioniAziendaDaFatturaresPaginate()">
+                    <button data-bind="click: previous" class="btn"><i class="glyphicon glyphicon-step-backward"></i></button>
+                    <label data-bind="text: (parseInt(paginaAttuale()) + 1) + ' / ' + pagesNumber(), visible: isEditingPageIndex() == false, click: goToEditPageIndex" class="badge"></label>
+                    <input type="number" data-bind="value: paginaAttuale, visible: isEditingPageIndex() == true" />
+                    <button data-bind="click: next" class="btn"><i class="glyphicon glyphicon-step-forward"></i></button>
+
+                    <button data-bind="click: pageSizeMinus" class="btn"><i class="glyphicon glyphicon-minus"></i></button>
+                    <span>Page Size: </span>
+                    <label data-bind="text: pageSize(), visible: isEditingPageSize() == false, click: goToEditPageSize" class="badge"></label>
+                    <input type="number" data-bind="value: pageSize, visible: isEditingPageSize() == true" />
+                    <button data-bind="click: pageSizePlus" class="btn"><i class="glyphicon glyphicon-plus"></i></button>
+                </div>
+
+                <div style="clear:both"></div>
+            </div>
+        </div>
+    </div>
+</div>
