@@ -127,19 +127,19 @@
                         if (modelErrors != null) {
                             var isFirst = true;
                             $.each(modelErrors, function (key, value) {
+                                if (isFirst)
+                                    firstError = value;
 
                                 //cerco l'elemento by name (Model.Descrizione => cerco input con name Descrizione)
                                 var keyFailedValidation = key.split(".", 2);
                                 var inputFailedValidation = $('input[name=' + keyFailedValidation[1] + ']');
-                                if (inputFailedValidation == null || inputFailedValidation.length == 0) {
+                                if (inputFailedValidation.length === 0) {
                                     inputFailedValidation = $('textarea[name=' + keyFailedValidation[1] + ']');
                                 }
-                                if (inputFailedValidation != null) {
+                                if (inputFailedValidation.length !== 0) {
                                     //focus solo per il primo elemento
                                     if (isFirst) {
                                         inputFailedValidation.focus();
-                                        isFirst = false;
-                                        firstError = value;
                                     }
 
                                     //form-group in error mode
@@ -147,11 +147,17 @@
 
                                     //label to show error
                                     var errorLabel = inputFailedValidation.closest('.form-group').find('.error');
-                                    if (errorLabel != null) {
+                                    if (errorLabel.length === 0) {
+                                        //I'm not the in the standard form, => try to look in the first parent
+                                        errorLabel = inputFailedValidation.parent().find('.error');
+                                    }
+                                    if (errorLabel.length !== 0) {
                                         errorLabel.text(value);
                                         errorLabel.removeClass('hide');
                                     }
                                 }
+
+                                isFirst = false;
                             });
                         }
 
@@ -161,7 +167,8 @@
                         }
 
                         //se è l'errore default di ModelState => riscrivo il msg scrivendo il primo model error che trovo
-                        if (msg_err == "The request is invalid." && firstError != null) {
+                        if (firstError != null) {
+                            console.log(msg_err);
                             msg_err = firstError;
                         }
 
@@ -170,7 +177,7 @@
                             var div_summary = divToBlock.find('.validation-summary-errors');
                             if (div_summary != null) {
                                 div_summary.find('li').text(msg_err);
-                                div_summary.removeClass('hide')
+                                div_summary.removeClass('hide');
                             }
                         }
 
@@ -244,10 +251,7 @@
             });
         };
 
-
-
-        {METHODS_CALL}
-
+        { METHODS_CALL }
 
         /*
         self.method = function () {
@@ -259,7 +263,7 @@
                 //toastr["success"]("", "Ok!");
             };
             function error(jqXHR, desc) {
-                //redirect on Unauthorized
+            //redirect on Unauthorized
                 if (jqXHR["status"] == 401) {
                     window.location = "/#/account/login";
                     return;
@@ -273,8 +277,8 @@
         */
 
         return {
-{METHODS_NAME}
-};
+            { METHODS_NAME }
+        };
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
     if (typeof module !== 'undefined' && module.exports) { //Node
