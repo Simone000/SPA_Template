@@ -14,7 +14,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
 {
     [RoutePrefix("api/JavascriptGenerator")]
     public class JavascriptGeneratorController : ApiController
-    { 
+    {
 #if DEBUG
         [HttpGet]
         [Route("GenerateAPI")]
@@ -42,13 +42,13 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     bool doesReturnJson = apiModel.ResourceDescription
                         .ModelType.Name != "IHttpActionResult" ? true : false;
                     string doesReturnJsonString = doesReturnJson ? "true" : "false";
-                    
+
                     bool isGet = false;
                     if (httpMethod == "GET")
                         isGet = true;
                     else if (httpMethod != "POST")
                         continue;
-                    
+
                     string jsCurrentMethodCall = string.Empty;
 
                     // function GetAziende(divToBlock, success, error
@@ -83,7 +83,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
 
                     //url dell'api (coi parametri GET da inserire nell'url)
                     string apiUrl = "\"/"  // "/
-                        //api/metodo?param=asd&param2=asd
+                                           //api/metodo?param=asd&param2=asd
                         + relativePath.Replace("{", "\" + ").Replace("}", " + \"")
                         + "\"";
 
@@ -156,8 +156,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
         [Route("GenerateCommon")]
         public IHttpActionResult GenerateCommon()
         {
-            var modelNames = new List<string>();
-            string jsModels = string.Empty;
+            var jsModels = new Dictionary<string, string>();
             foreach (var apiController in ApiControllers)
             {
                 foreach (var apiMethod in apiController)
@@ -176,24 +175,22 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     var modelsjs = GetCommonJsModels(apiModel.ResourceDescription);
                     foreach (var item in modelsjs)
                     {
-                        if (modelNames.Contains(item.ModelName))
-                            continue;
-                        modelNames.Add(item.ModelName);
-                        jsModels += item.ModelCommonJs;
+                        if (!jsModels.ContainsKey(item.ModelName))
+                            jsModels.Add(item.ModelName, item.ModelCommonJs);
                     }
                 }
             }
 
             string nuovoTemplateCommon = CommonTemplate;
 
-            //replace dei metodi e delle chiamate ai metodi
             nuovoTemplateCommon = nuovoTemplateCommon
-                .Replace("{METHODS_CALL}", jsModels);
+                .Replace("{METHODS_CALL}",
+                    string.Join(Environment.NewLine + Environment.NewLine, jsModels.OrderBy(p => p.Key).Select(p => p.Value)));
 
             nuovoTemplateCommon = nuovoTemplateCommon
                 .Replace("{METHODS_NAME}",
                 string.Join(", " + Environment.NewLine + "\t\t\t",
-                modelNames.OrderBy(p => p).Select(p => p + ": " + p)));
+                jsModels.OrderBy(p => p.Key).Select(p => p.Key + ": " + p.Key)));
 
             File.WriteAllText(CommonGeneratedPath, nuovoTemplateCommon);
 
@@ -372,8 +369,6 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             }
 
             jsModels += "};";
-            jsModels += Environment.NewLine;
-            jsModels += Environment.NewLine;
 
             return jsModels;
         }
@@ -395,7 +390,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
                     .ToList();
             }
         }
-        
+
         [NonAction]
         private List<string> GetGridColumnsSorting(ComplexTypeModelDescription ComplexModel)
         {
@@ -423,7 +418,7 @@ namespace SpaTemplateJavascriptGenerator.Controllers.JavascriptGenerator
             }
             return properties;
         }
-        
+
         [NonAction]
         private string ToJsName(string Testo)
         {

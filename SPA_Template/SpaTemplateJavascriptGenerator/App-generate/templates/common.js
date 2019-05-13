@@ -91,8 +91,6 @@
             }
 
             self.newValue = ko.observable(self.toString());
-
-            //todo: aggiungere localizzazione
         };
 
         function BasicListItem(BasicListItem) {
@@ -101,7 +99,6 @@
             self.id = BasicListItem.ID;
             self.desc = BasicListItem.Desc;
         };
-
 
 {METHODS_CALL}
 
@@ -113,7 +110,6 @@
             BasicListItem: BasicListItem,
 
             {METHODS_NAME}
-
         };
     });
 }(typeof define === 'function' && define.amd ? define : function (deps, factory) {
