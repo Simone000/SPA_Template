@@ -42,7 +42,7 @@ namespace SPA_TemplateHelpers
 
             //log request body (after base.SendAsync to get the info on identity)
             string requestToLog = GetLogRequest(request, requestBody);
-            Trace.TraceInformation(requestToLog);
+            Trace.TraceInformation(Environment.NewLine + Environment.NewLine + requestToLog);
 
             if (response == null || response.Content == null)
                 return response;
